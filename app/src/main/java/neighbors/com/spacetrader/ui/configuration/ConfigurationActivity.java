@@ -52,6 +52,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 Difficulty pDifficulty = (Difficulty) difficultySpinner.getSelectedItem();
 
                 Toast.makeText(ConfigurationActivity.this, pName, Toast.LENGTH_SHORT).show(); //Making sure text is correct
+
             }
         });
 
