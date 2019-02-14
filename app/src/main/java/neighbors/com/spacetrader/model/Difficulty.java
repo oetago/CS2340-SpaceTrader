@@ -1,4 +1,4 @@
-package neighbors.com.spacetrader.ui.configuration;
+package neighbors.com.spacetrader.model;
 
 public enum Difficulty {
     Beginner ("Beginner"),

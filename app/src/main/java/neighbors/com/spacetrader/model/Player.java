@@ -3,8 +3,6 @@ package neighbors.com.spacetrader.model;
 import java.util.Arrays;
 import java.util.List;
 
-import neighbors.com.spacetrader.ui.configuration.Difficulty;
-
 /**
  * Player Model to hold data throughout the game
  */
