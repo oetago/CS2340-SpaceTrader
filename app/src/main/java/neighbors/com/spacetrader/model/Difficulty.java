@@ -1,11 +1,11 @@
 package neighbors.com.spacetrader.model;
 
 public enum Difficulty {
-    Beginner ("Beginner"),
-    Easy ("Easy"),
-    Normal ("Normal"),
-    Hard ("Hard"),
-    Impossible ("Impossible");
+    BEGINNER ("Beginner"),
+    EASY ("Easy"),
+    MEDIUM ("Medium"),
+    HARD ("Hard"),
+    IMPOSSIBLE ("Impossible");
 
     private final String name;
 
