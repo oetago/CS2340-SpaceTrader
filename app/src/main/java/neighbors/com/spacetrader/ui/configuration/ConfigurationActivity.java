@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
-import neighbors.com.spacetrader.MainActivity;
 import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.Difficulty;
 import neighbors.com.spacetrader.model.Player;
@@ -21,11 +20,8 @@ import neighbors.com.spacetrader.model.Player;
 public class ConfigurationActivity extends AppCompatActivity {
 
     private EditConfigurationViewModel editConfigurationViewModel;
-
     private Spinner difficultySpinner;
-
     private EditText nameField;
-
     private Button accept_button;
 
     @Override
