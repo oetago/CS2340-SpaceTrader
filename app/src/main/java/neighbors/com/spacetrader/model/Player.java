@@ -14,11 +14,13 @@ public class Player {
     private HashMap<SkillCategory, Integer> skills;
     private Difficulty difficulty;
     private int credits;
-    private String spaceship = "Gnat";
+    private String spaceship;
     private int availableSkillPoints;
 
     public Player() {
         skills = new HashMap<>();
+        credits = 1000;
+        spaceship = "Gnat";
     }
 
 
