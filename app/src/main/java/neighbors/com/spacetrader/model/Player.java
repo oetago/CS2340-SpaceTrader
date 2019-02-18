@@ -60,7 +60,6 @@ public class Player {
 
     public void assignSkillPoints(SkillCategory category, int numberOfPoints) {
         skills.put(category, numberOfPoints);
-        this.availableSkillPoints -= numberOfPoints;
     }
 
     public void setDifficulty(Difficulty difficulty) {
