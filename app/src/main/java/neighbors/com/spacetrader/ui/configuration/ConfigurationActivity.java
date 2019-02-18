@@ -1,6 +1,5 @@
 package neighbors.com.spacetrader.ui.configuration;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.Difficulty;
 import neighbors.com.spacetrader.model.Player;
+import neighbors.com.spacetrader.model.SkillCategory;
 
 
 /**
@@ -56,75 +56,70 @@ public class ConfigurationActivity extends AppCompatActivity {
         accept_button.setOnClickListener(new View.OnClickListener() { //Sets listener for accept button and what to do on click
             @Override
             public void onClick(View v) {
-                String pName = nameField.getText().toString();
-
-                // Gets values of player skills
-                // Pilot
-                try {
-                    skillsArray[0] = Integer.parseInt(editPilot.getText().toString());
-                }
-                catch (NumberFormatException e) {
-                    Toast.makeText(ConfigurationActivity.this, "Skill level must be an integer", Toast.LENGTH_LONG).show();
-                }
-                // Fighter
-                try {
-                    skillsArray[1] = Integer.parseInt(editFighter.getText().toString());
-                }
-                catch (NumberFormatException e) {
-                    Toast.makeText(ConfigurationActivity.this, "Fighter skill level must be an integer", Toast.LENGTH_LONG).show();
-                }
-                // Trader
-                try {
-                    skillsArray[2] = Integer.parseInt(editTrader.getText().toString());
-                }
-                catch (NumberFormatException e) {
-                    Toast.makeText(ConfigurationActivity.this, "Trader skill level must be an integer", Toast.LENGTH_LONG).show();
-                }
-                // Engineer
-                try {
-                    skillsArray[3] = Integer.parseInt(editEngineer.getText().toString());
-                }
-                catch (NumberFormatException e) {
-                    Toast.makeText(ConfigurationActivity.this, "Engineer skill level must be an integer", Toast.LENGTH_LONG).show();
-                }
-
-                int totalSkill = 0;
-                for (int i = 0; i < 4; i++) {
-                    if (skillsArray[i] < 0) {
-                        //throw new NumberFormatException("Skill level cannot be less than 0");
-                    } else if (skillsArray[i] > 16) {
-                        //throw new NumberFormatException("Skill level cannot be more than 16");
-                        Toast.makeText(ConfigurationActivity.this, "Skill level cannot be more than 16", Toast.LENGTH_SHORT).show();
-                    }
-                    totalSkill += skillsArray[i];
-                }
-
-                boolean correctSkills = false;
-                if (totalSkill == 16) {
-                    Toast.makeText(ConfigurationActivity.this, "Skills Allocated Correctly", Toast.LENGTH_SHORT).show();
-                    correctSkills = true;
-                } else {
-                    Toast.makeText(ConfigurationActivity.this, "Total skills level must add to 16", Toast.LENGTH_LONG).show();
-                }
-
-                Difficulty pDifficulty = (Difficulty) difficultySpinner.getSelectedItem();
-
-                if (correctSkills) {
-                    String pPlayer =  pName + ", " +
-                            "Pilot: " + skillsArray[0] +
-                            " Fighter: " + skillsArray[1] +
-                            " Trader: " + skillsArray[2] +
-                            " Engineer: " + skillsArray[3];
-
-                    Toast.makeText(ConfigurationActivity.this, pPlayer, Toast.LENGTH_SHORT).show(); //Making sure text is correct
-                } else {
-                    Toast.makeText(ConfigurationActivity.this, "Incorrect Entry", Toast.LENGTH_SHORT);
+                if (getPlayerSkillValuesAndValidate()) {
+                    savePlayer();
                 }
             }
         });
+    }
 
+    /**
+     * Get player skills and verify from edit Texts
+     *
+     * @return true if valid, false if not valid
+     */
+    private boolean getPlayerSkillValuesAndValidate() {
+        skillsArray[0] = getIntFromEditText(editPilot);
+        skillsArray[1] = getIntFromEditText(editFighter);
+        skillsArray[2] = getIntFromEditText(editTrader);
+        skillsArray[3] = getIntFromEditText(editEngineer);
 
-        //save player with editConfigurationViewModel.save(Player)
+        int totalSkill = 0;
+        for (int i = 0; i < 4; i++) {
+            if (skillsArray[i] < 0) {
+                //throw new NumberFormatException("Skill level cannot be less than 0");
+            } else if (skillsArray[i] > 16) {
+                //throw new NumberFormatException("Skill level cannot be more than 16");
+                Toast.makeText(ConfigurationActivity.this, "Skill level cannot be more than 16", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            totalSkill += skillsArray[i];
+        }
+
+        if (totalSkill != 16) {
+            Toast.makeText(ConfigurationActivity.this, "Total skills level must add to 16", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns an int from EditText
+     *
+     * @param editText the editText to get int from
+     * @return and int
+     */
+    private int getIntFromEditText(EditText editText) {
+        try {
+            return Integer.parseInt(editText.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast.makeText(ConfigurationActivity.this, "Skill level must be an integer", Toast.LENGTH_LONG).show();
+        }
+        return 0;
+    }
+
+    /**
+     * Talk with viewModel to save Player
+     */
+    private void savePlayer() {
+        Player player = new Player();
+        player.setCharacterName(nameField.getText().toString());
+        player.setDifficulty(Difficulty.values()[difficultySpinner.getSelectedItemPosition()]);
+        player.assignSkillPoints(SkillCategory.PILOT, skillsArray[0]);
+        player.assignSkillPoints(SkillCategory.FIGHTER, skillsArray[1]);
+        player.assignSkillPoints(SkillCategory.TRADER, skillsArray[2]);
+        player.assignSkillPoints(SkillCategory.ENGINEER, skillsArray[3]);
+        editConfigurationViewModel.savePlayer(player);
     }
 
 }

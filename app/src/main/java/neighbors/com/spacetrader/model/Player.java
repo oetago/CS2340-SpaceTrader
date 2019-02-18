@@ -14,8 +14,12 @@ public class Player {
     private HashMap<SkillCategory, Integer> skills;
     private Difficulty difficulty;
     private int credits;
-    private String spaceship;
+    private String spaceship = "Gnat";
     private int availableSkillPoints;
+
+    public Player() {
+        skills = new HashMap<>();
+    }
 
 
     /**
