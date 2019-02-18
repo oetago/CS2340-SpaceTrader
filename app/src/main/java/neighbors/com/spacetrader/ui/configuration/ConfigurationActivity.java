@@ -76,10 +76,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         int totalSkill = 0;
         for (int i = 0; i < 4; i++) {
-            if (skillsArray[i] < 0) {
-                //throw new NumberFormatException("Skill level cannot be less than 0");
-            } else if (skillsArray[i] > 16) {
-                //throw new NumberFormatException("Skill level cannot be more than 16");
+            if (skillsArray[i] > 16) {
                 Toast.makeText(ConfigurationActivity.this, "Skill level cannot be more than 16", Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -87,7 +84,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
 
         if (totalSkill != 16) {
-            Toast.makeText(ConfigurationActivity.this, "Total skills level must add to 16", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this, "Total skills level must add to 16", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -103,7 +100,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         try {
             return Integer.parseInt(editText.getText().toString());
         } catch (NumberFormatException e) {
-            Toast.makeText(ConfigurationActivity.this, "Skill level must be an integer", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this, "Skill level must be an integer", Toast.LENGTH_SHORT).show();
         }
         return 0;
     }
