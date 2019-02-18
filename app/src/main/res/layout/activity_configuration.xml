@@ -8,9 +8,16 @@
     tools:context=".ui.configuration.ConfigurationActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter a Name:" />
 
         <EditText
             android:id="@+id/name_field"
@@ -18,13 +25,56 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Player Name" />
+            android:hint="Player Name" />
+
+        <TextView
+            android:id="@+id/difficulty_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose Your Difficulty:" />
 
         <Spinner
             android:id="@+id/difficulty_spinner"
-            android:layout_width="391dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp" />
+
+        <TextView
+            android:id="@+id/skill_header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp" />
+            android:text="Enter Your Skill Points (16 Available):" />
+
+        <EditText
+            android:id="@+id/edit_pilot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Pilot"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/edit_fighter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Fighter"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/edit_trader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Trader"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/edit_engineer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Engineer"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/accept_button"
@@ -32,6 +82,9 @@
             android:layout_height="wrap_content"
             android:text="Create Character" />
 
+
+
     </LinearLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
