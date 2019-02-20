@@ -71,4 +71,8 @@ public class EditConfigurationViewModel extends ViewModel {
     public Map<SkillType, Integer> getSkills() {
         return skillsPoints;
     }
+
+    public int getMaxPoints() {
+        return MAX_POINTS;
+    }
 }
