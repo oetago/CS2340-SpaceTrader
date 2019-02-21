@@ -1,21 +1,18 @@
 package neighbors.com.spacetrader.model;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 /**
  * Player Model to hold data throughout the game
  */
 public class Player {
-    public static List<String> legalDifficulty = Arrays.asList
-            ("Beginner", "Easy", "Medium", "Hard", "Impossible");
+
     private String characterName;
-    private HashMap<SkillCategory, Integer> skills;
+    private Map<SkillType, Integer> skills;
     private Difficulty difficulty;
     private int credits;
     private String spaceship;
-    private int availableSkillPoints;
 
     public Player() {
         skills = new HashMap<>();
@@ -25,14 +22,17 @@ public class Player {
 
 
     /**
-    All the getter methods for the private fields of the Player class
+     * All the getter methods for the private fields of the Player class
      */
     public String getCharacterName() {
         return this.characterName;
     }
 
-    public HashMap<SkillCategory, Integer> getSkills() {
-        return this.skills;
+    /**
+     * All the setter methods for the private fields of the Player class
+     */
+    public void setCharacterName(String name) {
+        this.characterName = name;
     }
 
     public Difficulty getDifficulty() {
@@ -47,19 +47,16 @@ public class Player {
         return this.spaceship;
     }
 
-    public int getAvailableSkillPoints() {
-        return this.availableSkillPoints;
+    public Map<SkillType, Integer> getSkills() {
+        return this.skills;
     }
 
-    /**
-    All the setter methods for the private fields of the Player class
-     */
-    public void setCharacterName(String name) {
-        this.characterName = name;
-    }
-
-    public void assignSkillPoints(SkillCategory category, int numberOfPoints) {
+    public void assignSkillPoints(SkillType category, int numberOfPoints) {
         skills.put(category, numberOfPoints);
+    }
+
+    public void setSkillPoints(Map<SkillType, Integer> skillPoints) {
+        this.skills = skillPoints;
     }
 
     public void setDifficulty(Difficulty difficulty) {
@@ -82,7 +79,6 @@ public class Player {
                 ", difficulty=" + difficulty +
                 ", credits=" + credits +
                 ", spaceship='" + spaceship + '\'' +
-                ", availableSkillPoints=" + availableSkillPoints +
                 '}';
     }
 }
