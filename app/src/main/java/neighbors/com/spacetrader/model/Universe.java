@@ -1,15 +1,16 @@
 package neighbors.com.spacetrader.model;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Universe {
 
-    private ArrayList<SolarSystem> solarSystems;
+    private List<SolarSystem> solarSystems;
 
     public Universe() {
-        this(new ArrayList<SolarSystem>());
+        this(new LinkedList<SolarSystem>());
     }
 
-    public Universe(ArrayList<SolarSystem> solarSystems) {
+    public Universe(List<SolarSystem> solarSystems) {
         this.solarSystems = solarSystems;
     }
 
@@ -17,7 +18,7 @@ public class Universe {
         solarSystems.add(newSolarSystem);
     }
 
-    public ArrayList<SolarSystem> getSolarSystems() {
+    public List<SolarSystem> getSolarSystems() {
         return solarSystems;
     }
 }

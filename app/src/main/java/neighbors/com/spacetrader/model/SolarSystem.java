@@ -1,6 +1,9 @@
 package neighbors.com.spacetrader.model;
+
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.LinkedList;
+
 
 public class SolarSystem {
 
@@ -9,23 +12,36 @@ public class SolarSystem {
             "Post-Industrial", "Hi-Tech"));
     private String name;
     private String techLvl;
-    private ArrayList<Planet> planets;
+    private LinkedList<Planet> planets;
     private Resources resource;
-    private int x;
-    private int y;
+    private Coord location;
 
-
-    public SolarSystem(String name, String techLvl, Resources resource, ArrayList<Planet> planets, int x, int y) {
+    public SolarSystem(String name, String techLvl, Resources resource, LinkedList<Planet> planets, Coord location) {
         this.name = name;
         this.techLvl = techLvl;
         this.resource = resource;
         this.planets = planets;
-        this.x = x;
-        this.y = y;
+        this.location = location;
     }
 
     public String getName() {
         return name;
+    }
+
+    class Coord {
+        int x;
+        int y;
+
+        public boolean equals(Object o) {
+            Coord c = (Coord) o;
+            return c.x == x && c.y == y;
+        }
+
+        public Coord(int x, int y) {
+            super();
+            this.x = x;
+            this.y = y;
+        }
     }
 
     public String getTechLvl() {
@@ -36,16 +52,12 @@ public class SolarSystem {
         return resource;
     }
 
-    public ArrayList<Planet> getPlanets() {
+    public LinkedList<Planet> getPlanets() {
         return planets;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
+    public Coord getLocation() {
+        return location;
     }
 
     public void addPlanet(Planet newPlanet) {
