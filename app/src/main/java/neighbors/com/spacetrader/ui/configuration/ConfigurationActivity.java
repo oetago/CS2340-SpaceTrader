@@ -71,11 +71,16 @@ public class ConfigurationActivity extends AppCompatActivity {
         acceptButton.setOnClickListener(new View.OnClickListener() { //Sets listener for accept button and what to do on click
             @Override
             public void onClick(View v) {
+                if (nameField.getText().toString().isEmpty()) {
+                    Toast.makeText(ConfigurationActivity.this, "Player name can't be empty!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if (viewModel.getAvailablePoints() == 0) {
                     savePlayer();
                 } else {
                     Toast.makeText(ConfigurationActivity.this, "Must assign all 16 points!", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
     }
