@@ -15,6 +15,7 @@ import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.Difficulty;
 import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.SkillCategory;
+import neighbors.com.spacetrader.model.Universe;
 
 
 /**
@@ -30,6 +31,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     private int availablePoints = 16;
     private int pilotPoints, fighterPoints, engineerPoints, traderPoints = 0;
     private TextView displayPoints, displayPilot, displayEngineer, displayFighter, displayTrader;
+    private Universe world;
 
 
     @Override
@@ -188,6 +190,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         accept_button.setOnClickListener(new View.OnClickListener() { //Sets listener for accept button and what to do on click
             @Override
             public void onClick(View v) {
+                world = new Universe();
                 savePlayer();
             }
         });
@@ -205,6 +208,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         player.assignSkillPoints(SkillCategory.TRADER, traderPoints);
         player.assignSkillPoints(SkillCategory.ENGINEER, engineerPoints);
         editConfigurationViewModel.savePlayer(player);
+        editConfigurationViewModel.makeUniverse(world);
     }
 
 }
