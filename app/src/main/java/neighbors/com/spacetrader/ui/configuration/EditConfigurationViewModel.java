@@ -7,6 +7,7 @@ import java.util.Map;
 
 import androidx.lifecycle.ViewModel;
 import neighbors.com.spacetrader.model.Player;
+import neighbors.com.spacetrader.model.Universe;
 import neighbors.com.spacetrader.model.SkillType;
 
 public class EditConfigurationViewModel extends ViewModel {
@@ -26,6 +27,10 @@ public class EditConfigurationViewModel extends ViewModel {
 
     public void savePlayer(Player player) {
         Log.d(TAG, player.toString());
+    }
+
+    public void makeUniverse(Universe universe) {
+        Log.d(TAG, universe.toString());
     }
 
     /**

@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.Difficulty;
 import neighbors.com.spacetrader.model.Player;
+import neighbors.com.spacetrader.model.Universe;
 import neighbors.com.spacetrader.model.SkillType;
 
 
@@ -28,6 +29,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private Button acceptButton, nPilot, pPilot, nEngineer, pEngineer, nTrader, pTrader, nFighter, pFighter;
     private TextView displayPoints, displayPilot, displayEngineer, displayFighter, displayTrader;
+    private Universe world;
 
 
     @Override
@@ -76,6 +78,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                     return;
                 }
                 if (viewModel.getAvailablePoints() == 0) {
+                    world = new Universe();
                     savePlayer();
                 } else {
                     Toast.makeText(ConfigurationActivity.this, "Must assign all 16 points!", Toast.LENGTH_LONG).show();
@@ -125,6 +128,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         player.setDifficulty(Difficulty.values()[difficultySpinner.getSelectedItemPosition()]);
         player.setSkillPoints(viewModel.getSkills());
         viewModel.savePlayer(player);
+        viewModel.makeUniverse(world);
     }
 
     /**
