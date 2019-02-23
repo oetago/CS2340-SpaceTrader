@@ -56,7 +56,8 @@ public class SolarSystem {
         }
     }
 
-    public SolarSystem(String name, String techLvl, Resources resource, List<Planet> planets, Coord location) {
+
+    public SolarSystem(String name, String techLvl, Resources resource, LinkedList<Planet> planets, Coord location) {
         this.name = name;
         this.techLvl = techLvl;
         this.resource = resource;

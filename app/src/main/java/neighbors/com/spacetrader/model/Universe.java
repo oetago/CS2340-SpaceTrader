@@ -33,7 +33,7 @@ public class Universe {
         for (int i = 0; i < UNIVERSESIZE; i++) {
             boolean uniqueCoord = false;
             boolean uniqueName = false;
-            Coord coordinate = new Coord(0,0);
+            Coord coordinate = new Coord(0, 0);
             String solarName = null;
             // random choosing of Coord
             while (!uniqueCoord) {
@@ -60,8 +60,8 @@ public class Universe {
             }
             solarSystems.add(new SolarSystem(solarName, coordinate));
         }
-
     }
+
 
     public Universe(List<SolarSystem> solarSystems) {
         this.solarSystems = solarSystems;

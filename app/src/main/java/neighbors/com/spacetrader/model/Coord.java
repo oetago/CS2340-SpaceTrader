@@ -1,6 +1,5 @@
 package neighbors.com.spacetrader.model;
 
-import androidx.annotation.NonNull;
 
 public class Coord {
     int x;
