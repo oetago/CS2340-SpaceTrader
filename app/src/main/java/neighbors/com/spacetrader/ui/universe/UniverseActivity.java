@@ -18,9 +18,6 @@ public class UniverseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_universe);
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         MaterialDialog thing = new MaterialDialog(this);
-        thing.title(null,"faddsfadsf");
-        thing.message(null, "Test", false, 1F);
-        thing.show();
         displayUniverse();
     }
 

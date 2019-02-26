@@ -23,19 +23,22 @@ public class SystemAdapter {
 
     private CircleView viewSetUp(Context con) {
         CircleView display = new CircleView(con);
-        display.setBorderWidth(5);
+        display.setBorderWidth(12);
         display.setBorderColor(this.getColor());
         display.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
         LinearLayout.LayoutParams layout = (LinearLayout.LayoutParams) display.getLayoutParams();
         layout.height = 30;
-        display.setX(system.getLocation().getX() * 3 - 200);
-        display.setY(system.getLocation().getY() * 4 + 400);
+        layout.width = 30;
+        display.setX(system.getLocation().getX() * 4 + 200);
+        display.setY(system.getLocation().getY() * 5 + 400);
         display.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MaterialDialog info = new MaterialDialog(window);
-                info.setTitle(system.getName());
+                info.title(null, system.getName());
+                info.message(null, "TechLvl: " + system.getTechLvl() + "\n" +
+                        "Resource: " + system.getResource().getName(), false, 1F);
                 info.show();
             }
         });
@@ -50,7 +53,7 @@ public class SystemAdapter {
         String tech = system.getTechLvl();
         switch (tech) {
             case "Pre-Agriculture":
-                return Color.BLACK;
+                return Color.WHITE;
             case "Agriculture":
                 return Color.RED;
             case "Medieval":
@@ -66,6 +69,6 @@ public class SystemAdapter {
             case "Hi-Tech":
                 return Color.LTGRAY;
         }
-        return Color.WHITE;
+        return Color.BLACK;
     }
 }
