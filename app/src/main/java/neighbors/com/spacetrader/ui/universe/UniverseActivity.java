@@ -1,4 +1,4 @@
-package neighbors.com.spacetrader.ui.configuration;
+package neighbors.com.spacetrader.ui.universe;
 
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.SolarSystem;
-import neighbors.com.spacetrader.model.SystemAdapter;
 
 public class UniverseActivity extends AppCompatActivity {
     private UniverseViewModel viewModel;

@@ -1,4 +1,4 @@
-package neighbors.com.spacetrader.model;
+package neighbors.com.spacetrader.ui.universe;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.florent37.shapeofview.shapes.CircleView;
+
+import neighbors.com.spacetrader.model.SolarSystem;
 
 public class SystemAdapter {
     private SolarSystem system;
