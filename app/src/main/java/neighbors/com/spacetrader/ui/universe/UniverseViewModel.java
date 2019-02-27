@@ -1,7 +1,10 @@
 package neighbors.com.spacetrader.ui.universe;
 
 
+import java.util.List;
+
 import androidx.lifecycle.ViewModel;
+import neighbors.com.spacetrader.model.SolarSystem;
 import neighbors.com.spacetrader.model.Universe;
 
 public class UniverseViewModel extends ViewModel {
@@ -14,5 +17,9 @@ public class UniverseViewModel extends ViewModel {
 
     public Universe getUniverse() {
         return universe;
+    }
+
+    public List<SolarSystem> getSolarSystems() {
+        return universe.getSolarSystems();
     }
 }

@@ -1,17 +1,17 @@
 package neighbors.com.spacetrader.model;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Random;
 import java.util.List;
+import java.util.Random;
 
 
 public class SolarSystem {
 
-    private ArrayList<String> techList = new ArrayList<String>(Arrays.asList("Pre-Agriculture",
+    private List<String> techList = new ArrayList(Arrays.asList("Pre-Agriculture",
             "Agriculture", "Medieval", "Renaissance", "Early Industrial", "Industrial",
-            "Post-Industrial", "Hi-Tech"));
+            "Post-Industrial", "Hi-Tech")); // TODO not needed - if an enum look make own getRandom()
     private String name;
     private String techLvl;
     private List<Planet> planets;
@@ -25,9 +25,9 @@ public class SolarSystem {
         passPlanets.add(new Planet(name));
         Random rand = new Random();
         int techInt = rand.nextInt(8);
-        this.techLvl = techList.get(techInt);
+        this.techLvl = techList.get(techInt); //TODO make Techlvl and enum with Color See UniverseActivity getColor()
         int resInt = rand.nextInt(100);
-        if (resInt >= 97) {
+        if (resInt >= 97) { //TODO alonso put this code in Resources like getResource(int i) - return random
             resource = Resources.WARLIKE;
         } else if (resInt >= 94) {
             resource = Resources.ARTISTIC;
