@@ -1,19 +1,15 @@
 package neighbors.com.spacetrader.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
+
 
 
 public class SolarSystem {
 
-    private List<String> techList = new ArrayList(Arrays.asList("Pre-Agriculture",
-            "Agriculture", "Medieval", "Renaissance", "Early Industrial", "Industrial",
-            "Post-Industrial", "Hi-Tech")); // TODO not needed - if an enum look make own getRandom()
+
     private String name;
-    private String techLvl;
+    private TechLevel techLvl;
     private List<Planet> planets;
     private Resources resource;
     private Coord location;
@@ -23,41 +19,13 @@ public class SolarSystem {
         this.location = location;
         LinkedList<Planet> passPlanets = new LinkedList<>();
         passPlanets.add(new Planet(name));
-        Random rand = new Random();
-        int techInt = rand.nextInt(8);
-        this.techLvl = techList.get(techInt); //TODO make Techlvl and enum with Color See UniverseActivity getColor()
-        int resInt = rand.nextInt(100);
-        if (resInt >= 97) { //TODO alonso put this code in Resources like getResource(int i) - return random
-            resource = Resources.WARLIKE;
-        } else if (resInt >= 94) {
-            resource = Resources.ARTISTIC;
-        } else if (resInt >= 90) {
-            resource = Resources.LOTSOFHERBS;
-        } else if (resInt >= 86) {
-            resource = Resources.WEIRDMUSHROOMS;
-        } else if (resInt >= 82) {
-            resource = Resources.LIFELESS;
-        } else if (resInt >= 77) {
-            resource = Resources.RICHFAUNA;
-        } else if (resInt >= 71) {
-            resource = Resources.POORSOIL;
-        } else if (resInt >= 63) {
-            resource = Resources.RICHSOIL;
-        } else if (resInt >= 55) {
-            resource = Resources.LOTSOFWATER;
-        } else if (resInt >= 46) {
-            resource = Resources.DESERT;
-        } else if (resInt >= 33) {
-            resource = Resources.MINERALPOOR;
-        } else if (resInt >= 20) {
-            resource = Resources.MINERALRICH;
-        } else {
-            resource = Resources.NOSPECIALRESOURCES;
-        }
+        this.techLvl = TechLevel.getRandom(); //TODO make Techlvl and enum with Color See UniverseActivity getColor()
+        this.resource = Resources.getRandom();
+
     }
 
 
-    public SolarSystem(String name, String techLvl, Resources resource, LinkedList<Planet> planets, Coord location) {
+    public SolarSystem(String name, TechLevel techLvl, Resources resource, LinkedList<Planet> planets, Coord location) {
         this.name = name;
         this.techLvl = techLvl;
         this.resource = resource;
@@ -69,7 +37,7 @@ public class SolarSystem {
         return name;
     }
 
-    public String getTechLvl() {
+    public TechLevel getTechLvl() {
         return techLvl;
     }
 
@@ -93,7 +61,7 @@ public class SolarSystem {
     public String toString() {
         return "SolarSystem{" +
                 "systemName='" + name + '\'' +
-                ", techLvl=" + techList.lastIndexOf(techLvl) + ": " + techLvl +
+                ", techLvl= " + techLvl.getName() +
                 ", resources=" + resource.getName() +
                 ", location=" + location.toString() +
                 '}';

@@ -33,7 +33,7 @@ public class UniverseActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     MaterialDialog info = new MaterialDialog(UniverseActivity.this);
                     info.title(null, system.getName());
-                    info.message(null, "TechLvl: " + system.getTechLvl() + "\n" +
+                    info.message(null, "TechLvl: " + system.getTechLvl().getName() + "\n" +
                             "Resource: " + system.getResource().getName(), false, 1F);
                     info.show();
                 }
