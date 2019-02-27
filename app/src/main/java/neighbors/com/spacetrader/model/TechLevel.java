@@ -1,17 +1,19 @@
 package neighbors.com.spacetrader.model;
+import android.graphics.Color;
 import java.util.Random;
+
 
 
 public enum TechLevel {
 
-    PREAGRICULTURE("Pre-Agriculture"),
-    AGRICULTURE("Agriculture"),
-    MEDEIVAL("Medieval"),
-    RENAISSANCE("Renaissance"),
-    EARLYINDUSTRIAL("Early-Industrial"),
-    INDUSTRIAL("Industrial"),
-    POSTINDUSTRIAL("Post-Industrial"),
-    HITECH("Hi-Tech");
+    PREAGRICULTURE("Pre-Agriculture", Color.GRAY),
+    AGRICULTURE("Agriculture", Color.GREEN),
+    MEDEIVAL("Medieval", Color.BLUE),
+    RENAISSANCE("Renaissance", Color. MAGENTA),
+    EARLYINDUSTRIAL("Early-Industrial", Color.RED),
+    INDUSTRIAL("Industrial", Color.YELLOW),
+    POSTINDUSTRIAL("Post-Industrial", Color.WHITE),
+    HITECH("Hi-Tech", Color.CYAN);
 
     public static TechLevel getRandom() {
         Random rand = new Random();
@@ -36,14 +38,20 @@ public enum TechLevel {
 
     }
     private final String name;
+    private final int color;
 
-    TechLevel(String name) {
+    TechLevel(String name, int color) {
         this.name = name;
+        this.color = color;
+
     }
     public String getName() {
         return this.name;
     }
     public String toString() {
         return name;
+    }
+    public int getColor() {
+        return color;
     }
 }
