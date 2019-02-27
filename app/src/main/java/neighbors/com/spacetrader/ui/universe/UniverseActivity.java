@@ -49,11 +49,12 @@ public class UniverseActivity extends AppCompatActivity {
      * @param display circle view youre working with
      */
     private void setLayout(SolarSystem system, CircleView display) {
+        display.setBorderColor(system.getTechLvl().getColor());
         LinearLayout.LayoutParams layout = (LinearLayout.LayoutParams) display.getLayoutParams();
-        layout.height = 30;
-        layout.width = 30;
-        display.setX(system.getLocation().getX() * 4 + 200);
-        display.setY(system.getLocation().getY() * 5 + 400);
+        layout.height = 50;
+        layout.width = 50;
+        display.setX(system.getLocation().getX() * 5 + 200);
+        display.setY(system.getLocation().getY() * 6 + 300);
     }
 
     /**
@@ -63,7 +64,7 @@ public class UniverseActivity extends AppCompatActivity {
      */
     private CircleView getCircleView() {
         CircleView display = new CircleView(this);
-        display.setBorderWidth(12);
+        display.setBorderWidth(20);
         display.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
         return display;
