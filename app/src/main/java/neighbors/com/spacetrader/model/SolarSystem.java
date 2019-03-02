@@ -17,9 +17,9 @@ public class SolarSystem {
     public SolarSystem(String name, Coord location) {
         this.name = name;
         this.location = location;
-        LinkedList<Planet> passPlanets = new LinkedList<>();
+        List<Planet> passPlanets = new LinkedList<>();
         passPlanets.add(new Planet(name));
-        this.techLvl = TechLevel.getRandom(); //TODO make Techlvl and enum with Color See UniverseActivity getColor()
+        this.techLvl = TechLevel.getRandom();
         this.resource = Resources.getRandom();
 
     }

@@ -6,14 +6,14 @@ import java.util.Random;
 
 public enum TechLevel {
 
-    PREAGRICULTURE("Pre-Agriculture", Color.GRAY),
-    AGRICULTURE("Agriculture", Color.GREEN),
-    MEDEIVAL("Medieval", Color.BLUE),
-    RENAISSANCE("Renaissance", Color. MAGENTA),
-    EARLYINDUSTRIAL("Early-Industrial", Color.RED),
-    INDUSTRIAL("Industrial", Color.YELLOW),
-    POSTINDUSTRIAL("Post-Industrial", Color.WHITE),
-    HITECH("Hi-Tech", Color.CYAN);
+    PREAGRICULTURE("Pre-Agriculture", Color.GRAY, 0),
+    AGRICULTURE("Agriculture", Color.GREEN, 1),
+    MEDEIVAL("Medieval", Color.BLUE, 2),
+    RENAISSANCE("Renaissance", Color. MAGENTA, 3),
+    EARLYINDUSTRIAL("Early-Industrial", Color.RED, 4),
+    INDUSTRIAL("Industrial", Color.YELLOW, 5),
+    POSTINDUSTRIAL("Post-Industrial", Color.WHITE, 6),
+    HITECH("Hi-Tech", Color.CYAN, 7);
 
     public static TechLevel getRandom() {
         Random rand = new Random();
@@ -39,11 +39,12 @@ public enum TechLevel {
     }
     private final String name;
     private final int color;
+    private final int level;
 
-    TechLevel(String name, int color) {
+    TechLevel(String name, int color, int level) {
         this.name = name;
         this.color = color;
-
+        this.level = level;
     }
     public String getName() {
         return this.name;
@@ -54,4 +55,5 @@ public enum TechLevel {
     public int getColor() {
         return color;
     }
+    public int getLevel() { return level; }
 }

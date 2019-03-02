@@ -12,12 +12,12 @@ public class Player {
     private Map<SkillType, Integer> skills;
     private Difficulty difficulty;
     private int credits;
-    private String spaceship;
+    private Spaceship spaceship;
 
     public Player() {
         skills = new HashMap<>();
         credits = 1000;
-        spaceship = "Gnat";
+        spaceship = Spaceship.BEETLE;
     }
 
 
@@ -43,7 +43,7 @@ public class Player {
         return this.credits;
     }
 
-    public String getSpaceship() {
+    public Spaceship getSpaceship() {
         return this.spaceship;
     }
 
@@ -63,11 +63,9 @@ public class Player {
         this.difficulty = difficulty;
     }
 
-    public void setCredits(int credits) {
-        this.credits = credits;
-    }
+    public void updateCredits(int update) { this.credits += update; }
 
-    public void setSpaceship(String spaceship) {
+    public void setSpaceship(Spaceship spaceship) {
         this.spaceship = spaceship;
     }
 
@@ -78,7 +76,7 @@ public class Player {
                 ", skills=" + skills +
                 ", difficulty=" + difficulty +
                 ", credits=" + credits +
-                ", spaceship='" + spaceship + '\'' +
+                ", spaceship='" + spaceship.getName() + '\'' +
                 '}';
     }
 }
