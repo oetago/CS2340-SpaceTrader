@@ -70,4 +70,14 @@ public class UniverseActivity extends AppCompatActivity {
         return display;
     }
 
+    /**
+     * Returns the Universe ViewModel for other Activities
+     * Allows ViewModel to remain private but other methods can access universe
+     *
+     * @return the ViewModel that contains the Universe
+     */
+    public UniverseViewModel getUniverseViewModel() {
+        return viewModel;
+    }
+
 }

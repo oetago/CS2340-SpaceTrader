@@ -32,5 +32,4 @@ public enum Spaceship {
     public String getName() { return name; }
     public Map<Good, Integer> getInventory() { return inventory; }
     public int getCost() { return cost;}
-
 }

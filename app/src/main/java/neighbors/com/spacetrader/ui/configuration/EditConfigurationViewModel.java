@@ -7,6 +7,7 @@ import java.util.Map;
 
 import androidx.lifecycle.ViewModel;
 import neighbors.com.spacetrader.model.Player;
+import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.model.SkillType;
 
 public class EditConfigurationViewModel extends ViewModel {
@@ -15,6 +16,7 @@ public class EditConfigurationViewModel extends ViewModel {
 
     private int availablePoints;
     private Map<SkillType, Integer> skillsPoints;
+    private Repository repository;
 
     public EditConfigurationViewModel() {
         skillsPoints = new HashMap<>();
@@ -22,10 +24,11 @@ public class EditConfigurationViewModel extends ViewModel {
             skillsPoints.put(value, 0);
         }
         availablePoints = MAX_POINTS;
+        repository = Repository.getInstance();
     }
 
     public void savePlayer(Player player) {
-        Log.d(TAG, player.toString());
+        repository.setPlayer(player);
     }
 
     /**
