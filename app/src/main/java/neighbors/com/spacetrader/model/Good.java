@@ -51,4 +51,12 @@ public enum Good {
     public int getMinSpacePrice() { return minSpacePrice; }
     public int getMaxSpacePrice() { return maxSpacePrice; }
 
+    public boolean canBuy(int techLevel) {
+        return this.minTechLevelToProduce <= techLevel;
+    }
+
+    public boolean canSell(int techLevel) {
+        return this.minTechLevelToUse <= techLevel;
+    }
+
 }

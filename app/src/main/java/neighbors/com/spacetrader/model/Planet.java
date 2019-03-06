@@ -1,5 +1,6 @@
 package neighbors.com.spacetrader.model;
 
+
 public class Planet {
 
     private String name;
