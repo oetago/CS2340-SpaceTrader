@@ -17,7 +17,7 @@ public enum Good {
     private final int minTechLevelToUse;          //Minimum Tech Level to Use this resource (You can't sell on planets below this level)
     private final int producedMostlyAtTechLevel;  //Tech Level which produces the most of this item
     private final int basePrice;                  //Base price of good
-    private final int increasePerPriceLevel;      //Price increase per tech level
+    private final int increasePerLevel;           //Price increase per tech level
     private final int var;                        //Variance is the maximum percentage that the price can vary above or below the base
     private final RPEvent priceIncreaseEvent;     //Radical price increase event, when this even happens on a planet, the price may increase astronomically
     private final Resources lowPriceCondition;    //When this condition is present, the price of this resource is unusually low //TODO Same as highPriceCondition. Set both to null for "never" for now
@@ -30,7 +30,7 @@ public enum Good {
         this.minTechLevelToUse = MTLU;
         this.producedMostlyAtTechLevel = TTP;
         this.basePrice = BP;
-        this.increasePerPriceLevel = IPL;
+        this.increasePerLevel = IPL;
         this.var = VAR;
         this.priceIncreaseEvent = IE;
         this.lowPriceCondition = CR;
@@ -43,7 +43,7 @@ public enum Good {
     public int getMinTechLevelToUse() { return minTechLevelToUse; }
     public int getProducedMostlyAtTechLevel() { return producedMostlyAtTechLevel; }
     public int getBasePrice() { return basePrice; }
-    public int getIncreasePerPriceLevel() { return increasePerPriceLevel; }
+    public int getIncreasePerLevel() { return increasePerLevel; }
     public int getVar() { return var; }
     public RPEvent getPriceIncreaseEvent() { return priceIncreaseEvent; }
     public Resources getLowPriceCondition() { return lowPriceCondition; }

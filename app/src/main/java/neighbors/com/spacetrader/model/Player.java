@@ -13,6 +13,9 @@ public class Player {
     private Difficulty difficulty;
     private int credits;
     private Spaceship spaceship;
+    // Current system and planet are stored in player to allow for multi-player to be easier
+    private SolarSystem currentSystem;
+    private Planet currentPlanet;
 
     public Player() {
         skills = new HashMap<>();
@@ -68,6 +71,24 @@ public class Player {
     public void setSpaceship(Spaceship spaceship) {
         this.spaceship = spaceship;
     }
+
+    public void setCurrentSystem(SolarSystem newSystem) {
+        // TODO: make sure that current system cannot be set to a system that does not exist
+        this.currentSystem = newSystem;
+        // Defaults to first planet in system.
+        this.currentPlanet = currentSystem.getPlanets().get(0);
+    }
+
+    public SolarSystem getCurrentSystem() {return this.currentSystem;}
+
+    public void setCurrentPlanet(Planet newPlanet) {
+        // Makes sure planet is in current system
+        if (currentSystem.getPlanets().contains(newPlanet)) {
+            this.currentPlanet = newPlanet;
+        }
+    }
+
+    public Planet getCurrentPlanet() {return this.currentPlanet;}
 
     @Override
     public String toString() {

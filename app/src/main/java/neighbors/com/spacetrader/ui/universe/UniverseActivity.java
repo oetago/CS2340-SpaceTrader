@@ -33,7 +33,7 @@ public class UniverseActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     MaterialDialog info = new MaterialDialog(UniverseActivity.this);
                     info.title(null, system.getName());
-                    info.message(null, "TechLvl: " + system.getTechLvl().getName() + "\n" +
+                    info.message(null, "TechLvl: " + system.getSystemTechLevel().getName() + "\n" +
                             "Resource: " + system.getResource().getName(), false, 1F);
                     info.show();
                 }
@@ -49,7 +49,7 @@ public class UniverseActivity extends AppCompatActivity {
      * @param display circle view youre working with
      */
     private void setLayout(SolarSystem system, CircleView display) {
-        display.setBorderColor(system.getTechLvl().getColor());
+        display.setBorderColor(system.getSystemTechLevel().getColor());
         LinearLayout.LayoutParams layout = (LinearLayout.LayoutParams) display.getLayoutParams();
         layout.height = 50;
         layout.width = 50;

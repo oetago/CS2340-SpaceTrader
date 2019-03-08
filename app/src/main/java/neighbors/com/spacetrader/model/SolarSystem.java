@@ -7,9 +7,8 @@ import java.util.List;
 
 public class SolarSystem {
 
-
     private String name;
-    private TechLevel techLvl;
+    private TechLevel techLevel;
     private List<Planet> planets;
     private Resources resource;
     private Coord location;
@@ -17,17 +16,16 @@ public class SolarSystem {
     public SolarSystem(String name, Coord location) {
         this.name = name;
         this.location = location;
-        List<Planet> passPlanets = new LinkedList<>();
-        passPlanets.add(new Planet(name));
-        this.techLvl = TechLevel.getRandom();
+        this.techLevel = TechLevel.getRandom();
         this.resource = Resources.getRandom();
-
+        List<Planet> passPlanets = new LinkedList<>();
+        passPlanets.add(new Planet(name, techLevel));
     }
 
 
     public SolarSystem(String name, TechLevel techLvl, Resources resource, LinkedList<Planet> planets, Coord location) {
         this.name = name;
-        this.techLvl = techLvl;
+        this.techLevel = techLvl;
         this.resource = resource;
         this.planets = planets;
         this.location = location;
@@ -37,9 +35,7 @@ public class SolarSystem {
         return name;
     }
 
-    public TechLevel getTechLvl() {
-        return techLvl;
-    }
+    public TechLevel getSystemTechLevel() { return techLevel; }
 
     public Resources getResource() {
         return resource;
@@ -61,7 +57,7 @@ public class SolarSystem {
     public String toString() {
         return "SolarSystem{" +
                 "systemName='" + name + '\'' +
-                ", techLvl= " + techLvl.getName() +
+                ", techLvl= " + techLevel.getName() +
                 ", resources=" + resource.getName() +
                 ", location=" + location.toString() +
                 '}';

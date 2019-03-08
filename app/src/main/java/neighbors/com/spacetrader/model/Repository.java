@@ -15,6 +15,12 @@ public class Repository {
 
     private Repository() {
         universe = new Universe();
+        // Awkward initialization of player's system and planet bc player is initialized before universe.
+        // Player should be initialized, but just to be safe.
+        if (player != null) {
+            // Sets planet to first planet of first solar system in universe.
+            player.setCurrentSystem(universe.getSolarSystems().get(0));
+        }
     }
 
     public Universe getUniverse() {
