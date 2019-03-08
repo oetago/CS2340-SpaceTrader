@@ -6,11 +6,11 @@ public enum Good {
     FURS(0, 0, 0, 250, 10, 10, RPEvent.COLD, Resources.RICHFAUNA, Resources.LIFELESS, 230, 280),
     FOOD(1, 0, 1, 100, 5 ,5, RPEvent.CROPFAIL, Resources.POORSOIL, Resources.POORSOIL, 90, 160),
     ORE(2, 2, 3, 350, 20, 10, RPEvent.WAR, Resources.MINERALRICH, Resources.MINERALPOOR, 350, 420),
-    GAMES(3, 1, 6, 250, -10, 5, RPEvent.BORDEOM, Resources.ARTISTIC, null, 160, 270),
+    GAMES(3, 1, 6, 250, -10, 5, RPEvent.BOREDOM, Resources.ARTISTIC, null, 160, 270),
     FIREARMS(3, 1, 5, 1250, -75, 100, RPEvent.WAR, Resources.WARLIKE, null, 600, 1100),
     MEDICINE(4, 1, 6, 650, -20, 10, RPEvent.PLAGUE, Resources.LOTSOFHERBS, null, 400, 700),
     MACHINES(4, 3, 5, 900, -30, 5, RPEvent.LACKOFWORKERS, null, null, 600, 800),
-    NARCOTICS(5, 0, 5, 3500, -125, 150, RPEvent.BORDEOM, Resources.WEIRDMUSHROOMS, null, 2000, 3000),
+    NARCOTICS(5, 0, 5, 3500, -125, 150, RPEvent.BOREDOM, Resources.WEIRDMUSHROOMS, null, 2000, 3000),
     ROBOTS(6, 4, 7, 5000, -150, 100, RPEvent.LACKOFWORKERS, null, null, 3500, 5000);
 
     private final int minTechLevelToProduce;      //Minimum Tech Level to Produce this resource (You can't buy on planets below this level)
