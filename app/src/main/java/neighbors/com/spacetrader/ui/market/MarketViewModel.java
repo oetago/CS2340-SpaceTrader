@@ -52,7 +52,7 @@ public class MarketViewModel extends ViewModel {
         Integer sPrice = sellPrices.get(sGood);
         if (sPrice != null) {
             // Tries to sell the amount specified
-            boolean success = this.editInventory(sGood, -quant);
+            boolean success = this.editInventory(sGood, -1 * quant);
             if (success) {
                 player.updateCredits(quant * sPrice);
                 this.saveState(); // Updates values to repo
@@ -110,7 +110,10 @@ public class MarketViewModel extends ViewModel {
      * @param dQuant - the difference in quantity of goods
      */
     private boolean editInventory(Good editGood, Integer dQuant) {
-        Integer cQuant = inventory.get(editGood);
+        Integer cQuant = 0;
+        if (inventory.containsKey(editGood)) {
+            cQuant = inventory.get(editGood);
+        }
         // Checks that good being edited is valid
         if (cQuant != null) {
             // Adds change in inventory to current inventory quantity
@@ -185,7 +188,7 @@ public class MarketViewModel extends ViewModel {
 
     public int getQuantity(Good g) {
         Map<Good, Integer> goods = ship.getInventory();
-        return goods.get(g);
+        return (goods.get(g) == null) ? 0 : goods.get(g);
     }
 
     // Gets ship inventory from player. Redundant here but might be useful for MarketView.

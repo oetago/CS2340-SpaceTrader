@@ -49,46 +49,51 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
         @Override
         public void onClick(View v) {
             if (v.equals(trade)) {
-                if (amount.getText().toString().equals("")) {
+                if (amount.getText().toString().isEmpty()) {
                     MaterialDialog retry = new MaterialDialog(current);
                     retry.title(null, "Please input valid amount of good");
-                }
+                    retry.show();
+                } else {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(current);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(current);
 
-                builder.setTitle(item.getText());
+                    builder.setTitle(item.getText());
 
-                builder.setMessage("Are you sure you want to exchange " + String.valueOf(amount.getText()) + " of " + item.getText());
+                    int quant = current.getViewModel().getQuantity(resource);
 
-                // Set click listener for alert dialog buttons
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case DialogInterface.BUTTON_POSITIVE:
-                                if (current.getViewModel().buyGood(resource, Integer.valueOf(amount.getText().toString()))) {
-                                    current.updateCredits();
-                                    Toast.makeText(current, "bought", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(current, "not enough credits", Toast.LENGTH_LONG).show();
-                                }
-                                break;
+                    builder.setMessage("Are you sure you want to exchange " + String.valueOf(amount.getText()) + " of " +
+                            item.getText() + "\n" + "You have: " + String.valueOf(quant));
 
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                if (current.getViewModel().sellGood(resource, Integer.valueOf(amount.getText().toString()))) {
-                                    current.updateCredits();
-                                    Toast.makeText(current, "sold", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(current, "not enough cargo", Toast.LENGTH_LONG).show();
-                                }
-                                break;
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    if (current.getViewModel().buyGood(resource, Integer.valueOf(amount.getText().toString()))) {
+                                        current.updateCredits();
+                                        Toast.makeText(current, "bought", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(current, "not enough credits or cargo space", Toast.LENGTH_LONG).show();
+                                    }
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    if (current.getViewModel().sellGood(resource, Integer.valueOf(amount.getText().toString()))) {
+                                        current.updateCredits();
+                                        Toast.makeText(current, "sold", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(current, "not enough cargo", Toast.LENGTH_LONG).show();
+                                    }
+                                    break;
+                            }
                         }
-                    }
-                };
-                builder.setPositiveButton("Buy", dialogClickListener);
-                builder.setNegativeButton("Sell", dialogClickListener);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                    };
+                    builder.setPositiveButton("Buy", dialogClickListener);
+                    builder.setNegativeButton("Sell", dialogClickListener);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
             }
         }
     }
