@@ -1,7 +1,9 @@
 package neighbors.com.spacetrader.ui.universe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -11,15 +13,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.SolarSystem;
+import neighbors.com.spacetrader.ui.market.MarketActivity;
 
 public class UniverseActivity extends AppCompatActivity {
     private UniverseViewModel viewModel;
+    private Button marketButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         displayUniverse();
+        marketButton = findViewById(R.id.marketButton);
+        marketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UniverseActivity.this, MarketActivity.class));
+            }
+        });
     }
 
     private void displayUniverse() {

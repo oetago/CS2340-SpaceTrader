@@ -1,6 +1,5 @@
 package neighbors.com.spacetrader.ui.market;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import androidx.lifecycle.ViewModel;
@@ -9,6 +8,7 @@ import neighbors.com.spacetrader.model.Planet;
 import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.model.Spaceship;
+import neighbors.com.spacetrader.model.TechLevel;
 
 
 public class MarketViewModel extends ViewModel {
@@ -34,7 +34,7 @@ public class MarketViewModel extends ViewModel {
         if (player != null) {
             ship = player.getSpaceship();
             inventory = ship.getInventory();
-            planet = player.getCurrentPlanet();
+            planet = new Planet("Endor", TechLevel.INDUSTRIAL);
             sellPrices = planet.getSellPrices();
             buyPrices = planet.getBuyPrices();
         }
@@ -87,7 +87,7 @@ public class MarketViewModel extends ViewModel {
                 // Adds goods to player inventory
                 boolean success = this.editInventory(pGood, quant);
                 if (success) {
-                    player.updateCredits(transAmt);
+                    player.updateCredits(-1 * transAmt);
                     this.saveState(); // Saves updated values to repo
                     return true;
                 } else {
@@ -174,6 +174,19 @@ public class MarketViewModel extends ViewModel {
      * @param qGood good whose price to be queried
      */
     public Integer getBuyPrice(Good qGood) { return buyPrices.get(qGood); }
+
+    public Spaceship getShip() {
+        return ship;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public int getQuantity(Good g) {
+        Map<Good, Integer> goods = ship.getInventory();
+        return goods.get(g);
+    }
 
     // Gets ship inventory from player. Redundant here but might be useful for MarketView.
     public Map<Good, Integer> getShipInventory() { return repo.getPlayer().getSpaceship().getInventory(); }

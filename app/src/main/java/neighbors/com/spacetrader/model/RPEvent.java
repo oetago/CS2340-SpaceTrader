@@ -6,7 +6,7 @@ public enum RPEvent {
     COLD,
     CROPFAIL,
     WAR,
-    BORDEOM,
+    BOREDOM,
     PLAGUE,
-    LACKOFWORKERS;
+    LACKOFWORKERS
 }
