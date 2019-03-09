@@ -2,8 +2,9 @@ package neighbors.com.spacetrader.ui.universe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -17,22 +18,17 @@ import neighbors.com.spacetrader.ui.market.MarketActivity;
 
 public class UniverseActivity extends AppCompatActivity {
     private UniverseViewModel viewModel;
-    private Button marketButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         displayUniverse();
-        marketButton = findViewById(R.id.marketButton);
-        marketButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(UniverseActivity.this, MarketActivity.class));
-            }
-        });
     }
 
+    /**
+     * Draw all the SolarSystems for the view
+     */
     private void displayUniverse() {
         LinearLayout linearLayout = findViewById(R.id.layout);
         for (final SolarSystem system : viewModel.getSolarSystems()) {
@@ -42,15 +38,34 @@ public class UniverseActivity extends AppCompatActivity {
             display.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MaterialDialog info = new MaterialDialog(UniverseActivity.this);
-                    info.title(null, system.getName());
-                    info.message(null, "TechLvl: " + system.getSystemTechLevel().getName() + "\n" +
-                            "Resource: " + system.getResource().getName(), false, 1F);
-                    info.show();
+                    displaySolarSystemClickDialog(system);
                 }
             });
         }
 
+    }
+
+    /**
+     * Display dialog when SolarSystem is clicked on
+     *
+     * @param system the SolarSystem to get the info from
+     */
+    private void displaySolarSystemClickDialog(SolarSystem system) {
+        MaterialDialog info = new MaterialDialog(UniverseActivity.this);
+        info.title(null, system.getName());
+        info.message(null, getSolarSystemMessage(system), false, 1F);
+        info.show();
+    }
+
+    /**
+     * Message for SolarSystem onClick dialog
+     *
+     * @param system the SolarSystem to get the info from
+     * @return the String message to be displayed
+     */
+    private String getSolarSystemMessage(SolarSystem system) {
+        return "TechLvl: " + system.getSystemTechLevelName() + "\n" +
+                "Resource: " + system.getResourceName();
     }
 
     /**
@@ -81,14 +96,18 @@ public class UniverseActivity extends AppCompatActivity {
         return display;
     }
 
-    /**
-     * Returns the Universe ViewModel for other Activities
-     * Allows ViewModel to remain private but other methods can access universe
-     *
-     * @return the ViewModel that contains the Universe
-     */
-    public UniverseViewModel getUniverseViewModel() {
-        return viewModel;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.universe_menu, menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.market_menu_button) {
+            startActivity(new Intent(UniverseActivity.this, MarketActivity.class));
+            return true;
+        }
+        return false;
+    }
 }
