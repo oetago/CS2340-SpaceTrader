@@ -1,7 +1,8 @@
 package neighbors.com.spacetrader.model;
-import java.util.Map;
-import java.util.HashMap;
 
+/**
+ * Player's Spaceship data
+ */
 public enum Spaceship {
     FLEA(10, "Flea", 10),
     GNAT(15, "Gnat", 27),
@@ -14,25 +15,37 @@ public enum Spaceship {
     TERMITE(50, "Termite", 9923),
     WASP(100, "Wasp", 30000);
 
-    private int maxCargo; //TODO Assign cargo capacity and cost to each ship and add constructors to each enum
-    private int currentCargo;
     private String name;
-    private Map<Good, Integer> inventory = new HashMap<>();
+    private Inventory inventory;
     private int cost;
 
     Spaceship(int maxCargo, String name, int cost) {
-        this.maxCargo = maxCargo;
-        this.currentCargo = 0;
         this.name = name;
         this.cost = cost;
+        inventory = new Inventory(maxCargo);
     }
 
-    public int getMaxCargo() { return maxCargo; }
-    public int getCurrentCargo() { return currentCargo; }
+    public int getMaxCargo() {
+        return inventory.getMaxInventory();
+    }
+
+    public int getCurrentCargo() {
+        return inventory.getCurrentInventory();
+    }
+
     public String getName() { return name; }
-    public Map<Good, Integer> getInventory() { return inventory; }
-    public void setInventory(Map<Good, Integer> newInventory) { this.inventory = newInventory; }
-    public void setCurrentCargo(int del) { currentCargo += del; }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory newInventory) {
+        this.inventory = newInventory;
+    }
+
     public int getCost() { return cost;}
 
+    public int getQuantity(Good good) {
+        return inventory.getQuantity(good);
+    }
 }

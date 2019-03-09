@@ -19,7 +19,7 @@ public class Player {
 
     public Player() {
         skills = new HashMap<>();
-        credits = 1000;
+        credits = 10000000;
         spaceship = Spaceship.BEETLE;
     }
 
@@ -66,7 +66,9 @@ public class Player {
         this.difficulty = difficulty;
     }
 
-    public void updateCredits(int update) { this.credits += update; }
+    public void addCredits(int update) {
+        this.credits += update;
+    }
 
     public void setSpaceship(Spaceship spaceship) {
         this.spaceship = spaceship;
@@ -99,5 +101,27 @@ public class Player {
                 ", credits=" + credits +
                 ", spaceship='" + spaceship.getName() + '\'' +
                 '}';
+    }
+
+    public Inventory getInventory() {
+        return spaceship.getInventory();
+    }
+
+    /**
+     * Checks if the player has enough credits
+     *
+     * @param neededCredits the credits needed
+     * @return true if the player has enough credits, false otherwise
+     */
+    public boolean hasEnoughCredits(int neededCredits) {
+        return credits >= neededCredits;
+    }
+
+    public void removeCredits(int removeCredits) {
+        credits -= removeCredits;
+    }
+
+    public int getQuantity(Good good) {
+        return spaceship.getQuantity(good);
     }
 }
