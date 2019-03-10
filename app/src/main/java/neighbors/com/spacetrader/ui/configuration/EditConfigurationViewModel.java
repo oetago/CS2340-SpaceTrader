@@ -1,7 +1,5 @@
 package neighbors.com.spacetrader.ui.configuration;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +25,11 @@ public class EditConfigurationViewModel extends ViewModel {
         repository = Repository.getInstance();
     }
 
+    /**
+     * Saves player to repository
+     *
+     * @param player the player to save
+     */
     public void savePlayer(Player player) {
         repository.setPlayer(player);
     }

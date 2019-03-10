@@ -3,4 +3,8 @@
     <string name="title_activity_configuration">ConfigurationActivity</string>
     <string name="available_skill_points">Available Skill Points: %d</string>
     <string name="skill_config_text">"%s %d"</string>
+    <string name="market">Market</string>
+    <string name="available_credits">Available credits: %s</string>
+    <string name="sell">Sell</string>
+    <string name="buy">Buy</string>
 </resources>

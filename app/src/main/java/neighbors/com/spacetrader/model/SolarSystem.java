@@ -62,4 +62,12 @@ public class SolarSystem {
                 ", location=" + location.toString() +
                 '}';
     }
+
+    public String getSystemTechLevelName() {
+        return techLevel.getName();
+    }
+
+    public String getResourceName() {
+        return resource.getName();
+    }
 }
