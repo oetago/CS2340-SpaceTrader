@@ -10,17 +10,22 @@ import neighbors.com.spacetrader.model.Universe;
 
 public class UniverseViewModel extends ViewModel {
     private final String TAG = UniverseViewModel.class.getCanonicalName();
-    private Universe universe;
+    private Repository repo;
 
     public UniverseViewModel() {
-        universe = Repository.getInstance().getUniverse();
+        repo = Repository.getInstance();
     }
 
     public Universe getUniverse() {
-        return universe;
+        return repo.getUniverse();
     }
 
     public List<SolarSystem> getSolarSystems() {
-        return universe.getSolarSystems();
+        return repo.getSolarSystems();
     }
+
+    public SolarSystem getSolarSystem(String name) {
+        return repo.getSolarSystem(name);
+    }
+
 }

@@ -1,5 +1,7 @@
 package neighbors.com.spacetrader.model;
 
+import java.util.List;
+
 public class Repository {
     private static Repository repo;
 
@@ -37,5 +39,25 @@ public class Repository {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public List<SolarSystem> getSolarSystems() {
+        return universe.getSolarSystems();
+    }
+
+    public SolarSystem getSolarSystem(String name) {
+        if (name == null) {
+            return getSolarSystems().get(0);
+        }
+        for (SolarSystem solarSystem : getSolarSystems()) {
+            if (solarSystem.getName().equals(name)) {
+                return solarSystem;
+            }
+        }
+        return null;
+    }
+
+    public Market getMarket(String name) {
+        return getSolarSystem(name).getMarket();
     }
 }

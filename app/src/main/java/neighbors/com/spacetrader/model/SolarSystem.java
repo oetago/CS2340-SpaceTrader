@@ -1,6 +1,6 @@
 package neighbors.com.spacetrader.model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,12 +18,12 @@ public class SolarSystem {
         this.location = location;
         this.techLevel = TechLevel.getRandom();
         this.resource = Resources.getRandom();
-        List<Planet> passPlanets = new LinkedList<>();
-        passPlanets.add(new Planet(name, techLevel));
+        planets = new ArrayList<>();
+        planets.add(new Planet(name, techLevel));
     }
 
 
-    public SolarSystem(String name, TechLevel techLvl, Resources resource, LinkedList<Planet> planets, Coord location) {
+    public SolarSystem(String name, TechLevel techLvl, Resources resource, List<Planet> planets, Coord location) {
         this.name = name;
         this.techLevel = techLvl;
         this.resource = resource;
@@ -69,5 +69,9 @@ public class SolarSystem {
 
     public String getResourceName() {
         return resource.getName();
+    }
+
+    public Market getMarket() {
+        return planets.get(0).getMarket();
     }
 }

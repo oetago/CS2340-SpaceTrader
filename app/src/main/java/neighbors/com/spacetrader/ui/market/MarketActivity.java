@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import neighbors.com.spacetrader.R;
 
 public class MarketActivity extends AppCompatActivity implements MarketAdapter.MarketViewUpdate {
+    public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
+
     private MarketViewModel viewModel;
     private TextView creditDisplay;
+    private String solarSystemName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,7 @@ public class MarketActivity extends AppCompatActivity implements MarketAdapter.M
         setContentView(R.layout.activity_market);
         viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
         creditDisplay = findViewById(R.id.credits);
+        solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME);
         createView();
         updateCredits();
     }
@@ -30,7 +34,7 @@ public class MarketActivity extends AppCompatActivity implements MarketAdapter.M
         RecyclerView mainView = findViewById(R.id.items);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mainView.setLayoutManager(manager);
-        MarketAdapter adapter = new MarketAdapter(this, viewModel.getMarket(), viewModel.getPlayer(), this);
+        MarketAdapter adapter = new MarketAdapter(this, viewModel.getMarket(solarSystemName), viewModel.getPlayer(), this);
         mainView.setAdapter(adapter);
     }
 

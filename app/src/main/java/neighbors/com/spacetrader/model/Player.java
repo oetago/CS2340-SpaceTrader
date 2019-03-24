@@ -19,7 +19,7 @@ public class Player {
 
     public Player() {
         skills = new HashMap<>();
-        credits = 10000000;
+        credits = 1000;
         spaceship = Spaceship.BEETLE;
     }
 

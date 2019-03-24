@@ -1,5 +1,6 @@
 package neighbors.com.spacetrader.ui.universe;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,9 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.florent37.shapeofview.shapes.CircleView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import neighbors.com.spacetrader.R;
@@ -17,13 +18,27 @@ import neighbors.com.spacetrader.model.SolarSystem;
 import neighbors.com.spacetrader.ui.market.MarketActivity;
 
 public class UniverseActivity extends AppCompatActivity {
+
+    public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
+
     private UniverseViewModel viewModel;
+    private SolarSystem solarSystem;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
+        String solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME);
+        solarSystem = viewModel.getSolarSystem(solarSystemName);
+        setupActionBar();
         displayUniverse();
+    }
+
+    /**
+     * Sets up actionbar with name solarsystem name
+     */
+    private void setupActionBar() {
+        getSupportActionBar().setTitle(solarSystem.getName());
     }
 
     /**
@@ -50,11 +65,28 @@ public class UniverseActivity extends AppCompatActivity {
      *
      * @param system the SolarSystem to get the info from
      */
-    private void displaySolarSystemClickDialog(SolarSystem system) {
-        MaterialDialog info = new MaterialDialog(UniverseActivity.this);
-        info.title(null, system.getName());
-        info.message(null, getSolarSystemMessage(system), false, 1F);
-        info.show();
+    private void displaySolarSystemClickDialog(final SolarSystem system) {
+        new AlertDialog.Builder(this)
+                .setTitle(system.getName())
+                .setMessage(getSolarSystemMessage(system))
+                .setPositiveButton("Travel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(UniverseActivity.this, UniverseActivity.class);
+                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        finish();
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create()
+                .show();
     }
 
     /**
@@ -105,7 +137,9 @@ public class UniverseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.market_menu_button) {
-            startActivity(new Intent(UniverseActivity.this, MarketActivity.class));
+            Intent intent = new Intent(UniverseActivity.this, MarketActivity.class);
+            intent.putExtra(MarketActivity.EXTRA_SOLAR_SYSTEM_NAME, solarSystem.getName());
+            startActivity(intent);
             return true;
         }
         return false;
