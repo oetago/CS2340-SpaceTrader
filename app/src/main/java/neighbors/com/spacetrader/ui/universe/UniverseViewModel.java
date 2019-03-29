@@ -28,4 +28,12 @@ public class UniverseViewModel extends ViewModel {
         return repo.getSolarSystem(name);
     }
 
+    public int getPlayerFuel() {
+        return repo.getPlayer().getFuel();
+    }
+
+    public void usePlayerFuel() {
+        repo.getPlayer().useFuel();
+    }
+
 }

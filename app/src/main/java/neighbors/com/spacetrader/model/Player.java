@@ -124,4 +124,12 @@ public class Player {
     public int getQuantity(Good good) {
         return spaceship.getQuantity(good);
     }
+
+    public int getFuel() {
+        return spaceship.getFuel();
+    }
+
+    public void useFuel() {
+        spaceship.useFuel();
+    }
 }
