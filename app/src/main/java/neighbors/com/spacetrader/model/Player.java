@@ -3,10 +3,18 @@ package neighbors.com.spacetrader.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+
 /**
  * Player Model to hold data throughout the game
  */
+@Entity(tableName = "player_table")
 public class Player {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     private String characterName;
     private Map<SkillType, Integer> skills;
