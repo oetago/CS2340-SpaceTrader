@@ -1,8 +1,10 @@
 package neighbors.com.spacetrader.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -20,10 +22,16 @@ public class Player {
     private Map<SkillType, Integer> skills;
     private Difficulty difficulty;
     private int credits;
+    @Embedded
     private Spaceship spaceship;
     // Current system and planet are stored in player to allow for multi-player to be easier
+    @Embedded
     private SolarSystem currentSystem;
     private Planet currentPlanet;
+    @Embedded
+    private Universe universe;
+    @Embedded
+    private Market market;
 
     public Player() {
         skills = new HashMap<>();
@@ -39,12 +47,22 @@ public class Player {
         return this.characterName;
     }
 
+    public Universe getUniverse() { return this.universe; }
+
+    public SolarSystem getSolarSystem() { return this.currentSystem;}
+
+    public Market getMarket() { return this.market; }
+
+    public int setCredits(Integer credits) { this.credits = credits; }
+
+
     /**
      * All the setter methods for the private fields of the Player class
      */
     public void setCharacterName(String name) {
         this.characterName = name;
     }
+    public void setUniverse(Universe universe) { this.universe = universe; }
 
     public Difficulty getDifficulty() {
         return this.difficulty;
@@ -98,6 +116,7 @@ public class Player {
         }
     }
 
+    public void setMarket(Market market) { this.market = market; }
     public Planet getCurrentPlanet() {return this.currentPlanet;}
 
     @Override
@@ -127,6 +146,19 @@ public class Player {
 
     public void removeCredits(int removeCredits) {
         credits -= removeCredits;
+    }
+
+    public SolarSystem getSolarSystem(String name) {
+        if (name == null) {
+            return universe.getSolarSystems().get(0);
+        }
+        List<SolarSystem> systems = universe.getSolarSystems();
+        for (SolarSystem solarSystem : systems) {
+            if (solarSystem.getName().equals(name)) {
+                return solarSystem;
+            }
+        }
+        return null;
     }
 
     public int getQuantity(Good good) {

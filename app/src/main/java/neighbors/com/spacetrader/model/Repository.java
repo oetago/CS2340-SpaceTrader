@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData;
 public class Repository {
 
     private PlayerDao playerDao;
-    private LiveData<List<Player>> allSavedGames;
+    private List<Player> allSavedGames;
 
     public Repository(Application application) {
         PlayerDatabase database = PlayerDatabase.getInstance(application);
@@ -21,7 +21,7 @@ public class Repository {
     public void insert(Player player) { new InsertPlayerAsyncTask(playerDao).execute(player); }
     public void update(Player player) { new UpdatePlayerAsyncTask(playerDao).execute(player); }
     public void delete(Player player) { new DeletePlayerAsyncTask(playerDao).execute(player); }
-    public LiveData<List<Player>> getAllSavedGames() { return this.allSavedGames; }
+    public List<Player> getAllSavedGames() { return this.allSavedGames; }
 
     private static class InsertPlayerAsyncTask extends AsyncTask<Player, Void, Void> {
         private PlayerDao playerDao;
@@ -105,17 +105,7 @@ public class Repository {
 //        return universe.getSolarSystems();
 //    }
 //
-//    public SolarSystem getSolarSystem(String name) {
-//        if (name == null) {
-//            return getSolarSystems().get(0);
-//        }
-//        for (SolarSystem solarSystem : getSolarSystems()) {
-//            if (solarSystem.getName().equals(name)) {
-//                return solarSystem;
-//            }
-//        }
-//        return null;
-//    }
+//
 //
 //    public Market getMarket(String name) {
 //        return getSolarSystem(name).getMarket();

@@ -4,6 +4,7 @@ import neighbors.com.spacetrader.model.Good;
 import neighbors.com.spacetrader.model.Inventory;
 import neighbors.com.spacetrader.model.Market;
 import neighbors.com.spacetrader.model.Player;
+import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.model.TransactionResponse;
 
 public class TransactionProcessor {
@@ -11,6 +12,7 @@ public class TransactionProcessor {
     private Market market;
     private Player player;
     private Inventory inventory;
+    private Repository repo;
 
     public TransactionProcessor(Market market, Player player) {
         this.market = market;
@@ -34,6 +36,7 @@ public class TransactionProcessor {
         if (price != null) {
             player.addCredits(quantity * price);
             inventory.remove(good, quantity);
+            repo.update(player);
             return TransactionResponse.COMPLETED;
         }
         return TransactionResponse.ERROR;
@@ -59,6 +62,7 @@ public class TransactionProcessor {
             }
             player.removeCredits(totalCost);
             inventory.add(good, quantity);
+            repo.update(player);
             return TransactionResponse.COMPLETED;
         }
         return TransactionResponse.ERROR;

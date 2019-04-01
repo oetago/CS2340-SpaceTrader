@@ -28,8 +28,8 @@ public class UniverseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
-        String solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME);
-        solarSystem = viewModel.getSolarSystem(solarSystemName);
+        solarSystem = viewModel.getSolarSystem();
+        viewModel.saveSolarSystem(solarSystem);
         setupActionBar();
         displayUniverse();
     }

@@ -22,6 +22,6 @@ public interface PlayerDao {
     void delete(Player player);
 
     @Query("SELECT * FROM player_table")
-    LiveData<List<Player>> getAllSavedGames();
+    List<Player> getAllSavedGames();
 
 }
