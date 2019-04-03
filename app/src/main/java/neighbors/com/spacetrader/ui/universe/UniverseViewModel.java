@@ -33,4 +33,12 @@ public class UniverseViewModel extends ViewModel {
         return RandomEvent.decideEvent();
     }
 
+    public int getPlayerFuel() {
+        return repo.getPlayer().getFuel();
+    }
+
+    public void usePlayerFuel() {
+        repo.getPlayer().useFuel();
+    }
+
 }

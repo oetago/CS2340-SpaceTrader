@@ -18,11 +18,13 @@ public enum Spaceship {
     private String name;
     private Inventory inventory;
     private int cost;
+    private int fuel;
 
     Spaceship(int maxCargo, String name, int cost) {
         this.name = name;
         this.cost = cost;
         inventory = new Inventory(maxCargo);
+        fuel = 5;
     }
 
     public int getMaxCargo() {
@@ -47,5 +49,13 @@ public enum Spaceship {
 
     public int getQuantity(Good good) {
         return inventory.getQuantity(good);
+    }
+
+    public int getFuel() {
+        return fuel;
+    }
+
+    public void useFuel() {
+        fuel--;
     }
 }

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.github.florent37.shapeofview.shapes.CircleView;
 
@@ -54,7 +55,11 @@ public class UniverseActivity extends AppCompatActivity {
             display.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    displaySolarSystemClickDialog(system);
+                    if (viewModel.getPlayerFuel() > 0) {
+                        displaySolarSystemClickDialog(system);
+                    } else {
+                        Toast.makeText(UniverseActivity.this, "Not enough fuel to travel!", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
         }
@@ -73,6 +78,7 @@ public class UniverseActivity extends AppCompatActivity {
                 .setPositiveButton("Travel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        viewModel.usePlayerFuel();
                         RandomEvent nextEvent = viewModel.getEvent();
                         Intent intent = new Intent(UniverseActivity.this, nextEvent.getActivity());
                         intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName()); //Code to add name extra for next activity
@@ -98,7 +104,7 @@ public class UniverseActivity extends AppCompatActivity {
      * @return the String message to be displayed
      */
     private String getSolarSystemMessage(SolarSystem system) {
-        return "TechLvl: " + system.getSystemTechLevelName() + "\n" +
+        return "Fuel level: " + viewModel.getPlayerFuel() + "\nTechLvl: " + system.getSystemTechLevelName() + "\n" +
                 "Resource: " + system.getResourceName();
     }
 
