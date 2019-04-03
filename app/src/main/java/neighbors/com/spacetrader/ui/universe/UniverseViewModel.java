@@ -4,6 +4,7 @@ package neighbors.com.spacetrader.ui.universe;
 import java.util.List;
 
 import androidx.lifecycle.ViewModel;
+import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.model.SolarSystem;
 import neighbors.com.spacetrader.model.Universe;
@@ -26,6 +27,10 @@ public class UniverseViewModel extends ViewModel {
 
     public SolarSystem getSolarSystem(String name) {
         return repo.getSolarSystem(name);
+    }
+
+    public RandomEvent getEvent() {
+        return RandomEvent.decideEvent();
     }
 
     public int getPlayerFuel() {
