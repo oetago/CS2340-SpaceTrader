@@ -20,6 +20,18 @@
 
         </activity>
         <activity
+            android:name=".ui.pirate.PirateActivity"
+            android:label="PirateActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".ui.police.PoliceActivity"
+            android:label="PoliceActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".ui.damage.DamageActivity"
+            android:label="DamageActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
             android:name=".ui.universe.UniverseActivity"
             android:label="UniverseActivity"
             android:theme="@style/AppTheme"></activity>

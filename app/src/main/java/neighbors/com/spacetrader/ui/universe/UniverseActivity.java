@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import neighbors.com.spacetrader.R;
+import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.model.SolarSystem;
 import neighbors.com.spacetrader.ui.market.MarketActivity;
 
@@ -28,7 +29,7 @@ public class UniverseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
-        String solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME);
+        String solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME); //Code to get name from intent
         solarSystem = viewModel.getSolarSystem(solarSystemName);
         setupActionBar();
         displayUniverse();
@@ -72,8 +73,9 @@ public class UniverseActivity extends AppCompatActivity {
                 .setPositiveButton("Travel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(UniverseActivity.this, UniverseActivity.class);
-                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName());
+                        RandomEvent nextEvent = viewModel.getEvent();
+                        Intent intent = new Intent(UniverseActivity.this, nextEvent.getActivity());
+                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName()); //Code to add name extra for next activity
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         finish();
                         startActivity(intent);

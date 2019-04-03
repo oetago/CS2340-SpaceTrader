@@ -7,16 +7,18 @@ import java.util.List;
  * Game difficulty enum
  */
 public enum Difficulty {
-    BEGINNER("Beginner"),
-    EASY("Easy"),
-    MEDIUM("Medium"),
-    HARD("Hard"),
-    IMPOSSIBLE("Impossible");
+    BEGINNER("Beginner", 10),
+    EASY("Easy", 20),
+    MEDIUM("Medium", 30),
+    HARD("Hard", 40),
+    IMPOSSIBLE("Impossible", 50);
 
     private final String name;
+    private final int multiplier;
 
-    Difficulty(String name) {
+    Difficulty(String name, int multi) {
         this.name = name;
+        multiplier = multi;
     }
 
     /**
@@ -34,5 +36,9 @@ public enum Difficulty {
 
     public String getName() {
         return name;
+    }
+
+    public int getMultiplier() {
+        return multiplier;
     }
 }

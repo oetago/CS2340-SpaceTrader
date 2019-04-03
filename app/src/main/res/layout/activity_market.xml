@@ -9,6 +9,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items"
         android:layout_width="match_parent"
+        android:background="@drawable/market"
         android:layout_height="515dp"
         android:layout_marginTop="216dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,5 +23,27 @@
         android:layout_marginTop="104dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="188dp"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/buy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="164dp"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/sell"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

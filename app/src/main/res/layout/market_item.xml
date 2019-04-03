@@ -23,6 +23,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/background"
             android:layout_width="match_parent"
+            android:background="@color/md_disabled_text_dark_theme"
             android:layout_height="wrap_content">
 
             <TextView
