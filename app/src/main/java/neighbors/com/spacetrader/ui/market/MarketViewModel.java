@@ -1,24 +1,24 @@
 package neighbors.com.spacetrader.ui.market;
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application;
+
 import neighbors.com.spacetrader.model.Market;
 import neighbors.com.spacetrader.model.Player;
-import neighbors.com.spacetrader.model.Repository;
+import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
 
-public class MarketViewModel extends ViewModel {
+public class MarketViewModel extends BaseViewModel {
     private static final String TAG = MarketViewModel.class.getCanonicalName();
-    private Repository repo;
     private Player player;
 
-    public MarketViewModel() {
-        repo = Repository.getInstance();
-        player = repo.getPlayer();
-
+    public MarketViewModel(Application application) {
+        super(application);
+        player = repository.getPlayer();
     }
 
+
     public Market getMarket(String name) {
-        return repo.getMarket(name);
+        return repository.getMarket(name);
     }
 
     public Player getPlayer() {

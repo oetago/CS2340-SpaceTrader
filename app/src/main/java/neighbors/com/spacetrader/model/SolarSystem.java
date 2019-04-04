@@ -3,24 +3,28 @@ package neighbors.com.spacetrader.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.room.Embedded;
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 
 @Entity(tableName = "solar_system_table")
 public class SolarSystem {
 
     @PrimaryKey
+    @NonNull
     private String name;
-    @Embedded
+    @TypeConverters(DataConverters.class)
     private TechLevel techLevel;
-    @Ignore
+
+    @TypeConverters(DataConverters.class)
     private List<Planet> planets;
-    @Embedded
+
+    @TypeConverters(DataConverters.class)
     private Resources resource;
-    @Embedded
+
+    @TypeConverters(DataConverters.class)
     private Coord location;
 
     public SolarSystem(String name, Coord location) {
@@ -45,10 +49,18 @@ public class SolarSystem {
         return name;
     }
 
+    public void setPlanets(List<Planet> planets) {
+        this.planets = planets;
+    }
+
     public TechLevel getSystemTechLevel() { return techLevel; }
 
     public Resources getResource() {
         return resource;
+    }
+
+    public void setResource(Resources resource) {
+        this.resource = resource;
     }
 
     public List<Planet> getPlanets() {
@@ -67,14 +79,22 @@ public class SolarSystem {
     public String toString() {
         return "SolarSystem{" +
                 "systemName='" + name + '\'' +
-                ", techLvl= " + techLevel.getName() +
+                ", techLvl= " + techLevel.getTechname() +
                 ", resources=" + resource.getName() +
                 ", location=" + location.toString() +
                 '}';
     }
 
-    public String getSystemTechLevelName() {
-        return techLevel.getName();
+    public String getTechLevelName() {
+        return techLevel.getTechname();
+    }
+
+    public TechLevel getTechLevel() {
+        return techLevel;
+    }
+
+    public void setTechLevel(TechLevel techLevel) {
+        this.techLevel = techLevel;
     }
 
     public String getResourceName() {

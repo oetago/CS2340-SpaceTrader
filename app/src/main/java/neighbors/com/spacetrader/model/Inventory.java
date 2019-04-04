@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.room.Entity;
-import androidx.room.TypeConverter;
+import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 @Entity(tableName = "inventory_table")
 public class Inventory {
+
+    @PrimaryKey
+    private int id;
 
     private int maxInventory;
     private int currentInventory;
@@ -19,6 +22,7 @@ public class Inventory {
         this.maxInventory = maxInventory;
         currentInventory = 0;
         inventory = new HashMap<>();
+        id = 1;
     }
 
     public Map<Good, Integer> getInventory() { return this.inventory; }
@@ -83,5 +87,25 @@ public class Inventory {
         }
         inventory.put(good, goodCount + quantity);
         currentInventory += quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCurrentInventory(int currentInventory) {
+        this.currentInventory = currentInventory;
+    }
+
+    public void setInventory(Map<Good, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setMaxInventory(int maxInventory) {
+        this.maxInventory = maxInventory;
     }
 }

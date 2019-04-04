@@ -1,13 +1,14 @@
 package neighbors.com.spacetrader.model;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
-import androidx.annotation.NonNull;
+import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.room.TypeConverters;
 
+@Database(entities = {Inventory.class}, version = 1, exportSchema = false)
+@TypeConverters(DataConverters.class)
 public abstract class InventoryDatabase extends RoomDatabase {
     private static InventoryDatabase instance;
 
@@ -18,28 +19,10 @@ public abstract class InventoryDatabase extends RoomDatabase {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     InventoryDatabase.class, "inventory_database")
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallBack)
+                    .allowMainThreadQueries()
                     .build();
         }
         return instance;
     }
 
-    private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
-        }
-    };
-
-    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
-        private InventoryDao inventoryDao;
-
-        private PopulateDbAsyncTask(InventoryDatabase db) { inventoryDao = db.inventoryDao(); }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            return null;
-        }
-    }
 }

@@ -3,14 +3,12 @@ package neighbors.com.spacetrader.model;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import androidx.room.TypeConverter;
 
@@ -49,7 +47,7 @@ public class DataConverters {
 
         Map<SkillType, Integer> mapToReturn = new HashMap<>();
         for(int i = 0; i < skillsList.size(); i += 2){
-            mapToReturn.put((SkillType)skillsList.get(i), (Integer)skillsList.get(i + 1));
+            mapToReturn.put(SkillType.valueOf((String) skillsList.get(i)), ((Double) skillsList.get(i + 1)).intValue());
         }
         return mapToReturn;
     }
@@ -90,4 +88,74 @@ public class DataConverters {
         }
         return mapToReturn;
     }
+
+    @TypeConverter
+    public int fromDifficulty(Difficulty difficulty) {
+        return difficulty.ordinal();
+    }
+
+    @TypeConverter
+    public Difficulty toDifficulty(int pos) {
+        return Difficulty.values()[pos];
+    }
+
+    @TypeConverter
+    public int fromResource(Resources resource) {
+        return resource.ordinal();
+    }
+
+    @TypeConverter
+    public Resources toResource(int pos) {
+        return Resources.values()[pos];
+    }
+
+    @TypeConverter
+    public String fromSpaceship(Spaceship spaceship) {
+        return spaceship.ordinal() + "" + spaceship.getFuel();
+    }
+
+    @TypeConverter
+    public Spaceship toSpaceship(String spaceship) {
+        Spaceship ship = Spaceship.values()[Integer.parseInt(spaceship.charAt(0) + "")];
+        ship.setFuel(Integer.parseInt(spaceship.charAt(1) + ""));
+        return ship;
+    }
+
+    @TypeConverter
+    public int fromTechLevel(TechLevel techLevel) {
+        return techLevel.ordinal();
+    }
+
+    @TypeConverter
+    public TechLevel toTechLevel(int pos) {
+        return TechLevel.values()[pos];
+    }
+
+    @TypeConverter
+    public String fromCoord(Coord coord) {
+        return coord.getX() + "" + coord.getY();
+    }
+
+    @TypeConverter
+    public Coord toCoord(String coord) {
+        return new Coord(Integer.parseInt(coord.charAt(0) + ""), Integer.parseInt(coord.charAt(1) + ""));
+    }
+
+    @TypeConverter
+    public String fromPlanent(List<Planet> planent) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Planet>>() {
+        }.getType();
+        String json = gson.toJson(planent, type);
+        return json;
+    }
+
+    @TypeConverter
+    public List<Planet> toPlanent(String plant) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Planet>>() {
+        }.getType();
+        return gson.fromJson(plant, type);
+    }
+
 }

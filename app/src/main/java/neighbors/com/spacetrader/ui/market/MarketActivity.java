@@ -38,6 +38,12 @@ public class MarketActivity extends AppCompatActivity implements MarketAdapter.M
         mainView.setAdapter(adapter);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        viewModel.save();
+    }
+
     /**
      * Update the credits being displayed
      */

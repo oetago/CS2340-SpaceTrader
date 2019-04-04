@@ -1,28 +1,28 @@
 package neighbors.com.spacetrader.ui.configuration;
 
+import android.app.Application;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.lifecycle.ViewModel;
 import neighbors.com.spacetrader.model.Player;
-import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.model.SkillType;
+import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-public class EditConfigurationViewModel extends ViewModel {
+public class EditConfigurationViewModel extends BaseViewModel {
     private static final String TAG = EditConfigurationViewModel.class.getCanonicalName();
     private static final int MAX_POINTS = 16;
 
     private int availablePoints;
     private Map<SkillType, Integer> skillsPoints;
-    private Repository repository;
 
-    public EditConfigurationViewModel() {
+    public EditConfigurationViewModel(Application application) {
+        super(application);
         skillsPoints = new HashMap<>();
         for (SkillType value : SkillType.values()) {
             skillsPoints.put(value, 0);
         }
         availablePoints = MAX_POINTS;
-        repository = Repository.getInstance();
     }
 
     /**
@@ -31,7 +31,7 @@ public class EditConfigurationViewModel extends ViewModel {
      * @param player the player to save
      */
     public void savePlayer(Player player) {
-        repository.setPlayer(player);
+        repository.savePlayer(player);
     }
 
     /**

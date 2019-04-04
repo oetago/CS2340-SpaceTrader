@@ -1,18 +1,18 @@
 package neighbors.com.spacetrader.ui.police;
 
+import android.app.Application;
+
 import java.util.Random;
 
-import androidx.lifecycle.ViewModel;
 import neighbors.com.spacetrader.model.Good;
 import neighbors.com.spacetrader.model.Player;
-import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.model.SkillType;
+import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-public class PoliceViewModel extends ViewModel {
-    private Repository repo;
+public class PoliceViewModel extends BaseViewModel {
 
-    public PoliceViewModel() {
-        repo = Repository.getInstance();
+    public PoliceViewModel(Application app) {
+        super(app);
     }
 
     /**
@@ -22,13 +22,13 @@ public class PoliceViewModel extends ViewModel {
      */
 
     public boolean talk() {
-        int difficulty = repo.getPlayer().getDifficulty().getMultiplier();
-        int narcNum = repo.getPlayer().getQuantity(Good.NARCOTICS);
-        int gunNum = repo.getPlayer().getQuantity(Good.FIREARMS);
+        int difficulty = repository.getPlayer().getDifficulty().getMultiplier();
+        int narcNum = repository.getPlayer().getQuantity(Good.NARCOTICS);
+        int gunNum = repository.getPlayer().getQuantity(Good.FIREARMS);
         int chance = new Random().nextInt(100);
         if ((narcNum + gunNum) * difficulty / 7 > chance) {
-            repo.getPlayer().getInventory().remove(Good.NARCOTICS, narcNum);
-            repo.getPlayer().getInventory().remove(Good.FIREARMS, gunNum);
+            repository.getPlayer().getInventory().remove(Good.NARCOTICS, narcNum);
+            repository.getPlayer().getInventory().remove(Good.FIREARMS, gunNum);
             return false;
         } else {
             return true;
@@ -41,13 +41,13 @@ public class PoliceViewModel extends ViewModel {
      * @return true if escape false if caught
      */
     public boolean run() {
-        int difficulty = repo.getPlayer().getDifficulty().getMultiplier();
-        int flight = repo.getPlayer().getSkills().get(SkillType.PILOT);
+        int difficulty = repository.getPlayer().getDifficulty().getMultiplier();
+        int flight = repository.getPlayer().getSkills().get(SkillType.PILOT);
         int chance = new Random().nextInt(20);
         if ((flight * chance) / difficulty > 1) {
             return true;
         }
-        Player player = repo.getPlayer();
+        Player player = repository.getPlayer();
         int credits = player.getCredits();
         int removeCredits = credits / 7;
         player.removeCredits(removeCredits);

@@ -3,6 +3,7 @@ package neighbors.com.spacetrader.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -15,15 +16,17 @@ import androidx.room.TypeConverters;
 public class Player {
 
     @PrimaryKey
+    @NonNull
     private String characterName;
 
     @TypeConverters(DataConverters.class)
     private Map<SkillType, Integer> skills;
 
+    @TypeConverters(DataConverters.class)
     private Difficulty difficulty;
     private int credits;
 
-    @Ignore
+    @TypeConverters(DataConverters.class)
     private Spaceship spaceship;
     // Current system and planet are stored in player to allow for multi-player to be easier
     @Ignore
@@ -62,7 +65,11 @@ public class Player {
     }
 
     public int getCredits() {
-        return this.credits;
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
 
     public Spaceship getSpaceship() {
@@ -71,6 +78,10 @@ public class Player {
 
     public Map<SkillType, Integer> getSkills() {
         return this.skills;
+    }
+
+    public void setSkills(Map<SkillType, Integer> skills) {
+        this.skills = skills;
     }
 
     public void assignSkillPoints(SkillType category, int numberOfPoints) {

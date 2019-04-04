@@ -1,6 +1,5 @@
 package neighbors.com.spacetrader.model;
 
-
 public class Coord {
     int x;
     int y;
