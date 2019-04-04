@@ -3,14 +3,24 @@ package neighbors.com.spacetrader.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 
+@Entity(tableName = "solar_system_table")
 public class SolarSystem {
 
+    @PrimaryKey
     private String name;
+    @Embedded
     private TechLevel techLevel;
+    @Ignore
     private List<Planet> planets;
+    @Embedded
     private Resources resource;
+    @Embedded
     private Coord location;
 
     public SolarSystem(String name, Coord location) {

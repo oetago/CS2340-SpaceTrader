@@ -3,19 +3,34 @@ package neighbors.com.spacetrader.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 /**
  * Player Model to hold data throughout the game
  */
+@Entity(tableName = "player_table")
 public class Player {
 
+    @PrimaryKey
     private String characterName;
+
+    @TypeConverters(DataConverters.class)
     private Map<SkillType, Integer> skills;
+
     private Difficulty difficulty;
     private int credits;
+
+    @Ignore
     private Spaceship spaceship;
     // Current system and planet are stored in player to allow for multi-player to be easier
+    @Ignore
     private SolarSystem currentSystem;
+    @Ignore
     private Planet currentPlanet;
+    private String currentPlanetName;
 
     public Player() {
         skills = new HashMap<>();
@@ -37,6 +52,10 @@ public class Player {
     public void setCharacterName(String name) {
         this.characterName = name;
     }
+
+    public void setCurrentPlanetName(String name) { this.currentPlanetName = name ;}
+
+    public String getCurrentPlanetName() { return this.currentPlanetName; }
 
     public Difficulty getDifficulty() {
         return this.difficulty;
@@ -132,4 +151,6 @@ public class Player {
     public void useFuel() {
         spaceship.useFuel();
     }
+
+    public void setInventory(Inventory inventory) { this.spaceship.setInventory(inventory);}
 }

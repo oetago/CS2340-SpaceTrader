@@ -3,10 +3,16 @@ package neighbors.com.spacetrader.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.room.Entity;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
+
+@Entity(tableName = "inventory_table")
 public class Inventory {
 
     private int maxInventory;
     private int currentInventory;
+    @TypeConverters(DataConverters.class)
     private Map<Good, Integer> inventory;
 
     public Inventory(int maxInventory) {
@@ -15,6 +21,7 @@ public class Inventory {
         inventory = new HashMap<>();
     }
 
+    public Map<Good, Integer> getInventory() { return this.inventory; }
     /**
      * Checks if inventory has less than the quantity provided
      *
