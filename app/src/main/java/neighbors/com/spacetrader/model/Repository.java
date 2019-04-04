@@ -18,6 +18,7 @@ public class Repository {
     private SpaceshipDao spaceshipDao;
     private InventoryDao inventoryDao;
 
+    //TODO one big huge database with lots of strings for json and stuff - Ryan type Adapters with gson
 
     private Repository(Context context) {
         PlayerDatabase db = PlayerDatabase.getInstance(context);
