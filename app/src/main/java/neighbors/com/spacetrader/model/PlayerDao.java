@@ -19,6 +19,6 @@ public interface PlayerDao {
     @Delete
     void delete(Player player);
 
-    @Query("SELECT * FROM player_table")
+    @Query("SELECT * FROM player")
     Player getPlayer();
 }

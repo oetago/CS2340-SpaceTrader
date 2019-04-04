@@ -1,11 +1,12 @@
 package neighbors.com.spacetrader.model;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.Random;
+import java.util.Set;
 
 
 public class Universe {
@@ -82,5 +83,13 @@ public class Universe {
             toReturn += system.toString() + "\'";
         }
         return toReturn;
+    }
+
+    public List<Planet> getPlanents() {
+        List<Planet> planets = new ArrayList<>();
+        for (SolarSystem solarSystem : solarSystems) {
+            planets.addAll(solarSystem.getPlanets());
+        }
+        return planets;
     }
 }

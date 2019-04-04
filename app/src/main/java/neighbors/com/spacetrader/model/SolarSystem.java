@@ -3,28 +3,14 @@ package neighbors.com.spacetrader.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
-
-@Entity(tableName = "solar_system_table")
 public class SolarSystem {
 
-    @PrimaryKey
-    @NonNull
     private String name;
-    @TypeConverters(DataConverters.class)
     private TechLevel techLevel;
-
-    @TypeConverters(DataConverters.class)
     private List<Planet> planets;
-
-    @TypeConverters(DataConverters.class)
+    private Planet planet;
     private Resources resource;
-
-    @TypeConverters(DataConverters.class)
     private Coord location;
 
     public SolarSystem(String name, Coord location) {
@@ -36,6 +22,14 @@ public class SolarSystem {
         planets.add(new Planet(name, techLevel));
     }
 
+    public SolarSystem(Planet planet) {
+        this.name = planet.getName();
+        this.location = planet.getLocation();
+        this.techLevel = planet.getTechLevel();
+        this.resource = planet.getResource();
+        planets = new ArrayList<>();
+        planets.add(planet);
+    }
 
     public SolarSystem(String name, TechLevel techLvl, Resources resource, List<Planet> planets, Coord location) {
         this.name = name;

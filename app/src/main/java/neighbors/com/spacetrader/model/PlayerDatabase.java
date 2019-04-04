@@ -16,7 +16,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
 
-    public static synchronized PlayerDatabase getInstance(Context context) {
+    public static PlayerDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
             PlayerDatabase.class, "player_database")

@@ -2,6 +2,7 @@ package neighbors.com.spacetrader.model;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,7 +15,6 @@ public class Repository {
     private Universe universe;
 
     private PlanetDao planetDao;
-    private SolarSystemDao solarSystemDao;
     private SpaceshipDao spaceshipDao;
     private InventoryDao inventoryDao;
 
@@ -23,17 +23,22 @@ public class Repository {
     private Repository(Context context) {
         PlayerDatabase db = PlayerDatabase.getInstance(context);
         playerDao = db.playerDao();
-        SolarSystemDatabase db2 = SolarSystemDatabase.getInstance(context);
-        solarSystemDao = db2.solarSystemDao();
+        PlanetDatabase db2 = PlanetDatabase.getInstance(context);
+        planetDao = db2.planetDao();
         InventoryDatabase db4 = InventoryDatabase.getInstance(context);
         inventoryDao = db4.inventoryDao();
         player = playerDao.getPlayer();
         if (player != null) {
-            universe = new Universe(solarSystemDao.getSolarSystem());
-            player.setCurrentSystem(universe.getSolarSystems().get(0));
-            player.setInventory(inventoryDao.getInventory());
+            List<SolarSystem> solarSystems = new ArrayList<>();
+            for (Planet allPlanet : planetDao.getAllPlanets()) {
+                solarSystems.add(new SolarSystem(allPlanet));
+            }
+            universe = new Universe(solarSystems);
+            player.setCurrentPlanet(planetDao.getPlanetByName(player.getCurrentPlanetName()));
+//            player.setInventory(inventoryDao.getInventory());
         } else {
             universe = new Universe();
+            savePlanets(universe.getPlanents());
         }
 
     }
@@ -53,8 +58,12 @@ public class Repository {
         playerDao.insert(player);
     }
 
-    public void insert(SolarSystem system) {
-        solarSystemDao.insert(system);
+//    public void insert(SolarSystem system) {
+//        solarSystemDao.insert(system);
+//    }
+
+    public void insert(Planet planet) {
+        planetDao.insert(planet);
     }
 
     //    public void insert(Spaceship spaceship) { spaceshipDao.insert(spaceship);}
@@ -70,9 +79,9 @@ public class Repository {
         playerDao.update(player);
     }
 
-    public void update(SolarSystem system) {
-        solarSystemDao.update(system);
-    }
+//    public void update(SolarSystem system) {
+//        solarSystemDao.update(system);
+//    }
 
     //    public void update(Spaceship spaceship) { spaceshipDao.update(spaceship);}
     public void update(Inventory inventory) {
@@ -87,9 +96,9 @@ public class Repository {
         playerDao.delete(player);
     }
 
-    public void delete(SolarSystem system) {
-        solarSystemDao.delete(system);
-    }
+//    public void delete(SolarSystem system) {
+//        solarSystemDao.delete(system);
+//    }
 
     //    public void delete(Spaceship spaceship) { spaceshipDao.delete(spaceship);}
     public void delete(Inventory inventory) {
@@ -145,7 +154,7 @@ public class Repository {
         for (SolarSystem solarSystem : getSolarSystems()) {
 //            insert(solarSystem);
         }
-        insert(player.getInventory());
+//        insert(player.getInventory());
 
     }
 
@@ -156,5 +165,11 @@ public class Repository {
     public void savePlayer(Player player) {
         this.player = player;
         insert(player);
+    }
+
+    public void savePlanets(List<Planet> planets) {
+        for (Planet planet : planets) {
+            insert(planet);
+        }
     }
 }

@@ -12,7 +12,7 @@ import androidx.room.TypeConverters;
 /**
  * Player Model to hold data throughout the game
  */
-@Entity(tableName = "player_table")
+@Entity
 public class Player {
 
     @PrimaryKey

@@ -101,6 +101,9 @@ public class DataConverters {
 
     @TypeConverter
     public int fromResource(Resources resource) {
+        if (resource == null) {
+            return 0;
+        }
         return resource.ordinal();
     }
 
@@ -111,18 +114,22 @@ public class DataConverters {
 
     @TypeConverter
     public String fromSpaceship(Spaceship spaceship) {
-        return spaceship.ordinal() + "" + spaceship.getFuel();
+        return spaceship.ordinal() + ":" + spaceship.getFuel();
     }
 
     @TypeConverter
     public Spaceship toSpaceship(String spaceship) {
-        Spaceship ship = Spaceship.values()[Integer.parseInt(spaceship.charAt(0) + "")];
-        ship.setFuel(Integer.parseInt(spaceship.charAt(1) + ""));
+        String[] parts = spaceship.split(":");
+        Spaceship ship = Spaceship.values()[Integer.parseInt(parts[0])];
+        ship.setFuel(Integer.parseInt(parts[1]));
         return ship;
     }
 
     @TypeConverter
     public int fromTechLevel(TechLevel techLevel) {
+        if (techLevel == null) {
+            return 0;
+        }
         return techLevel.ordinal();
     }
 
@@ -133,12 +140,16 @@ public class DataConverters {
 
     @TypeConverter
     public String fromCoord(Coord coord) {
-        return coord.getX() + "" + coord.getY();
+        if (coord == null) {
+            return "0:0";
+        }
+        return coord.getX() + ":" + coord.getY();
     }
 
     @TypeConverter
     public Coord toCoord(String coord) {
-        return new Coord(Integer.parseInt(coord.charAt(0) + ""), Integer.parseInt(coord.charAt(1) + ""));
+        String[] parts = coord.split(":");
+        return new Coord(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));
     }
 
     @TypeConverter

@@ -14,7 +14,7 @@ public abstract class InventoryDatabase extends RoomDatabase {
 
     public abstract InventoryDao inventoryDao();
 
-    public static synchronized InventoryDatabase getInstance(Context context) {
+    public static InventoryDatabase getInstance(Context context) {
         if (instance== null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     InventoryDatabase.class, "inventory_database")
