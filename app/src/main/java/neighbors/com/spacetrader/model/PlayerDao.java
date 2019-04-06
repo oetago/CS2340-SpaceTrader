@@ -6,19 +6,20 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
+import neighbors.com.spacetrader.model.db.PlayerSave;
 
 @Dao
 public interface PlayerDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Player player);
+    void insert(PlayerSave player);
 
     @Update
-    void update(Player player);
+    void update(PlayerSave player);
 
     @Delete
-    void delete(Player player);
+    void delete(PlayerSave player);
 
-    @Query("SELECT * FROM player")
-    Player getPlayer();
+    @Query("SELECT * FROM playersave")
+    PlayerSave getPlayer();
 }

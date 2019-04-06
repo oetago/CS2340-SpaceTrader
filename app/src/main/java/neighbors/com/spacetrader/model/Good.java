@@ -1,16 +1,18 @@
 package neighbors.com.spacetrader.model;
 
 
+import com.google.gson.annotations.SerializedName;
+
 public enum Good {
     WATER("Water", 0, 0, 2, 30, 3, 4, RPEvent.DROUGHT, Resources.LOTSOFWATER, Resources.DESERT, 30, 50),
     FURS("Furs", 0, 0, 0, 250, 10, 10, RPEvent.COLD, Resources.RICHFAUNA, Resources.LIFELESS, 230, 280),
     FOOD("Food", 1, 0, 1, 100, 5, 5, RPEvent.CROPFAIL, Resources.POORSOIL, Resources.POORSOIL, 90, 160),
     ORE("Ore", 2, 2, 3, 350, 20, 10, RPEvent.WAR, Resources.MINERALRICH, Resources.MINERALPOOR, 350, 420),
     GAMES("Games", 3, 1, 6, 250, -10, 5, RPEvent.BOREDOM, Resources.ARTISTIC, null, 160, 270),
-    FIREARMS("Firearms", 3, 1, 5, 1250, -75, 100, RPEvent.WAR, Resources.WARLIKE, null, 600, 1100),
-    MEDICINE("Medicine", 4, 1, 6, 650, -20, 10, RPEvent.PLAGUE, Resources.LOTSOFHERBS, null, 400, 700),
-    MACHINES("Machines", 4, 3, 5, 900, -30, 5, RPEvent.LACKOFWORKERS, null, null, 600, 800),
-    NARCOTICS("Narcotics", 5, 0, 5, 3500, -125, 150, RPEvent.BOREDOM, Resources.WEIRDMUSHROOMS, null, 2000, 3000),
+    FIREARMS("Firearms", 3, 1, 5, 1250, -75, 100, RPEvent.WAR, Resources.WARLIKE, null, 600, 1100), @SerializedName("MEDICINE")
+    MEDICINE("Medicine", 4, 1, 6, 650, -20, 10, RPEvent.PLAGUE, Resources.LOTSOFHERBS, null, 400, 700), @SerializedName("MACHINES")
+    MACHINES("Machines", 4, 3, 5, 900, -30, 5, RPEvent.LACKOFWORKERS, null, null, 600, 800), @SerializedName("NARCOTICS")
+    NARCOTICS("Narcotics", 5, 0, 5, 3500, -125, 150, RPEvent.BOREDOM, Resources.WEIRDMUSHROOMS, null, 2000, 3000), @SerializedName("ROBOTS")
     ROBOTS("Robots", 6, 4, 7, 5000, -150, 100, RPEvent.LACKOFWORKERS, null, null, 3500, 5000);
 
     private final int minTechLevelToProduce;      //Minimum Tech Level to Produce this resource (You can't buy on planets below this level)

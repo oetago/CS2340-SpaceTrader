@@ -21,7 +21,8 @@ public class UniverseViewModel extends BaseViewModel {
         return repository.getSolarSystems();
     }
 
-    public SolarSystem getSolarSystem(String name) {
+    public SolarSystem getSolarSystem() {
+        String name = repository.getPlayer().getCurrentPlanetName();
         return repository.getSolarSystem(name);
     }
 
@@ -37,4 +38,7 @@ public class UniverseViewModel extends BaseViewModel {
         repository.getPlayer().useFuel();
     }
 
+    public void setPlayerPlanent(String name) {
+        repository.getPlayer().setCurrentPlanetName(name);
+    }
 }

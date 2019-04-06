@@ -2,28 +2,27 @@ package neighbors.com.spacetrader.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-@Entity(tableName = "inventory_table")
 public class Inventory {
-
-    @PrimaryKey
-    private int id;
-
     private int maxInventory;
     private int currentInventory;
-    @TypeConverters(DataConverters.class)
     private Map<Good, Integer> inventory;
 
-    public Inventory(int maxInventory) {
+    public Inventory(int maxInventory, Map<Good, Integer> inventory) {
         this.maxInventory = maxInventory;
-        currentInventory = 0;
-        inventory = new HashMap<>();
-        id = 1;
+        Set<Good> keys = inventory.keySet();
+        for (Good key : keys) {
+            currentInventory += inventory.get(key);
+        }
+        this.inventory = inventory;
     }
+
+    public Inventory(int maxInventory) {
+        this(maxInventory, new HashMap<Good, Integer>());
+    }
+
+    //TODO new constructor with inventory map that does rest
 
     public Map<Good, Integer> getInventory() { return this.inventory; }
     /**
@@ -87,14 +86,6 @@ public class Inventory {
         }
         inventory.put(good, goodCount + quantity);
         currentInventory += quantity;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setCurrentInventory(int currentInventory) {

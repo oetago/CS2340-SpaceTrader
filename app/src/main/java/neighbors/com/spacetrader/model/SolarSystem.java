@@ -9,7 +9,6 @@ public class SolarSystem {
     private String name;
     private TechLevel techLevel;
     private List<Planet> planets;
-    private Planet planet;
     private Resources resource;
     private Coord location;
 
@@ -19,7 +18,7 @@ public class SolarSystem {
         this.techLevel = TechLevel.getRandom();
         this.resource = Resources.getRandom();
         planets = new ArrayList<>();
-        planets.add(new Planet(name, techLevel));
+        planets.add(new Planet(name, techLevel, resource, location.x, location.y));
     }
 
     public SolarSystem(Planet planet) {

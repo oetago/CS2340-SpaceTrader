@@ -1,39 +1,46 @@
 package neighbors.com.spacetrader.model;
 
-import org.jetbrains.annotations.NotNull;
-
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
-@Entity(tableName = "planet_table")
 public class Planet {
-
-    @PrimaryKey
-    @NonNull
     private String planetName;
 
-    @TypeConverters(DataConverters.class)
     private TechLevel techLevel;
 
-    @TypeConverters(DataConverters.class)
     private Resources resource;
 
-    @TypeConverters(DataConverters.class)
     private Coord location;
+
+    private int x;
+    private int y;
 
     transient private Market market;
 
-    public Planet(@NotNull String planetName, TechLevel techLevel) {
+    public Planet(String planetName, TechLevel techLevel, Resources resource, int x, int y) {
         this.planetName = planetName;
         this.techLevel = techLevel;
-        market = new Market(techLevel);
+        this.resource = resource;
+        location = new Coord(x, y);
     }
-
 
     public String getName() {
         return planetName;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public TechLevel getTechLevel() {
@@ -41,6 +48,9 @@ public class Planet {
     }
 
     public Market getMarket() {
+        if (market == null) {
+            this.market = new Market(techLevel);
+        }
         return market;
     }
 

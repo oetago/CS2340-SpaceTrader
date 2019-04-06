@@ -7,6 +7,7 @@ import java.util.Map;
 
 import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.SkillType;
+import neighbors.com.spacetrader.model.Universe;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
 public class EditConfigurationViewModel extends BaseViewModel {
@@ -31,7 +32,7 @@ public class EditConfigurationViewModel extends BaseViewModel {
      * @param player the player to save
      */
     public void savePlayer(Player player) {
-        repository.savePlayer(player);
+        repository.savePlayer(player, new Universe());
     }
 
     /**

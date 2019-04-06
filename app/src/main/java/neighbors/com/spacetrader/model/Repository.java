@@ -5,6 +5,9 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+import neighbors.com.spacetrader.model.db.DataConvertHelper;
+import neighbors.com.spacetrader.model.db.PlayerSave;
+
 
 public class Repository {
 
@@ -14,33 +17,18 @@ public class Repository {
     private Player player;
     private Universe universe;
 
-    private PlanetDao planetDao;
-    private SpaceshipDao spaceshipDao;
-    private InventoryDao inventoryDao;
-
-    //TODO one big huge database with lots of strings for json and stuff - Ryan type Adapters with gson
-
     private Repository(Context context) {
-        PlayerDatabase db = PlayerDatabase.getInstance(context);
-        playerDao = db.playerDao();
-        PlanetDatabase db2 = PlanetDatabase.getInstance(context);
-        planetDao = db2.planetDao();
-        InventoryDatabase db4 = InventoryDatabase.getInstance(context);
-        inventoryDao = db4.inventoryDao();
-        player = playerDao.getPlayer();
-        if (player != null) {
+        playerDao = PlayerDatabase.getInstance(context).playerDao();
+        PlayerSave save = playerDao.getPlayer();
+        if (save != null) {
+            player = getPlayerFromSave(save);
+            List<Planet> planets = DataConvertHelper.jsonToPlanents(save.getPlanents());
             List<SolarSystem> solarSystems = new ArrayList<>();
-            for (Planet allPlanet : planetDao.getAllPlanets()) {
-                solarSystems.add(new SolarSystem(allPlanet));
+            for (Planet planet : planets) {
+                solarSystems.add(new SolarSystem(planet));
             }
             universe = new Universe(solarSystems);
-            player.setCurrentPlanet(planetDao.getPlanetByName(player.getCurrentPlanetName()));
-//            player.setInventory(inventoryDao.getInventory());
-        } else {
-            universe = new Universe();
-            savePlanets(universe.getPlanents());
         }
-
     }
 
     public static Repository getInstance(Context context) {
@@ -50,71 +38,21 @@ public class Repository {
         return repo;
     }
 
-//    public void insert(Planet planet) {
-//        planetDao.insert(planet);
-//    }
-
-    public void insert(Player player) {
-        playerDao.insert(player);
-    }
-
-//    public void insert(SolarSystem system) {
-//        solarSystemDao.insert(system);
-//    }
-
-    public void insert(Planet planet) {
-        planetDao.insert(planet);
-    }
-
-    //    public void insert(Spaceship spaceship) { spaceshipDao.insert(spaceship);}
-    public void insert(Inventory inventory) {
-        inventoryDao.insert(inventory);
-    }
-
-//    public void update(Planet planet) {
-//        planetDao.update(planet);
-//    }
-
-    public void update(Player player) {
-        playerDao.update(player);
-    }
-
-//    public void update(SolarSystem system) {
-//        solarSystemDao.update(system);
-//    }
-
-    //    public void update(Spaceship spaceship) { spaceshipDao.update(spaceship);}
-    public void update(Inventory inventory) {
-        inventoryDao.update(inventory);
-    }
-
-//    public void delete(Planet planet) {
-//        planetDao.delete(planet);
-//    }
-
-    public void delete(Player player) {
-        playerDao.delete(player);
-    }
-
-//    public void delete(SolarSystem system) {
-//        solarSystemDao.delete(system);
-//    }
-
-    //    public void delete(Spaceship spaceship) { spaceshipDao.delete(spaceship);}
-    public void delete(Inventory inventory) {
-        inventoryDao.delete(inventory);
-    }
-
     public Player getPlayer() {
         return this.player;
     }
 
     public Planet getPlanet() {
-        return player.getCurrentPlanet();
+        return getPlanet(player.getCurrentPlanetName());
     }
 
-    public SolarSystem getCurrentSolarSystem() {
-        return player.getCurrentSystem();
+    private Planet getPlanet(String currentPlanetName) {
+        for (Planet planent : universe.getPlanents()) {
+            if (planent.getName().equals(currentPlanetName)) {
+                return planent;
+            }
+        }
+        return null;
     }
 
     public Spaceship getSpaceship() {
@@ -150,26 +88,55 @@ public class Repository {
     }
 
     public void save() {
-        insert(player);
-        for (SolarSystem solarSystem : getSolarSystems()) {
-//            insert(solarSystem);
-        }
-//        insert(player.getInventory());
-
+        savePlayer(player, universe);
     }
 
     public boolean isFirstTime() {
         return player == null;
     }
 
-    public void savePlayer(Player player) {
+    public void savePlayer(Player player, Universe universe) {
         this.player = player;
-        insert(player);
+        this.universe = universe;
+        savePlayerToDb(player, universe.getPlanents());
+    }
+
+    private void savePlayerToDb(Player player, List<Planet> planets) {
+        PlayerSave save = new PlayerSave();
+        save.setCharacterName(player.getCharacterName());
+        save.setCredits(player.getCredits());
+        save.setDifficulty(player.getDifficulty().ordinal());
+        save.setFuelCount(player.getFuel());
+        save.setCurrentPlanetName(player.getCurrentPlanetName());
+        save.setSpaceSpaceShip(player.getSpaceship().ordinal());
+        save.setSkills(DataConvertHelper.skillsToJson(player.getSkills()));
+        save.setInventory(DataConvertHelper.inventoryToJson(player.getInventory().getInventory()));
+        save.setPlanents(DataConvertHelper.planetsToJson(planets));
+        playerDao.insert(save);
+    }
+
+    private Player getPlayerFromSave(PlayerSave save) {
+        if (save == null) {
+            return null;
+        }
+        Player player = new Player();
+        player.setCharacterName(save.getCharacterName());
+        player.setDifficulty(Difficulty.values()[save.getDifficulty()]);
+        player.setCredits(save.getCredits());
+        player.setCurrentPlanetName(save.getCurrentPlanetName());
+        int fuel = save.getFuelCount();
+        Spaceship spaceship = Spaceship.values()[save.getSpaceSpaceShip()];
+        spaceship.setFuel(fuel);
+        player.setSpaceship(spaceship);
+        player.setSkills(DataConvertHelper.jsonToSkills(save.getSkills()));
+        Inventory inventory = new Inventory(spaceship.getMaxCargo(), DataConvertHelper.jsonToInventory(save.getInventory()));
+        player.setInventory(inventory);
+        return player;
     }
 
     public void savePlanets(List<Planet> planets) {
-        for (Planet planet : planets) {
-            insert(planet);
-        }
+//        for (Planet planet : planets) {
+//            insert(planet);
+//        }
     }
 }
