@@ -40,7 +40,7 @@ public class EditConfigurationViewModel extends BaseViewModel {
     }
 
     /**
-     * Incrmenets a skilltype by one if possible
+     * Increments a skilltype by one if possible
      *
      * @param type the type to increment
      * @return will return null if success and a String for error message

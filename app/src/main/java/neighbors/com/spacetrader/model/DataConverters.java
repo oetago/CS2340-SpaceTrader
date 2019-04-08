@@ -178,7 +178,7 @@ public class DataConverters {
     /**
      * Gets the ordinal of the tech level
      * @param techLevel the tech level to get the ordinal of
-     * @return the corrdesponding ordinal value
+     * @return the corresponding ordinal value
      */
     @TypeConverter
     public int fromTechLevel(TechLevel techLevel) {
