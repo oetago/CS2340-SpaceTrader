@@ -2,24 +2,39 @@ package neighbors.com.spacetrader.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-import androidx.room.Entity;
-import androidx.room.TypeConverter;
-import androidx.room.TypeConverters;
-
-@Entity(tableName = "inventory_table")
+/**
+ * Class used to represent the inventory of a Spaceship
+ */
 public class Inventory {
-
     private int maxInventory;
     private int currentInventory;
-    @TypeConverters(DataConverters.class)
     private Map<Good, Integer> inventory;
 
-    public Inventory(int maxInventory) {
+    /**
+     * Creates an instance of Inventory with an already existent inventory map
+     * @param maxInventory the maximum amount of items allowed in the inventory
+     * @param inventory the inventory to copy over
+     */
+    public Inventory(int maxInventory, Map<Good, Integer> inventory) {
         this.maxInventory = maxInventory;
-        currentInventory = 0;
-        inventory = new HashMap<>();
+        Set<Good> keys = inventory.keySet();
+        for (Good key : keys) {
+            currentInventory += inventory.get(key);
+        }
+        this.inventory = inventory;
     }
+
+    /**
+     * Creates an instance of Inventory with an empty inventory
+     * @param maxInventory the maximum amount of items allowed in the inventory
+     */
+    public Inventory(int maxInventory) {
+        this(maxInventory, new HashMap<Good, Integer>());
+    }
+
+    //TODO new constructor with inventory map that does rest
 
     public Map<Good, Integer> getInventory() { return this.inventory; }
     /**
@@ -47,10 +62,18 @@ public class Inventory {
         return (currentInventory + quantity) <= maxInventory;
     }
 
+    /**
+     * Gets the maximum number of items allowed in the inventory
+     * @return the max number of items
+     */
     public int getMaxInventory() {
         return maxInventory;
     }
 
+    /**
+     * Gets the number of items currently in the inventory
+     * @return
+     */
     public int getCurrentInventory() {
         return currentInventory;
     }
@@ -69,6 +92,11 @@ public class Inventory {
         }
     }
 
+    /**
+     * Gets the number of a certain good currently in the inventory
+     * @param good the good to check for
+     * @return the quantity of a certain good in the inventory
+     */
     public int getQuantity(Good good) {
         if (inventory.containsKey(good)) {
             return inventory.get(good);
@@ -76,6 +104,11 @@ public class Inventory {
         return 0;
     }
 
+    /**
+     * Adds a quantity of a good to the inventory
+     * @param good Good to add
+     * @param quantity How many of the good we are adding
+     */
     public void add(Good good, Integer quantity) {
         int goodCount = 0;
         if (inventory.containsKey(good)) {
@@ -83,5 +116,31 @@ public class Inventory {
         }
         inventory.put(good, goodCount + quantity);
         currentInventory += quantity;
+    }
+
+    /**
+     * Sets the current number of items in inventory to
+     * a certain number
+     * @param currentInventory the quantity to set your current
+     *                         inventory to
+     */
+    public void setCurrentInventory(int currentInventory) {
+        this.currentInventory = currentInventory;
+    }
+
+    /**
+     * Sets the inventory to a different inventory
+     * @param inventory the new inventory to use
+     */
+    public void setInventory(Map<Good, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
+    /**
+     * Sets the maximum number of items allowed in the inventory
+     * @param maxInventory the new number of max items
+     */
+    public void setMaxInventory(int maxInventory) {
+        this.maxInventory = maxInventory;
     }
 }

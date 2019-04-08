@@ -1,5 +1,7 @@
 package neighbors.com.spacetrader.model;
+
 import android.graphics.Color;
+
 import java.util.Random;
 
 
@@ -37,20 +39,22 @@ public enum TechLevel {
         }
 
     }
-    private final String name;
+
+    private final String Techname;
     private final int color;
     private final int level;
 
     TechLevel(String name, int color, int level) {
-        this.name = name;
+        this.Techname = name;
         this.color = color;
         this.level = level;
     }
-    public String getName() {
-        return this.name;
+
+    public String getTechname() {
+        return this.Techname;
     }
     public String toString() {
-        return name;
+        return Techname;
     }
     public int getColor() {
         return color;

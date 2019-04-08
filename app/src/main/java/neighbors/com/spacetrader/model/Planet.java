@@ -1,41 +1,56 @@
 package neighbors.com.spacetrader.model;
 
-import androidx.room.Embedded;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
 
-@Entity(foreignKeys = @ForeignKey(entity = SolarSystem.class,
-                    parentColumns = "name",
-                    childColumns = "planetName",
-                    onDelete = ForeignKey.CASCADE),
-        tableName = "planet_table")
 public class Planet {
-
-    @PrimaryKey
     private String planetName;
-    @Embedded
-    private TechLevel planetTechLevel;
-    @Ignore
-    private Market market;
 
-    public Planet(String name, TechLevel techLevel) {
-        this.planetName = name;
-        this.planetTechLevel = techLevel;
-        market = new Market(techLevel);
+    private TechLevel techLevel;
+
+    private Resources resource;
+
+    private Coord location;
+
+    private int x;
+    private int y;
+
+    transient private Market market;
+
+    public Planet(String planetName, TechLevel techLevel, Resources resource, int x, int y) {
+        this.planetName = planetName;
+        this.techLevel = techLevel;
+        this.resource = resource;
+        location = new Coord(x, y);
     }
-
 
     public String getName() {
         return planetName;
     }
 
-    public TechLevel getPlanetTechLevel() {
-        return planetTechLevel;
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public TechLevel getTechLevel() {
+        return techLevel;
     }
 
     public Market getMarket() {
+        if (market == null) {
+            this.market = new Market(techLevel);
+        }
         return market;
     }
 
@@ -43,5 +58,35 @@ public class Planet {
         this.planetName = name;
     }
 
+    public void setTechLevel(TechLevel techLevel) {
+        this.techLevel = techLevel;
+    }
 
+    public String getPlanetName() {
+        return planetName;
+    }
+
+    public void setPlanetName(@NonNull String planetName) {
+        this.planetName = planetName;
+    }
+
+    public Resources getResource() {
+        return resource;
+    }
+
+    public void setResource(Resources resource) {
+        this.resource = resource;
+    }
+
+    public Coord getLocation() {
+        return location;
+    }
+
+    public void setLocation(Coord location) {
+        this.location = location;
+    }
+
+    public void setMarket(Market market) {
+        this.market = market;
+    }
 }

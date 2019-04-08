@@ -70,12 +70,17 @@ public class PirateActivity extends AppCompatActivity {
                         Intent intent = new Intent(PirateActivity.this, UniverseActivity.class);
                         intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, solarSystemName); //Code to add name extra for next activity
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        finish();
                         startActivity(intent);
                     }
                 })
                 .create()
                 .show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        viewModel.save();
     }
 
 }

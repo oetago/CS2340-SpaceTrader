@@ -2,33 +2,28 @@ package neighbors.com.spacetrader.ui.universe;
 
 
 import android.app.Application;
-import android.content.Context;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
 import neighbors.com.spacetrader.model.RandomEvent;
-import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.model.SolarSystem;
-import neighbors.com.spacetrader.model.Universe;
+import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-public class UniverseViewModel extends AndroidViewModel {
+public class UniverseViewModel extends BaseViewModel {
     private final String TAG = UniverseViewModel.class.getCanonicalName();
-    private Repository repo;
 
     public UniverseViewModel(@NonNull Application application) {
         super(application);
-        repo = new Repository(application);
     }
 
     public List<SolarSystem> getSolarSystems() {
-        return repo.getSolarSystems();
+        return repository.getSolarSystems();
     }
 
-    public SolarSystem getSolarSystem(String name) {
-        return repo.getSolarSystem(name);
+    public SolarSystem getSolarSystem() {
+        String name = repository.getPlayer().getCurrentPlanetName();
+        return repository.getSolarSystem(name);
     }
 
     public RandomEvent getEvent() {
@@ -36,11 +31,14 @@ public class UniverseViewModel extends AndroidViewModel {
     }
 
     public int getPlayerFuel() {
-        return repo.getPlayer().getFuel();
+        return repository.getPlayer().getFuel();
     }
 
     public void usePlayerFuel() {
-        repo.getPlayer().useFuel();
+        repository.getPlayer().useFuel();
     }
 
+    public void setPlayerPlanet(String name) {
+        repository.getPlayer().setCurrentPlanetName(name);
+    }
 }

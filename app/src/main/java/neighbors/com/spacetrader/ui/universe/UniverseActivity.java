@@ -30,8 +30,7 @@ public class UniverseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
-        String solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME); //Code to get name from intent
-        solarSystem = viewModel.getSolarSystem(solarSystemName);
+        solarSystem = viewModel.getSolarSystem();
         setupActionBar();
         displayUniverse();
     }
@@ -79,11 +78,11 @@ public class UniverseActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         viewModel.usePlayerFuel();
+                        viewModel.setPlayerPlanet(system.getName());
                         RandomEvent nextEvent = viewModel.getEvent();
                         Intent intent = new Intent(UniverseActivity.this, nextEvent.getActivity());
                         intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName()); //Code to add name extra for next activity
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        finish();
                         startActivity(intent);
                     }
                 })
@@ -104,7 +103,7 @@ public class UniverseActivity extends AppCompatActivity {
      * @return the String message to be displayed
      */
     private String getSolarSystemMessage(SolarSystem system) {
-        return "Fuel level: " + viewModel.getPlayerFuel() + "\nTechLvl: " + system.getSystemTechLevelName() + "\n" +
+        return "Fuel level: " + viewModel.getPlayerFuel() + "\nTechLvl: " + system.getTechLevelName() + "\n" +
                 "Resource: " + system.getResourceName();
     }
 
@@ -151,5 +150,11 @@ public class UniverseActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        viewModel.save();
     }
 }

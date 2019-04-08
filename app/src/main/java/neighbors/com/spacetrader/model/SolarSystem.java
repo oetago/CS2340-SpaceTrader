@@ -3,24 +3,13 @@ package neighbors.com.spacetrader.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.room.Embedded;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
-
-@Entity(tableName = "solar_system_table")
 public class SolarSystem {
 
-    @PrimaryKey
     private String name;
-    @Embedded
     private TechLevel techLevel;
-    @Ignore
     private List<Planet> planets;
-    @Embedded
     private Resources resource;
-    @Embedded
     private Coord location;
 
     public SolarSystem(String name, Coord location) {
@@ -29,9 +18,17 @@ public class SolarSystem {
         this.techLevel = TechLevel.getRandom();
         this.resource = Resources.getRandom();
         planets = new ArrayList<>();
-        planets.add(new Planet(name, techLevel));
+        planets.add(new Planet(name, techLevel, resource, location.x, location.y));
     }
 
+    public SolarSystem(Planet planet) {
+        this.name = planet.getName();
+        this.location = planet.getLocation();
+        this.techLevel = planet.getTechLevel();
+        this.resource = planet.getResource();
+        planets = new ArrayList<>();
+        planets.add(planet);
+    }
 
     public SolarSystem(String name, TechLevel techLvl, Resources resource, List<Planet> planets, Coord location) {
         this.name = name;
@@ -45,10 +42,18 @@ public class SolarSystem {
         return name;
     }
 
+    public void setPlanets(List<Planet> planets) {
+        this.planets = planets;
+    }
+
     public TechLevel getSystemTechLevel() { return techLevel; }
 
     public Resources getResource() {
         return resource;
+    }
+
+    public void setResource(Resources resource) {
+        this.resource = resource;
     }
 
     public List<Planet> getPlanets() {
@@ -67,14 +72,22 @@ public class SolarSystem {
     public String toString() {
         return "SolarSystem{" +
                 "systemName='" + name + '\'' +
-                ", techLvl= " + techLevel.getName() +
+                ", techLvl= " + techLevel.getTechname() +
                 ", resources=" + resource.getName() +
                 ", location=" + location.toString() +
                 '}';
     }
 
-    public String getSystemTechLevelName() {
-        return techLevel.getName();
+    public String getTechLevelName() {
+        return techLevel.getTechname();
+    }
+
+    public TechLevel getTechLevel() {
+        return techLevel;
+    }
+
+    public void setTechLevel(TechLevel techLevel) {
+        this.techLevel = techLevel;
     }
 
     public String getResourceName() {

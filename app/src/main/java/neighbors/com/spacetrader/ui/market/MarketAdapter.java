@@ -30,6 +30,14 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
     private Player player;
     private MarketViewUpdate update;
 
+    /**
+     * Creates an instance of MarketAdapter with a given context, market,
+     * player, and marketviewupdate
+     * @param context The context of the app
+     * @param market The market to use
+     * @param player The player to interact with
+     * @param update The MarketViewUpdate update
+     */
     public MarketAdapter(Context context, Market market, Player player, MarketViewUpdate update) {
         this.market = market;
         this.context = context;
@@ -54,6 +62,9 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
         return market.goodsCount();
     }
 
+    /**
+     *
+     */
     interface MarketViewUpdate {
         void updateCredits();
     }
@@ -65,6 +76,11 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
         private Button trade;
         private EditText amountEditText;
 
+        /**
+         * Creates an instance of MarketViewHolder to use in the
+         * RecyclerView
+         * @param v the view to grab layout items from
+         */
         public MarketViewHolder(View v) {
             super(v);
             item = v.findViewById(R.id.item);
@@ -76,6 +92,10 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
 //            v.setOnClickListener(this);
         }
 
+        /**
+         * Binds a good to the view to display to the user
+         * @param good the Good to display
+         */
         public void bind(final Good good) {
             item.setText(good.getName());
             sPrice.setText(String.valueOf(market.getGoodSellPrice(good)));

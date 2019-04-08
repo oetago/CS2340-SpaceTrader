@@ -1,13 +1,8 @@
 package neighbors.com.spacetrader.model;
 
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-
 /**
  * Player's Spaceship data
  */
-@Entity(tableName = "spaceship_table")
 public enum Spaceship {
     FLEA(10, "Flea", 10),
     GNAT(15, "Gnat", 27),
@@ -20,9 +15,7 @@ public enum Spaceship {
     TERMITE(50, "Termite", 9923),
     WASP(100, "Wasp", 30000);
 
-    @PrimaryKey
     private String name;
-    @Ignore
     private Inventory inventory;
     private int cost;
     private int fuel;
@@ -64,5 +57,9 @@ public enum Spaceship {
 
     public void useFuel() {
         fuel--;
+    }
+
+    public void setFuel(int fuel) {
+        this.fuel = fuel;
     }
 }

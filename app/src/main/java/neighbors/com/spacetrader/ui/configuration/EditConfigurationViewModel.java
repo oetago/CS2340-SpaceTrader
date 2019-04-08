@@ -1,28 +1,33 @@
 package neighbors.com.spacetrader.ui.configuration;
 
+import android.app.Application;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.lifecycle.ViewModel;
 import neighbors.com.spacetrader.model.Player;
-import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.model.SkillType;
+import neighbors.com.spacetrader.model.Universe;
+import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-public class EditConfigurationViewModel extends ViewModel {
+public class EditConfigurationViewModel extends BaseViewModel {
     private static final String TAG = EditConfigurationViewModel.class.getCanonicalName();
     private static final int MAX_POINTS = 16;
 
     private int availablePoints;
     private Map<SkillType, Integer> skillsPoints;
-    private Repository repository;
 
-    public EditConfigurationViewModel() {
+    /**
+     * Creates an instance of EditConfigurationViewModel
+     * @param application the application
+     */
+    public EditConfigurationViewModel(Application application) {
+        super(application);
         skillsPoints = new HashMap<>();
         for (SkillType value : SkillType.values()) {
             skillsPoints.put(value, 0);
         }
         availablePoints = MAX_POINTS;
-        repository = Repository.getInstance();
     }
 
     /**
@@ -31,7 +36,7 @@ public class EditConfigurationViewModel extends ViewModel {
      * @param player the player to save
      */
     public void savePlayer(Player player) {
-        repository.setPlayer(player);
+        repository.savePlayer(player, new Universe());
     }
 
     /**
@@ -65,19 +70,36 @@ public class EditConfigurationViewModel extends ViewModel {
         return null;
     }
 
+    /**
+     * Gets the number of points in a certain skill
+     * @param skillType the skillType to grab the points for
+     * @return the number of points
+     */
     public int getSkillPoints(SkillType skillType) {
         return skillsPoints.get(skillType);
     }
 
+    /**
+     * Gets the number of available skill points to use
+     * @return the number of available skill points
+     */
     public int getAvailablePoints() {
         return availablePoints;
     }
 
 
+    /**
+     * Gets the map of skillTypes to skill
+     * @return the map of skills
+     */
     public Map<SkillType, Integer> getSkills() {
         return skillsPoints;
     }
 
+    /**
+     * Gets the max number of points allowed to use
+     * @return the max points
+     */
     public int getMaxPoints() {
         return MAX_POINTS;
     }
