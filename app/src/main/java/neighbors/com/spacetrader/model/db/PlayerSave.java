@@ -18,9 +18,9 @@ public class PlayerSave {
     private int fuelCount;
     private String currentPlanetName;
     private String inventory;
-    private String planents;
+    private String planets;
 
-    public PlayerSave(@NonNull String characterName, String skills, int difficulty, int credits, int spaceSpaceShip, int fuelCount, String currentPlanetName, String inventory, String planents) {
+    public PlayerSave(@NonNull String characterName, String skills, int difficulty, int credits, int spaceSpaceShip, int fuelCount, String currentPlanetName, String inventory, String planets) {
         this.characterName = characterName;
         this.skills = skills;
         this.difficulty = difficulty;
@@ -29,19 +29,19 @@ public class PlayerSave {
         this.fuelCount = fuelCount;
         this.currentPlanetName = currentPlanetName;
         this.inventory = inventory;
-        this.planents = planents;
+        this.planets = planets;
     }
 
     @Ignore
     public PlayerSave() {
     }
 
-    public String getPlanents() {
-        return planents;
+    public String getPlanets() {
+        return planets;
     }
 
-    public void setPlanents(String planents) {
-        this.planents = planents;
+    public void setPlanets(String planets) {
+        this.planets = planets;
     }
 
     @NonNull

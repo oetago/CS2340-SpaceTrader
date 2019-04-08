@@ -8,7 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import neighbors.com.spacetrader.model.db.PlayerSave;
 
-@Database(entities = {PlayerSave.class}, version = 1, exportSchema = false)
+@Database(entities = {PlayerSave.class}, version = 2, exportSchema = false)
 public abstract class PlayerDatabase extends RoomDatabase {
 
     private static PlayerDatabase instance;
@@ -19,6 +19,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     PlayerDatabase.class, "player_database")
+                    .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build();
         }

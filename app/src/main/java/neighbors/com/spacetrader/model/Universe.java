@@ -85,7 +85,7 @@ public class Universe {
         return toReturn;
     }
 
-    public List<Planet> getPlanents() {
+    public List<Planet> getPlanets() {
         List<Planet> planets = new ArrayList<>();
         for (SolarSystem solarSystem : solarSystems) {
             planets.addAll(solarSystem.getPlanets());

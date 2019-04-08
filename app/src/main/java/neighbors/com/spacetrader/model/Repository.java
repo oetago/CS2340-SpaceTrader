@@ -22,7 +22,7 @@ public class Repository {
         PlayerSave save = playerDao.getPlayer();
         if (save != null) {
             player = getPlayerFromSave(save);
-            List<Planet> planets = DataConvertHelper.jsonToPlanents(save.getPlanents());
+            List<Planet> planets = DataConvertHelper.jsonToPlanets(save.getPlanets());
             List<SolarSystem> solarSystems = new ArrayList<>();
             for (Planet planet : planets) {
                 solarSystems.add(new SolarSystem(planet));
@@ -47,9 +47,9 @@ public class Repository {
     }
 
     private Planet getPlanet(String currentPlanetName) {
-        for (Planet planent : universe.getPlanents()) {
-            if (planent.getName().equals(currentPlanetName)) {
-                return planent;
+        for (Planet planet : universe.getPlanets()) {
+            if (planet.getName().equals(currentPlanetName)) {
+                return planet;
             }
         }
         return null;
@@ -98,7 +98,7 @@ public class Repository {
     public void savePlayer(Player player, Universe universe) {
         this.player = player;
         this.universe = universe;
-        savePlayerToDb(player, universe.getPlanents());
+        savePlayerToDb(player, universe.getPlanets());
     }
 
     private void savePlayerToDb(Player player, List<Planet> planets) {
@@ -111,7 +111,7 @@ public class Repository {
         save.setSpaceSpaceShip(player.getSpaceship().ordinal());
         save.setSkills(DataConvertHelper.skillsToJson(player.getSkills()));
         save.setInventory(DataConvertHelper.inventoryToJson(player.getInventory().getInventory()));
-        save.setPlanents(DataConvertHelper.planetsToJson(planets));
+        save.setPlanets(DataConvertHelper.planetsToJson(planets));
         playerDao.insert(save);
     }
 
