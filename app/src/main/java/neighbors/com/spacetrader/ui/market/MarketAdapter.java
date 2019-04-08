@@ -81,7 +81,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
          * RecyclerView
          * @param v the view to grab layout items from
          */
-        public MarketViewHolder(View v) {
+        MarketViewHolder(View v) {
             super(v);
             item = v.findViewById(R.id.item);
             trade = v.findViewById(R.id.tradeButton);
@@ -96,7 +96,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
          * Binds a good to the view to display to the user
          * @param good the Good to display
          */
-        public void bind(final Good good) {
+        void bind(final Good good) {
             item.setText(good.getName());
             sPrice.setText(String.valueOf(market.getGoodSellPrice(good)));
             bPrice.setText(String.valueOf(market.getGoodBuyPrice(good)));

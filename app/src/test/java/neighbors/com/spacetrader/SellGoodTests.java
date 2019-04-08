@@ -3,8 +3,6 @@ package neighbors.com.spacetrader;
 import org.junit.Test;
 import org.junit.Before;
 
-import java.nio.file.Watchable;
-
 import neighbors.com.spacetrader.model.Good;
 import neighbors.com.spacetrader.model.Inventory;
 import neighbors.com.spacetrader.model.Market;
@@ -18,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class SellGoodTests {
     private Player player;
     private Market market;
-    TransactionProcessor processor;
+    private TransactionProcessor processor;
 
     @Before
     public void setup() {

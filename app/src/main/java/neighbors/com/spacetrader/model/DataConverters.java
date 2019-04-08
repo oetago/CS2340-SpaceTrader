@@ -16,7 +16,7 @@ import androidx.room.TypeConverter;
  * Class to convert our data objects into items Room can use for storage
  */
 @SuppressWarnings("EmptyClass")
-public class DataConverters {
+class DataConverters {
 
     /**
      * Converts our skill map to an object ROOM can use

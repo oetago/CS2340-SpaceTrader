@@ -2,6 +2,7 @@ package neighbors.com.spacetrader.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -70,7 +71,7 @@ public class Universe {
     }
 
     public List<SolarSystem> getSolarSystems() {
-        return solarSystems;
+        return Collections.unmodifiableList(solarSystems);
     }
 
     @Override

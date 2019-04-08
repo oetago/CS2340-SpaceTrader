@@ -1,5 +1,6 @@
 package neighbors.com.spacetrader.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -36,7 +37,7 @@ public class Inventory {
 
     //TODO new constructor with inventory map that does rest
 
-    public Map<Good, Integer> getInventory() { return this.inventory; }
+    public Map<Good, Integer> getInventory() { return Collections.unmodifiableMap(this.inventory); }
     /**
      * Checks if inventory has less than the quantity provided
      *

@@ -8,7 +8,7 @@ import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.SkillType;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-public class PirateViewModel extends BaseViewModel {
+class PirateViewModel extends BaseViewModel {
 
     public PirateViewModel(Application application) {
         super(application);

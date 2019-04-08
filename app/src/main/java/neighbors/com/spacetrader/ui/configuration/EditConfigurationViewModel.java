@@ -2,6 +2,7 @@ package neighbors.com.spacetrader.ui.configuration;
 
 import android.app.Application;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -93,7 +94,7 @@ public class EditConfigurationViewModel extends BaseViewModel {
      * @return the map of skills
      */
     public Map<SkillType, Integer> getSkills() {
-        return skillsPoints;
+        return Collections.unmodifiableMap(skillsPoints);
     }
 
     /**

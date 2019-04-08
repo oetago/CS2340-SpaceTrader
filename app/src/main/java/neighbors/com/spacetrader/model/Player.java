@@ -1,5 +1,6 @@
 package neighbors.com.spacetrader.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class Player {
 
     public String getCurrentPlanetName() { return this.currentPlanetName; }
 
-    public Difficulty getDifficulty() {
+    private Difficulty getDifficulty() {
         return this.difficulty;
     }
 
@@ -57,7 +58,7 @@ public class Player {
     }
 
     public Map<SkillType, Integer> getSkills() {
-        return this.skills;
+        return Collections.unmodifiableMap(this.skills);
     }
 
     public void setSkills(Map<SkillType, Integer> skills) {

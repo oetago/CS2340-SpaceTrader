@@ -16,7 +16,7 @@ import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 
 public class PoliceActivity extends AppCompatActivity {
 
-    public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
+    private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
     private final String tFail = "Your smooth talking fails and the cop confiscates your contraband";
     private final String tSucc = "You talk your way out of a ticket";
     private final String rFail = "The cop catches you and gives you a ticket";
@@ -24,6 +24,7 @@ public class PoliceActivity extends AppCompatActivity {
     private PoliceViewModel viewModel;
     private String solarSystemName;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_police);

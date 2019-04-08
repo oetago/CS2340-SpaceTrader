@@ -4,8 +4,8 @@ package neighbors.com.spacetrader.model;
  * Class used to represent the coordinates of a planet/solar system
  */
 public class Coord {
-    int x;
-    int y;
+    final int x;
+    final int y;
 
     /**
      * Asserts if two sets of coordinates are equals

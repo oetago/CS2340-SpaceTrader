@@ -143,8 +143,8 @@ public class ConfigurationActivity extends AppCompatActivity {
      * Base onClick to hold the skillType and TextView to display
      */
     private class BaseOnClickListener {
-        SkillType skillType;
-        TextView display;
+        final SkillType skillType;
+        final TextView display;
 
         BaseOnClickListener(SkillType skillType, TextView display) {
             this.skillType = skillType;

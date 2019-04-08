@@ -1,6 +1,7 @@
 package neighbors.com.spacetrader.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -57,7 +58,7 @@ public class SolarSystem {
     }
 
     public List<Planet> getPlanets() {
-        return planets;
+        return Collections.unmodifiableList(planets);
     }
 
     public Coord getLocation() {

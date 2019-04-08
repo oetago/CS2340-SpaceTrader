@@ -4,7 +4,7 @@ import org.junit.Before;
 
 import neighbors.com.spacetrader.ui.configuration.EditConfigurationViewModel;
 
-public class EditConfigurationViewModelTest {
+class EditConfigurationViewModelTest {
     private EditConfigurationViewModel viewModel;
 
     @Before

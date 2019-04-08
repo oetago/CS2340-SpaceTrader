@@ -21,11 +21,12 @@ import neighbors.com.spacetrader.ui.market.MarketActivity;
 
 public class UniverseActivity extends AppCompatActivity {
 
-    public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
+    private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
 
     private UniverseViewModel viewModel;
     private SolarSystem solarSystem;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
