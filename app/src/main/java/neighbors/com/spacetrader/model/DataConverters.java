@@ -12,6 +12,9 @@ import java.util.Map;
 
 import androidx.room.TypeConverter;
 
+/**
+ * Class to convert our data objects into items Room can use for storage
+ */
 public class DataConverters {
 
     /**

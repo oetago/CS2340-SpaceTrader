@@ -17,6 +17,10 @@ public class EditConfigurationViewModel extends BaseViewModel {
     private int availablePoints;
     private Map<SkillType, Integer> skillsPoints;
 
+    /**
+     * Creates an instance of EditConfigurationViewModel
+     * @param application the application
+     */
     public EditConfigurationViewModel(Application application) {
         super(application);
         skillsPoints = new HashMap<>();
@@ -66,19 +70,36 @@ public class EditConfigurationViewModel extends BaseViewModel {
         return null;
     }
 
+    /**
+     * Gets the number of points in a certain skill
+     * @param skillType the skillType to grab the points for
+     * @return the number of points
+     */
     public int getSkillPoints(SkillType skillType) {
         return skillsPoints.get(skillType);
     }
 
+    /**
+     * Gets the number of available skill points to use
+     * @return the number of available skill points
+     */
     public int getAvailablePoints() {
         return availablePoints;
     }
 
 
+    /**
+     * Gets the map of skillTypes to skill
+     * @return the map of skills
+     */
     public Map<SkillType, Integer> getSkills() {
         return skillsPoints;
     }
 
+    /**
+     * Gets the max number of points allowed to use
+     * @return the max points
+     */
     public int getMaxPoints() {
         return MAX_POINTS;
     }

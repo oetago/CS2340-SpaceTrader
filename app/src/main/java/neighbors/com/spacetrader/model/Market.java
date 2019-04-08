@@ -7,13 +7,17 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * Infoholder to handel market transactions in {@link neighbors.com.spacetrader.ui.market.MarketActivity}
+ * Info holder to handle market transactions in {@link neighbors.com.spacetrader.ui.market.MarketActivity}
  */
 public class Market {
     private Map<Good, Integer> sellPrices;
     private Map<Good, Integer> buyPrices;
     private List<Good> goods;
 
+    /**
+     * Creates an instance of Market for a certain TechLevel
+     * @param techLevel the techLevel of the planet the market is on
+     */
     public Market(TechLevel techLevel) {
         sellPrices = new HashMap<>(Good.values().length);
         buyPrices = new HashMap<>(Good.values().length);
@@ -65,18 +69,38 @@ public class Market {
                 + random.nextInt(good.getVar()) - (good.getVar() / 2);
     }
 
+    /**
+     * Gets the number of available goods in the market
+     * @return the number of goods in the market
+     */
     public int goodsCount() {
         return goods.size();
     }
 
+    /**
+     * Gets the Good at a certain position in the list
+     * of Goods in the market
+     * @param position the position to retrieve
+     * @return the Good at the given position
+     */
     public Good getGood(int position) {
         return goods.get(position);
     }
 
+    /**
+     * Gets the sell price of a given good
+     * @param good the Good to retrieve the sell price of
+     * @return the sell price of the given Good
+     */
     public Integer getGoodSellPrice(Good good) {
         return sellPrices.get(good);
     }
 
+    /**
+     * Gets the buy price of a given Good
+     * @param good the Good to retrieve the buy price of
+     * @return the buy price of the given Good
+     */
     public Integer getGoodBuyPrice(Good good) {
         return buyPrices.get(good);
     }

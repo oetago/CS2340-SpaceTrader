@@ -3,6 +3,10 @@ package neighbors.com.spacetrader.model;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Class used to represent the various Goods the planets can use
+ * and produce for buying and selling
+ */
 public enum Good {
     WATER("Water", 0, 0, 2, 30, 3, 4, RPEvent.DROUGHT, Resources.LOTSOFWATER, Resources.DESERT, 30, 50),
     FURS("Furs", 0, 0, 0, 250, 10, 10, RPEvent.COLD, Resources.RICHFAUNA, Resources.LIFELESS, 230, 280),
@@ -43,58 +47,120 @@ public enum Good {
         this.name = name;
     }
 
+    /**
+     * Gets the minimum tech level required to produce a good
+     * @return min tech level
+     */
     public int getMinTechLevelToProduce() {
         return minTechLevelToProduce;
     }
 
+    /**
+     * Gets the minimum tech level required to use a good
+     * @return min tech level
+     */
     public int getMinTechLevelToUse() {
         return minTechLevelToUse;
     }
 
+    /**
+     * Gets the tech level which produces mostly this good
+     * @return the tech level
+     */
     public int getProducedMostlyAtTechLevel() {
         return producedMostlyAtTechLevel;
     }
 
+    /**
+     * Gets the base price of a good
+     * @return the base price
+     */
     public int getBasePrice() {
         return basePrice;
     }
 
+    /**
+     * Gets the price increase per tech level for a good
+     * @return the price increase per level
+     */
     public int getIncreasePerLevel() {
         return increasePerLevel;
     }
 
+    /**
+     * Gets the variance for a good
+     * @return the variance
+     */
     public int getVar() {
         return var;
     }
 
+    /**
+     * Gets the Event that would cause a price increase for a
+     * good on a planet
+     * @return the Event that would cause the price increase
+     */
     public RPEvent getPriceIncreaseEvent() {
         return priceIncreaseEvent;
     }
 
+    /**
+     * Gets the Resource condition that would cause a Good
+     * to be low price on a planet
+     * @return the corresponding Resource condition
+     */
     public Resources getLowPriceCondition() {
         return lowPriceCondition;
     }
 
+    /**
+     * Gets the Resource condtion that would cause a Good
+     * to be high price on a planet
+     * @return the corresponding Resource condition
+     */
     public Resources getHighPriceCondition() {
         return highPriceCondition;
     }
 
+    /**
+     * Gets the minimum price of a Good in space
+     * @return the minimum price
+     */
     public int getMinSpacePrice() {
         return minSpacePrice;
     }
 
+    /**
+     * Gets the maximum price of a Good in space
+     * @return the maximum price
+     */
     public int getMaxSpacePrice() {
         return maxSpacePrice;
     }
 
+    /**
+     * Gets the name of a Good
+     * @return the name of the Good
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Checks whether or not a Good can be bought at the
+     * given TechLevel
+     * @param techLevel the TechLevel of a planet
+     * @return whether or not a Good can be bought at the TechLevel
+     */
     public boolean canBuy(int techLevel) {
         return this.minTechLevelToProduce <= techLevel;
     }
 
+    /**
+     * Checks if a Good can be sold at the given TechLevel
+     * @param techLevel the TechLevel of a planet
+     * @return whether or not a Good can be sold at the TechLevel
+     */
     public boolean canSell(int techLevel) {
         return this.minTechLevelToUse <= techLevel;
     }

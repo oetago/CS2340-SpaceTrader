@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import neighbors.com.spacetrader.R;
 
+/**
+ * Activity to handle displaying taking damage after an encounter
+ */
 public class DamageActivity extends AppCompatActivity {
 
     @Override

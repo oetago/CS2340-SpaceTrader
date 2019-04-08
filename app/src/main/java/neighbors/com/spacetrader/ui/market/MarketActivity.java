@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import neighbors.com.spacetrader.R;
 
+/**
+ * Activity class to handle displaying and interacting with the market
+ * on the planet the player is on
+ */
 public class MarketActivity extends AppCompatActivity implements MarketAdapter.MarketViewUpdate {
     public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
 

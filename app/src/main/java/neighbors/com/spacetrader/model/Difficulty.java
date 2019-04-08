@@ -34,10 +34,18 @@ public enum Difficulty {
         return values;
     }
 
+    /**
+     * Gets the name of the difficulty
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets the multiplier of the difficulty
+     * @return the multiplier
+     */
     public int getMultiplier() {
         return multiplier;
     }

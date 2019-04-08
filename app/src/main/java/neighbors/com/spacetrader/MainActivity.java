@@ -8,6 +8,9 @@ import neighbors.com.spacetrader.model.Repository;
 import neighbors.com.spacetrader.ui.configuration.ConfigurationActivity;
 import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 
+/**
+ * Main activity used to direct start of the app
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
