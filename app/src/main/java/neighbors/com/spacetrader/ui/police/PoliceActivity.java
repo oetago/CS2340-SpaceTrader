@@ -17,7 +17,8 @@ import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 public class PoliceActivity extends AppCompatActivity {
 
     private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
-    private final String tFail = "Your smooth talking fails and the cop confiscates your contraband";
+    private final String tFail =
+            "Your smooth talking fails and the cop confiscates your contraband";
     private final String tSucc = "You talk your way out of a ticket";
     private final String rFail = "The cop catches you and gives you a ticket";
     private final String rSucc = "You manage to escape";
@@ -67,9 +68,11 @@ public class PoliceActivity extends AppCompatActivity {
                 .setPositiveButton("Travel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(PoliceActivity.this, UniverseActivity.class);
+                        Intent intent = new Intent(PoliceActivity.this,
+                                UniverseActivity.class);
                         intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, solarSystemName); //Code to add name extra for next activity
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 })

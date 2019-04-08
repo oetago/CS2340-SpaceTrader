@@ -9,7 +9,8 @@ class EditConfigurationViewModelTest {
 
     @Before
     public void setUp() {
-        //viewModel = new EditConfigurationViewModel(); //TODO EDVM does not have a default constructor; make this line work
+        //viewModel = new EditConfigurationViewModel();
+        // TODO EDVM does not have a default constructor; make this line work
     }
 
 //    @Test

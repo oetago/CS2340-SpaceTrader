@@ -155,7 +155,8 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
 
         @SuppressLint("DefaultLocale")
         private String getDialogTradeMessage(Good good, int amount) {
-            return String.format("Are you sure you want to exchange %s of %s\n" + "You have: %d", amount, good.getName(), player.getQuantity(good));
+            return String.format("Are you sure you want to exchange %s of %s\n" +
+                    "You have: %d", amount, good.getName(), player.getQuantity(good));
         }
 
         private void handleResponse(TransactionResponse response) {

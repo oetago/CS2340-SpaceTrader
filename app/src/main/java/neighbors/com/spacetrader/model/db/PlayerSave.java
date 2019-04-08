@@ -20,7 +20,9 @@ public class PlayerSave {
     private String inventory;
     private String planets;
 
-    public PlayerSave(@NonNull String characterName, String skills, int difficulty, int credits, int spaceSpaceShip, int fuelCount, String currentPlanetName, String inventory, String planets) {
+    public PlayerSave(@NonNull String characterName, String skills, int difficulty,
+                      int credits, int spaceSpaceShip, int fuelCount,
+                      String currentPlanetName, String inventory, String planets) {
         this.characterName = characterName;
         this.skills = skills;
         this.difficulty = difficulty;

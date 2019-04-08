@@ -81,16 +81,19 @@ public class ConfigurationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (nameField.getText().toString().isEmpty()) {
-                    Toast.makeText(ConfigurationActivity.this, "Player name can't be empty!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConfigurationActivity.this,
+                            "Player name can't be empty!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (viewModel.getAvailablePoints() == 0) {
                     savePlayer();
-                    Intent intent = new Intent(ConfigurationActivity.this, UniverseActivity.class);
+                    Intent intent = new Intent(
+                            ConfigurationActivity.this, UniverseActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(ConfigurationActivity.this, "Must assign all 16 points!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConfigurationActivity.this,
+                            "Must assign all 16 points!", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -115,7 +118,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         nPilot.setOnClickListener(new NegativeOnClickListener(SkillType.PILOT, displayPilot));
         nTrader.setOnClickListener(new NegativeOnClickListener(SkillType.TRADER, displayTrader));
         nFighter.setOnClickListener(new NegativeOnClickListener(SkillType.FIGHTER, displayFighter));
-        nEngineer.setOnClickListener(new NegativeOnClickListener(SkillType.ENGINEER, displayEngineer));
+        nEngineer.setOnClickListener(
+                new NegativeOnClickListener(SkillType.ENGINEER, displayEngineer));
     }
 
     /**
@@ -125,7 +129,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         pPilot.setOnClickListener(new PositiveOnClickListener(SkillType.PILOT, displayPilot));
         pTrader.setOnClickListener(new PositiveOnClickListener(SkillType.TRADER, displayTrader));
         pFighter.setOnClickListener(new PositiveOnClickListener(SkillType.FIGHTER, displayFighter));
-        pEngineer.setOnClickListener(new PositiveOnClickListener(SkillType.ENGINEER, displayEngineer));
+        pEngineer.setOnClickListener(
+                new PositiveOnClickListener(SkillType.ENGINEER, displayEngineer));
     }
 
     /**
@@ -153,7 +158,8 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         void updateTextView(String message) {
             if (message != null) {
-                Toast.makeText(ConfigurationActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(ConfigurationActivity.this,
+                        message, Toast.LENGTH_LONG).show();
             }
             displayPoints.setText(getString(R.string.available_skill_points,
                     viewModel.getAvailablePoints()));
@@ -165,7 +171,8 @@ public class ConfigurationActivity extends AppCompatActivity {
     /**
      * Will decrement skill and update views
      */
-    private class NegativeOnClickListener extends BaseOnClickListener implements View.OnClickListener {
+    private class NegativeOnClickListener extends BaseOnClickListener
+            implements View.OnClickListener {
 
         NegativeOnClickListener(SkillType skillType, TextView display) {
             super(skillType, display);
@@ -182,7 +189,8 @@ public class ConfigurationActivity extends AppCompatActivity {
     /**
      * Will increment skill and update views
      */
-    private class PositiveOnClickListener extends BaseOnClickListener implements View.OnClickListener {
+    private class PositiveOnClickListener extends BaseOnClickListener
+            implements View.OnClickListener {
 
         PositiveOnClickListener(SkillType skillType, TextView display) {
             super(skillType, display);

@@ -58,7 +58,8 @@ class DataConverters {
 
         Map<SkillType, Integer> mapToReturn = new HashMap<>();
         for(int i = 0; i < skillsList.size(); i += 2){
-            mapToReturn.put(SkillType.valueOf((String) skillsList.get(i)), ((Double) skillsList.get(i + 1)).intValue());
+            mapToReturn.put(SkillType.valueOf((String) skillsList.get(i)),
+                    ((Double) skillsList.get(i + 1)).intValue());
         }
         return mapToReturn;
     }

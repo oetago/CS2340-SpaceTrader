@@ -129,7 +129,8 @@ public class Repository {
         spaceship.setFuel(fuel);
         player.setSpaceship(spaceship);
         player.setSkills(DataConvertHelper.jsonToSkills(save.getSkills()));
-        Inventory inventory = new Inventory(spaceship.getMaxCargo(), DataConvertHelper.jsonToInventory(save.getInventory()));
+        Inventory inventory = new Inventory(spaceship.getMaxCargo(),
+                DataConvertHelper.jsonToInventory(save.getInventory()));
         player.setInventory(inventory);
         return player;
     }

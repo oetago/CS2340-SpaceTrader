@@ -9,7 +9,8 @@ import java.util.Random;
 import androidx.annotation.VisibleForTesting;
 
 /**
- * Info holder to handle market transactions in {@link neighbors.com.spacetrader.ui.market.MarketActivity}
+ * Info holder to handle market transactions in
+ * {@link neighbors.com.spacetrader.ui.market.MarketActivity}
  */
 public class Market {
     private final Map<Good, Integer> sellPrices;
@@ -67,7 +68,8 @@ public class Market {
      */
     private int calculateBuyPrice(Good good, TechLevel techLevel, Random random) {
         return good.getBasePrice()
-                + good.getIncreasePerLevel() * (techLevel.getLevel() - good.getMinTechLevelToProduce())
+                + good.getIncreasePerLevel() * (techLevel.getLevel() -
+                good.getMinTechLevelToProduce())
                 + random.nextInt(good.getVar()) - (good.getVar() / 2);
     }
 

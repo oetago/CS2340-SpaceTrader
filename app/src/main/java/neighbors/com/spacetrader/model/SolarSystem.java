@@ -31,7 +31,8 @@ public class SolarSystem {
         planets.add(planet);
     }
 
-    public SolarSystem(String name, TechLevel techLvl, Resources resource, List<Planet> planets, Coord location) {
+    public SolarSystem(String name, TechLevel techLvl, Resources resource,
+                       List<Planet> planets, Coord location) {
         this.name = name;
         this.techLevel = techLvl;
         this.resource = resource;

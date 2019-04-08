@@ -18,7 +18,8 @@ import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 public class PirateActivity extends AppCompatActivity {
 
     private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
-    private final String fRunMessage = "You aren't fast enough and the pirate takes some of your credits";
+    private final String fRunMessage =
+            "You aren't fast enough and the pirate takes some of your credits";
     private final String fFightMessage = "You sustain heavy damage and have to pay for repairs";
     private final String sRunMessage = "You manage to get away";
     private final String sFightMessage = "You defeat the pirate and take some of his booty";
@@ -67,9 +68,11 @@ public class PirateActivity extends AppCompatActivity {
                 .setPositiveButton("Travel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(PirateActivity.this, UniverseActivity.class);
+                        Intent intent = new
+                                Intent(PirateActivity.this, UniverseActivity.class);
                         intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, solarSystemName); //Code to add name extra for next activity
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 })

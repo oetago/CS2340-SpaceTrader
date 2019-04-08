@@ -38,7 +38,8 @@ public class MarketActivity extends AppCompatActivity implements MarketAdapter.M
         RecyclerView mainView = findViewById(R.id.items);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mainView.setLayoutManager(manager);
-        MarketAdapter adapter = new MarketAdapter(this, viewModel.getMarket(solarSystemName), viewModel.getPlayer(), this);
+        MarketAdapter adapter = new MarketAdapter(this,
+                viewModel.getMarket(solarSystemName), viewModel.getPlayer(), this);
         mainView.setAdapter(adapter);
     }
 

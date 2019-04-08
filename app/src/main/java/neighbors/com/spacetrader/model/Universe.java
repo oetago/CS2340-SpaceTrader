@@ -40,12 +40,18 @@ public class Universe {
             // random choosing of name of SolarSystem
             while (!uniqueName) {
                 ArrayList<String> solarNames = new ArrayList<>(Arrays.asList("Aldea", "Andevian",
-                        "Antedi", "Balosnee", "Baratas", "Daled", "Damast", "Davlos", "Deneb", "Deneva", "Devidia",
-                        "Draylon", "Drema", "Endor", "Quator", "Rakhar", "Ran", "Regulas", "Relva", "Rhymus",
-                        "Rochani", "Rubicum", "Rutia", "Sarpeidon", "Sefalla", "Seltrice", "Sigma", "Sol",
-                        "Somari", "Stakoron", "Styris", "Talani", "Tamus", "Tantalos", "Tanuga", "Tarchannen",
-                        "Terosa", "Thera", "Titan", "Torin", "Triacus", "Turkana", "Tyrus", "Umberlee",
-                        "Utopia", "Vadera", "Vagra", "Vandor", "Ventax", "Xenon", "Xerxes", "Yew", "Yojimbo",
+                        "Antedi", "Balosnee", "Baratas", "Daled", "Damast",
+                        "Davlos", "Deneb", "Deneva", "Devidia",
+                        "Draylon", "Drema", "Endor", "Quator",
+                        "Rakhar", "Ran", "Regulas", "Relva",
+                        "Rhymus", "Rochani", "Rubicum", "Rutia", "Sarpeidon",
+                        "Sefalla", "Seltrice", "Sigma", "Sol",
+                        "Somari", "Stakoron", "Styris", "Talani",
+                        "Tamus", "Tantalos", "Tanuga", "Tarchannen",
+                        "Terosa", "Thera", "Titan", "Torin",
+                        "Triacus", "Turkana", "Tyrus", "Umberlee",
+                        "Utopia", "Vadera", "Vagra", "Vandor",
+                        "Ventax", "Xenon", "Xerxes", "Yew", "Yojimbo",
                         "Zalkon", "Zuul"));
                 String name = solarNames.get(rand.nextInt(solarNames.size()));
                 if (solarSystemNames.contains(name)) {
