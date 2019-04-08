@@ -126,4 +126,24 @@ public class Player {
     }
 
     public void setInventory(Inventory inventory) { this.spaceship.setInventory(inventory);}
+
+    public int getDifficultyMultiplier() {
+        return difficulty.getMultiplier();
+    }
+
+    public int getSkillsType(SkillType type) {
+        return skills.get(type);
+    }
+
+    public void removeGood(Good narcotics, int narcNum) {
+        getInventory().remove(narcotics, narcNum);
+    }
+
+    public int getDifficultyOrdinal() {
+        return getDifficulty().ordinal();
+    }
+
+    public int getSpaceshipOrdinal() {
+        return spaceship.ordinal();
+    }
 }

@@ -105,10 +105,10 @@ public class Repository {
         PlayerSave save = new PlayerSave();
         save.setCharacterName(player.getCharacterName());
         save.setCredits(player.getCredits());
-        save.setDifficulty(player.getDifficulty().ordinal());
+        save.setDifficulty(player.getDifficultyOrdinal());
         save.setFuelCount(player.getFuel());
         save.setCurrentPlanetName(player.getCurrentPlanetName());
-        save.setSpaceSpaceShip(player.getSpaceship().ordinal());
+        save.setSpaceSpaceShip(player.getSpaceshipOrdinal());
         save.setSkills(DataConvertHelper.skillsToJson(player.getSkills()));
         save.setInventory(DataConvertHelper.inventoryToJson(player.getInventory().getInventory()));
         save.setPlanets(DataConvertHelper.planetsToJson(planets));
@@ -138,5 +138,37 @@ public class Repository {
 //        for (Planet planet : planets) {
 //            insert(planet);
 //        }
+    }
+
+    public int getPlayerDifficultyMultiplier() {
+        return player.getDifficultyMultiplier();
+    }
+
+    public int getPlayerSkill(SkillType type) {
+        return player.getSkillsType(type);
+    }
+
+    public int getPlayerGoodQuantity(Good narcotics) {
+        return player.getQuantity(narcotics);
+    }
+
+    public void getPlayerRemoveGood(Good narcotics, int narcNum) {
+        player.removeGood(narcotics, narcNum);
+    }
+
+    public String getCurrentPlanetName() {
+        return player.getCurrentPlanetName();
+    }
+
+    public void setCurrentPlanetName(String name) {
+        player.setCurrentPlanetName(name);
+    }
+
+    public int getFuel() {
+        return player.getFuel();
+    }
+
+    public void useFuel() {
+        player.useFuel();
     }
 }

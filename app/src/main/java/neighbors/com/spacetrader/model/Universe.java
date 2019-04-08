@@ -11,26 +11,15 @@ import java.util.Set;
 
 public class Universe {
 
-    private Set<Coord> solarSystemLocations;
-    private Set<String> solarSystemNames;
     private List<SolarSystem> solarSystems;
-    final int UNIVERSESIZE = 10;
-
-    private ArrayList<String> solarNames = new ArrayList<String>(Arrays.asList("Aldea", "Andevian",
-            "Antedi", "Balosnee", "Baratas","Daled", "Damast", "Davlos", "Deneb", "Deneva", "Devidia",
-            "Draylon", "Drema", "Endor","Quator", "Rakhar", "Ran", "Regulas", "Relva", "Rhymus",
-            "Rochani", "Rubicum", "Rutia", "Sarpeidon", "Sefalla", "Seltrice", "Sigma", "Sol",
-            "Somari", "Stakoron", "Styris", "Talani", "Tamus", "Tantalos", "Tanuga", "Tarchannen",
-            "Terosa", "Thera", "Titan", "Torin", "Triacus", "Turkana", "Tyrus", "Umberlee",
-            "Utopia", "Vadera", "Vagra", "Vandor", "Ventax", "Xenon", "Xerxes", "Yew", "Yojimbo",
-            "Zalkon", "Zuul"));
 
 
     public Universe() {
         this(new LinkedList<SolarSystem>());
-        solarSystemLocations = new HashSet<>();
-        solarSystemNames = new HashSet<>();
+        Set<Coord> solarSystemLocations = new HashSet<>();
+        Set<String> solarSystemNames = new HashSet<>();
         Random rand = new Random();
+        int UNIVERSESIZE = 10;
         for (int i = 0; i < UNIVERSESIZE; i++) {
             boolean uniqueCoord = false;
             boolean uniqueName = false;
@@ -49,6 +38,14 @@ public class Universe {
             }
             // random choosing of name of SolarSystem
             while (!uniqueName) {
+                ArrayList<String> solarNames = new ArrayList<>(Arrays.asList("Aldea", "Andevian",
+                        "Antedi", "Balosnee", "Baratas", "Daled", "Damast", "Davlos", "Deneb", "Deneva", "Devidia",
+                        "Draylon", "Drema", "Endor", "Quator", "Rakhar", "Ran", "Regulas", "Relva", "Rhymus",
+                        "Rochani", "Rubicum", "Rutia", "Sarpeidon", "Sefalla", "Seltrice", "Sigma", "Sol",
+                        "Somari", "Stakoron", "Styris", "Talani", "Tamus", "Tantalos", "Tanuga", "Tarchannen",
+                        "Terosa", "Thera", "Titan", "Torin", "Triacus", "Turkana", "Tyrus", "Umberlee",
+                        "Utopia", "Vadera", "Vagra", "Vandor", "Ventax", "Xenon", "Xerxes", "Yew", "Yojimbo",
+                        "Zalkon", "Zuul"));
                 String name = solarNames.get(rand.nextInt(solarNames.size()));
                 if (solarSystemNames.contains(name)) {
                     uniqueName = false;

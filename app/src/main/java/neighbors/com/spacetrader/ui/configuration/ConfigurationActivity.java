@@ -28,7 +28,14 @@ public class ConfigurationActivity extends AppCompatActivity {
     private Spinner difficultySpinner;
     private EditText nameField;
 
-    private Button acceptButton, nPilot, pPilot, nEngineer, pEngineer, nTrader, pTrader, nFighter, pFighter;
+    private Button nPilot;
+    private Button pPilot;
+    private Button nEngineer;
+    private Button pEngineer;
+    private Button nTrader;
+    private Button pTrader;
+    private Button nFighter;
+    private Button pFighter;
     private TextView displayPoints, displayPilot, displayEngineer, displayFighter, displayTrader;
 
 
@@ -68,7 +75,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         setNegativeOnClicks();
         setPositiveOnClicks();
 
-        acceptButton = findViewById(R.id.accept_button); //Instantiates accept button
+        Button acceptButton = findViewById(R.id.accept_button);
 
         acceptButton.setOnClickListener(new View.OnClickListener() { //Sets listener for accept button and what to do on click
             @Override

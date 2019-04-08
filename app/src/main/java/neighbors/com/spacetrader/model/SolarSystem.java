@@ -97,4 +97,12 @@ public class SolarSystem {
     public Market getMarket() {
         return planets.get(0).getMarket();
     }
+
+    public int getLocationX() {
+        return location.x;
+    }
+
+    public int getLocationY() {
+        return location.y;
+    }
 }

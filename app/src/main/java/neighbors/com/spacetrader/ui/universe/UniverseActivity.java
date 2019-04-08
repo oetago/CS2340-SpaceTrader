@@ -118,8 +118,8 @@ public class UniverseActivity extends AppCompatActivity {
         LinearLayout.LayoutParams layout = (LinearLayout.LayoutParams) display.getLayoutParams();
         layout.height = 50;
         layout.width = 50;
-        display.setX(system.getLocation().getX() * 5 + 200);
-        display.setY(system.getLocation().getY() * 6 + 300);
+        display.setX(system.getLocationX() * 5 + 200);
+        display.setY(system.getLocationY() * 6 + 300);
     }
 
     /**

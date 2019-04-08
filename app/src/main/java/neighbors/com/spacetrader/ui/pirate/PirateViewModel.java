@@ -21,8 +21,8 @@ public class PirateViewModel extends BaseViewModel {
      * @return true if escape false if caught
      */
     public boolean run() {
-        int difficulty = repository.getPlayer().getDifficulty().getMultiplier();
-        int flight = repository.getPlayer().getSkills().get(SkillType.PILOT);
+        int difficulty = repository.getPlayerDifficultyMultiplier();
+        int flight = repository.getPlayerSkill(SkillType.PILOT);
         int chance = new Random().nextInt(20);
         if ((flight * chance) / difficulty > 1) {
             return true;
@@ -40,8 +40,8 @@ public class PirateViewModel extends BaseViewModel {
      * @return true if successful false if fail
      */
     public boolean fight() {
-        int difficulty = repository.getPlayer().getDifficulty().getMultiplier();
-        int fight = repository.getPlayer().getSkills().get(SkillType.FIGHTER);
+        int difficulty = repository.getPlayerDifficultyMultiplier();
+        int fight = repository.getPlayerSkill(SkillType.FIGHTER);
         int chance = new Random().nextInt(20);
         Player player = repository.getPlayer();
         int credits = player.getCredits();

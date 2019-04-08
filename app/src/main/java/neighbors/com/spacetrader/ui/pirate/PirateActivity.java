@@ -23,8 +23,6 @@ public class PirateActivity extends AppCompatActivity {
     private final String sRunMessage = "You manage to get away";
     private final String sFightMessage = "You defeat the pirate and take some of his booty";
     private PirateViewModel viewModel;
-    private Button fightButton, runButton;
-    private TextView message;
     private String solarSystemName;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +31,9 @@ public class PirateActivity extends AppCompatActivity {
         solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME);
         viewModel = ViewModelProviders.of(this).get(PirateViewModel.class);
 
-        fightButton = findViewById(R.id.fightButton);
-        runButton = findViewById(R.id.runButton);
-        message = findViewById(R.id.pmessage);
+        Button fightButton = findViewById(R.id.fightButton);
+        Button runButton = findViewById(R.id.runButton);
+        TextView message = findViewById(R.id.pmessage);
         message.setText(RandomEvent.PIRATE.getMessage());
 
         fightButton.setOnClickListener(new View.OnClickListener() {

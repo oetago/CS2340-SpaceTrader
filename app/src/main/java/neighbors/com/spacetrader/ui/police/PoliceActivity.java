@@ -22,9 +22,7 @@ public class PoliceActivity extends AppCompatActivity {
     private final String rFail = "The cop catches you and gives you a ticket";
     private final String rSucc = "You manage to escape";
     private PoliceViewModel viewModel;
-    private TextView message;
     private String solarSystemName;
-    private Button runButton, talkButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +30,9 @@ public class PoliceActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(PoliceViewModel.class);
         solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME);
 
-        runButton = findViewById(R.id.run);
-        talkButton = findViewById(R.id.talk);
-        message = findViewById(R.id.message);
+        Button runButton = findViewById(R.id.run);
+        Button talkButton = findViewById(R.id.talk);
+        TextView message = findViewById(R.id.message);
         message.setText(RandomEvent.POLICE.getMessage());
 
         runButton.setOnClickListener(new View.OnClickListener() {
