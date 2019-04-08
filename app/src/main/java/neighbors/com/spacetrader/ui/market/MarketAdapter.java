@@ -124,14 +124,16 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
             AlertDialog alertDialog = new AlertDialog.Builder(context)
                     .setTitle(good.getName())
                     .setMessage(getDialogTradeMessage(good, amount))
-                    .setPositiveButton(context.getString(R.string.buy), new DialogInterface.OnClickListener() {
+                    .setPositiveButton(context.getString(R.string.buy),
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             TransactionResponse response = transaction.buyGood(good, amount);
                             handleResponse(response);
                         }
                     })
-                    .setNegativeButton(context.getString(R.string.sell), new DialogInterface.OnClickListener() {
+                    .setNegativeButton(context.getString(R.string.sell),
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             TransactionResponse response = transaction.sellGood(good, amount);

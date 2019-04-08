@@ -28,20 +28,36 @@ public enum Good {
             Resources.WEIRDMUSHROOMS, null, 2000, 3000), @SerializedName("ROBOTS")
     ROBOTS("Robots", 6, 4, 7, 5000, -150, 100, RPEvent.LACKOFWORKERS, null, null, 3500, 5000);
 
-    private final int minTechLevelToProduce;      //Minimum Tech Level to Produce this resource (You can't buy on planets below this level)
-    private final int minTechLevelToUse;          //Minimum Tech Level to Use this resource (You can't sell on planets below this level)
-    private final int producedMostlyAtTechLevel;  //Tech Level which produces the most of this item
-    private final int basePrice;                  //Base price of good
-    private final int increasePerLevel;           //Price increase per tech level
-    private final int var;                        //Variance is the maximum percentage that the price can vary above or below the base
-    private final RPEvent priceIncreaseEvent;     //Radical price increase event, when this even happens on a planet, the price may increase astronomically
-    private final Resources lowPriceCondition;    //When this condition is present, the price of this resource is unusually low //TODO Same as highPriceCondition. Set both to null for "never" for now
-    private final Resources highPriceCondition;   //When this condition is present, the resource is expensive //TODO Some goods do not have a highPriceCondition. In that case, should we set this var to null? Or what?
-    private final int minSpacePrice;              //Min price offered in space trade with random trader (not on a planet)
-    private final int maxSpacePrice;              // Max price offered in space trade with random trader (not on a planet)
+    private final int minTechLevelToProduce;
+    //Minimum Tech Level to Produce this resource (You can't buy on planets below this level)
+    private final int minTechLevelToUse;
+    //Minimum Tech Level to Use this resource (You can't sell on planets below this level)
+    private final int producedMostlyAtTechLevel;
+    //Tech Level which produces the most of this item
+    private final int basePrice;
+    //Base price of good
+    private final int increasePerLevel;
+    //Price increase per tech level
+    private final int var;
+    //Variance is the maximum percentage that the price can vary above or below the base
+    private final RPEvent priceIncreaseEvent;
+    //Radical price increase event, when this even happens on a planet,
+    //the price may increase astronomically
+    private final Resources lowPriceCondition;
+    //When this condition is present, the price of this resource is unusually low
+    //Same as highPriceCondition. Set both to null for "never" for now
+    private final Resources highPriceCondition;
+    //When this condition is present, the resource is expensive
+    //Some goods do not have a highPriceCondition.
+    //In that case, should we set this var to null? Or what?
+    private final int minSpacePrice;
+    //Min price offered in space trade with random trader (not on a planet)
+    private final int maxSpacePrice;
+    // Max price offered in space trade with random trader (not on a planet)
     private final String name;
 
-    Good(String name, int MTLP, int MTLU, int TTP, int BP, int IPL, int VAR, RPEvent IE, Resources CR, Resources ER, int MTL, int MTH) {
+    Good(String name, int MTLP, int MTLU, int TTP, int BP, int IPL, int VAR, RPEvent IE,
+         Resources CR, Resources ER, int MTL, int MTH) {
         this.minTechLevelToProduce = MTLP;
         this.minTechLevelToUse = MTLU;
         this.producedMostlyAtTechLevel = TTP;
