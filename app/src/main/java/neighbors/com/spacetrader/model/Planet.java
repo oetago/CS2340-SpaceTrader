@@ -14,7 +14,7 @@ public class Planet {
     private int x;
     private int y;
 
-    transient private Market market;
+    private transient Market market;
 
     public Planet(String planetName, TechLevel techLevel, Resources resource, int x, int y) {
         this.planetName = planetName;

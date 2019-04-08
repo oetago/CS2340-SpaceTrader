@@ -39,8 +39,7 @@ class DataConverters {
 
         Gson gson = new Gson();
         Type type = new TypeToken<List<Object>>() {}.getType();
-        String json = gson.toJson(listFromMap, type);
-        return json;
+        return gson.toJson(listFromMap, type);
     }
 
     /**
@@ -85,8 +84,7 @@ class DataConverters {
 
         Gson gson = new Gson();
         Type type = new TypeToken<List<Object>>() {}.getType();
-        String json = gson.toJson(listFromMap, type);
-        return json;
+        return gson.toJson(listFromMap, type);
     }
 
     /**
@@ -233,8 +231,7 @@ class DataConverters {
         Gson gson = new Gson();
         Type type = new TypeToken<List<Planet>>() {
         }.getType();
-        String json = gson.toJson(planet, type);
-        return json;
+        return gson.toJson(planet, type);
     }
 
     /**
