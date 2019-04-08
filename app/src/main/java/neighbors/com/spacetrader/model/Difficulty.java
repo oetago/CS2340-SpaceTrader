@@ -27,7 +27,7 @@ public enum Difficulty {
      * @return a list of the difficulties
      */
     public static List<String> stringValues() {
-        ArrayList<String> values = new ArrayList<>();
+        List<String> values = new ArrayList<>();
         for (Difficulty value : values()) {
             values.add(value.name);
         }

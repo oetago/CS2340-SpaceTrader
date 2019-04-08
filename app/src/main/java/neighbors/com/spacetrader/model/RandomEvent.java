@@ -11,6 +11,7 @@ import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 /**
  * Random Event Enum
  */
+@SuppressWarnings("MagicNumber")
 public enum RandomEvent {
     NO_EVENT("You travel safely...", UniverseActivity.class),
     PIRATE("A pirate approaches...", PirateActivity.class),

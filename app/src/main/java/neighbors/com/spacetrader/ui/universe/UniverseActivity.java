@@ -19,6 +19,7 @@ import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.model.SolarSystem;
 import neighbors.com.spacetrader.ui.market.MarketActivity;
 
+@SuppressWarnings("ALL")
 public class UniverseActivity extends AppCompatActivity {
 
     private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";

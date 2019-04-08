@@ -23,6 +23,7 @@ class PirateViewModel extends BaseViewModel {
     public boolean run() {
         int difficulty = repository.getPlayerDifficultyMultiplier();
         int flight = repository.getPlayerSkill(SkillType.PILOT);
+        //noinspection MagicNumber
         int chance = new Random().nextInt(20);
         if ((flight * chance) / difficulty > 1) {
             return true;
