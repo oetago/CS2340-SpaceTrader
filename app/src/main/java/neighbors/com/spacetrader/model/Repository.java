@@ -11,7 +11,7 @@ import neighbors.com.spacetrader.model.db.PlayerSave;
 
 public class Repository {
 
-    volatile private static Repository repo;
+    private static volatile Repository repo;
 
     private final PlayerDao playerDao;
     private Player player;
@@ -110,7 +110,7 @@ public class Repository {
         save.setCurrentPlanetName(player.getCurrentPlanetName());
         save.setSpaceSpaceShip(player.getSpaceshipOrdinal());
         save.setSkills(DataConvertHelper.skillsToJson(player.getSkills()));
-        save.setInventory(DataConvertHelper.inventoryToJson(player.getInventory().getInventory()));
+        save.setInventory(DataConvertHelper.inventoryToJson(player.getInventoryMap()));
         save.setPlanets(DataConvertHelper.planetsToJson(planets));
         playerDao.insert(save);
     }

@@ -105,4 +105,8 @@ public class SolarSystem {
     public int getLocationY() {
         return location.y;
     }
+
+    public int getColor() {
+        return techLevel.getColor();
+    }
 }

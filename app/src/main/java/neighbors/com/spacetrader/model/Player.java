@@ -106,7 +106,7 @@ public class Player {
      * @return true if the player has enough credits, false otherwise
      */
     public boolean hasEnoughCredits(int neededCredits) {
-        return credits >= neededCredits;
+        return credits < neededCredits;
     }
 
     public void removeCredits(int removeCredits) {
@@ -145,5 +145,9 @@ public class Player {
 
     public int getSpaceshipOrdinal() {
         return spaceship.ordinal();
+    }
+
+    public Map<Good, Integer> getInventoryMap() {
+        return getInventory().getInventory();
     }
 }
