@@ -10,7 +10,7 @@ import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.model.SolarSystem;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-public class UniverseViewModel extends BaseViewModel {
+class UniverseViewModel extends BaseViewModel {
     private final String TAG = UniverseViewModel.class.getCanonicalName();
 
     public UniverseViewModel(@NonNull Application application) {

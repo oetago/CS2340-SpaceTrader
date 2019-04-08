@@ -9,7 +9,7 @@ import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.SkillType;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-public class PoliceViewModel extends BaseViewModel {
+class PoliceViewModel extends BaseViewModel {
 
     public PoliceViewModel(Application app) {
         super(app);

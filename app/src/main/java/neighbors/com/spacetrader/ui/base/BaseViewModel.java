@@ -10,13 +10,13 @@ import neighbors.com.spacetrader.model.Repository;
  */
 public class BaseViewModel extends AndroidViewModel {
 
-    protected Repository repository;
+    protected final Repository repository;
 
     /**
      * Creates an instance of BaseViewModel to use to save a player
      * @param application the application
      */
-    public BaseViewModel(Application application) {
+    protected BaseViewModel(Application application) {
         super(application);
         repository = Repository.getInstance(application);
     }

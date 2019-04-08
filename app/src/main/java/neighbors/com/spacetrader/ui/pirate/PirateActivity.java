@@ -17,7 +17,7 @@ import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 
 public class PirateActivity extends AppCompatActivity {
 
-    public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
+    private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
     private final String fRunMessage = "You aren't fast enough and the pirate takes some of your credits";
     private final String fFightMessage = "You sustain heavy damage and have to pay for repairs";
     private final String sRunMessage = "You manage to get away";
@@ -25,6 +25,7 @@ public class PirateActivity extends AppCompatActivity {
     private PirateViewModel viewModel;
     private String solarSystemName;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pirate);
@@ -37,6 +38,7 @@ public class PirateActivity extends AppCompatActivity {
         message.setText(RandomEvent.PIRATE.getMessage());
 
         fightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (viewModel.fight()) {
                     display("SUCCESS!", sFightMessage);
