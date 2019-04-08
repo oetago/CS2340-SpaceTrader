@@ -54,6 +54,7 @@ public class MarketActivity extends AppCompatActivity implements MarketAdapter.M
      */
     @Override
     public void updateCredits() {
-        creditDisplay.setText(getString(R.string.available_credits, viewModel.getPlayerCreditsString()));
+        creditDisplay.setText(getString(R.string.available_credits,
+                viewModel.getPlayerCreditsString()));
     }
 }

@@ -77,7 +77,8 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         Button acceptButton = findViewById(R.id.accept_button);
 
-        acceptButton.setOnClickListener(new View.OnClickListener() { //Sets listener for accept button and what to do on click
+        acceptButton.setOnClickListener(new View.OnClickListener() {
+            //Sets listener for accept button and what to do on click
             @Override
             public void onClick(View v) {
                 if (nameField.getText().toString().isEmpty()) {
@@ -104,11 +105,16 @@ public class ConfigurationActivity extends AppCompatActivity {
      * Sets all the textViews for skills on onCreate
      */
     private void setDefaultPointTextViews() {
-        displayPoints.setText(getString(R.string.available_skill_points, viewModel.getAvailablePoints()));
-        displayPilot.setText(getString(R.string.skill_config_text, SkillType.PILOT.getName(), viewModel.getSkillPoints(SkillType.PILOT)));
-        displayEngineer.setText(getString(R.string.skill_config_text, SkillType.ENGINEER.getName(), viewModel.getSkillPoints(SkillType.ENGINEER)));
-        displayTrader.setText(getString(R.string.skill_config_text, SkillType.TRADER.getName(), viewModel.getSkillPoints(SkillType.TRADER)));
-        displayFighter.setText(getString(R.string.skill_config_text, SkillType.FIGHTER.getName(), viewModel.getSkillPoints(SkillType.FIGHTER)));
+        displayPoints.setText(getString(R.string.available_skill_points,
+                viewModel.getAvailablePoints()));
+        displayPilot.setText(getString(R.string.skill_config_text, SkillType.PILOT.getName(),
+                viewModel.getSkillPoints(SkillType.PILOT)));
+        displayEngineer.setText(getString(R.string.skill_config_text, SkillType.ENGINEER.getName(),
+                viewModel.getSkillPoints(SkillType.ENGINEER)));
+        displayTrader.setText(getString(R.string.skill_config_text, SkillType.TRADER.getName(),
+                viewModel.getSkillPoints(SkillType.TRADER)));
+        displayFighter.setText(getString(R.string.skill_config_text, SkillType.FIGHTER.getName(),
+                viewModel.getSkillPoints(SkillType.FIGHTER)));
     }
 
     /**
@@ -163,7 +169,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             }
             displayPoints.setText(getString(R.string.available_skill_points,
                     viewModel.getAvailablePoints()));
-            display.setText(getString(R.string.skill_config_text, skillType.getName(), viewModel.getSkillPoints(skillType)));
+            display.setText(getString(R.string.skill_config_text, skillType.getName(),
+                    viewModel.getSkillPoints(skillType)));
         }
 
     }
