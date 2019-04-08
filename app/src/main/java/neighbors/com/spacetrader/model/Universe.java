@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class Universe {
 
-    private List<SolarSystem> solarSystems;
+    private final List<SolarSystem> solarSystems;
 
 
     public Universe() {

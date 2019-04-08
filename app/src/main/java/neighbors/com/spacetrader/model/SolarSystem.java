@@ -6,11 +6,11 @@ import java.util.List;
 
 public class SolarSystem {
 
-    private String name;
+    private final String name;
     private TechLevel techLevel;
     private List<Planet> planets;
     private Resources resource;
-    private Coord location;
+    private final Coord location;
 
     public SolarSystem(String name, Coord location) {
         this.name = name;

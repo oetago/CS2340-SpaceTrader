@@ -12,7 +12,7 @@ import neighbors.com.spacetrader.ui.base.BaseViewModel;
  */
 public class MarketViewModel extends BaseViewModel {
     private static final String TAG = MarketViewModel.class.getCanonicalName();
-    private Player player;
+    private final Player player;
 
     /**
      * Creates an instance of MarketViewModel

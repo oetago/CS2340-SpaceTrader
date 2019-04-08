@@ -6,7 +6,7 @@ public enum SkillType {
     ENGINEER("Engineer"),
     TRADER("Trader");
 
-    private String name;
+    private final String name;
 
     SkillType(String name) {
         this.name = name;

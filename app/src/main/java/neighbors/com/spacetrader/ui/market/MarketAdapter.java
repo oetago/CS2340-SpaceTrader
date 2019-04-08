@@ -25,10 +25,10 @@ import neighbors.com.spacetrader.model.TransactionResponse;
  * Market Adapter to display trading info
  */
 public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketViewHolder> {
-    private Context context;
-    private Market market;
-    private Player player;
-    private MarketViewUpdate update;
+    private final Context context;
+    private final Market market;
+    private final Player player;
+    private final MarketViewUpdate update;
 
     /**
      * Creates an instance of MarketAdapter with a given context, market,
@@ -70,11 +70,11 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
     }
 
     public class MarketViewHolder extends RecyclerView.ViewHolder {
-        private TextView item;
-        private TextView bPrice;
-        private TextView sPrice;
-        private Button trade;
-        private EditText amountEditText;
+        private final TextView item;
+        private final TextView bPrice;
+        private final TextView sPrice;
+        private final Button trade;
+        private final EditText amountEditText;
 
         /**
          * Creates an instance of MarketViewHolder to use in the

@@ -12,9 +12,9 @@ import androidx.annotation.VisibleForTesting;
  * Info holder to handle market transactions in {@link neighbors.com.spacetrader.ui.market.MarketActivity}
  */
 public class Market {
-    private Map<Good, Integer> sellPrices;
+    private final Map<Good, Integer> sellPrices;
     private Map<Good, Integer> buyPrices;
-    private List<Good> goods;
+    private final List<Good> goods;
 
     /**
      * Creates an instance of Market for a certain TechLevel

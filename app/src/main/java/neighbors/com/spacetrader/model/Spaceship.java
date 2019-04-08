@@ -15,9 +15,9 @@ public enum Spaceship {
     TERMITE(50, "Termite", 9923),
     WASP(100, "Wasp", 30000);
 
-    private String name;
+    private final String name;
     private Inventory inventory;
-    private int cost;
+    private final int cost;
     private int fuel;
 
     Spaceship(int maxCargo, String name, int cost) {

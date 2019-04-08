@@ -8,9 +8,9 @@ import neighbors.com.spacetrader.model.TransactionResponse;
 
 public class TransactionProcessor {
 
-    private Market market;
-    private Player player;
-    private Inventory inventory;
+    private final Market market;
+    private final Player player;
+    private final Inventory inventory;
 
     public TransactionProcessor(Market market, Player player) {
         this.market = market;

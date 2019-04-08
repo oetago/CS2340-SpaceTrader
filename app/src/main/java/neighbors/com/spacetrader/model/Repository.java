@@ -13,7 +13,7 @@ public class Repository {
 
     volatile private static Repository repo;
 
-    private PlayerDao playerDao;
+    private final PlayerDao playerDao;
     private Player player;
     private Universe universe;
 

@@ -15,7 +15,7 @@ public class EditConfigurationViewModel extends BaseViewModel {
     private static final int MAX_POINTS = 16;
 
     private int availablePoints;
-    private Map<SkillType, Integer> skillsPoints;
+    private final Map<SkillType, Integer> skillsPoints;
 
     /**
      * Creates an instance of EditConfigurationViewModel

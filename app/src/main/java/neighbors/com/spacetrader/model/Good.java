@@ -30,7 +30,7 @@ public enum Good {
     private final Resources highPriceCondition;   //When this condition is present, the resource is expensive //TODO Some goods do not have a highPriceCondition. In that case, should we set this var to null? Or what?
     private final int minSpacePrice;              //Min price offered in space trade with random trader (not on a planet)
     private final int maxSpacePrice;              // Max price offered in space trade with random trader (not on a planet)
-    private String name;
+    private final String name;
 
     Good(String name, int MTLP, int MTLU, int TTP, int BP, int IPL, int VAR, RPEvent IE, Resources CR, Resources ER, int MTL, int MTH) {
         this.minTechLevelToProduce = MTLP;
