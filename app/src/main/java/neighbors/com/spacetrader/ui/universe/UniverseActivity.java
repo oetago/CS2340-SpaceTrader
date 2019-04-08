@@ -78,7 +78,7 @@ public class UniverseActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         viewModel.usePlayerFuel();
-                        viewModel.setPlayerPlanent(system.getName());
+                        viewModel.setPlayerPlanet(system.getName());
                         RandomEvent nextEvent = viewModel.getEvent();
                         Intent intent = new Intent(UniverseActivity.this, nextEvent.getActivity());
                         intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName()); //Code to add name extra for next activity

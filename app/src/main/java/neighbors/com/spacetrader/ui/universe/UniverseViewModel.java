@@ -38,7 +38,7 @@ public class UniverseViewModel extends BaseViewModel {
         repository.getPlayer().useFuel();
     }
 
-    public void setPlayerPlanent(String name) {
+    public void setPlayerPlanet(String name) {
         repository.getPlayer().setCurrentPlanetName(name);
     }
 }
