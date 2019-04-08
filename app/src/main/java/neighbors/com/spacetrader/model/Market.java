@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import androidx.annotation.VisibleForTesting;
+
 /**
  * Info holder to handle market transactions in {@link neighbors.com.spacetrader.ui.market.MarketActivity}
  */
@@ -103,5 +105,10 @@ public class Market {
      */
     public Integer getGoodBuyPrice(Good good) {
         return buyPrices.get(good);
+    }
+
+    @VisibleForTesting
+    public void setGoodBuyPrices(Map<Good, Integer> buyPrices) {
+        this.buyPrices = buyPrices;
     }
 }
