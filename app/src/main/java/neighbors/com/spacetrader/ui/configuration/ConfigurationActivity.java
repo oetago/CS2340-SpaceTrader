@@ -80,7 +80,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 if (viewModel.getAvailablePoints() == 0) {
                     savePlayer();
                     Intent intent = new Intent(ConfigurationActivity.this, UniverseActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else {
                     Toast.makeText(ConfigurationActivity.this, "Must assign all 16 points!", Toast.LENGTH_LONG).show();
