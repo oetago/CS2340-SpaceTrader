@@ -2,6 +2,8 @@ package neighbors.com.spacetrader.model;
 
 import android.graphics.Color;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Random;
 
 
@@ -53,6 +55,8 @@ public enum TechLevel {
     public String getTechname() {
         return this.Techname;
     }
+
+    @NotNull
     public String toString() {
         return Techname;
     }

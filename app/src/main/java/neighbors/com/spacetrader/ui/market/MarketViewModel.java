@@ -11,7 +11,6 @@ import neighbors.com.spacetrader.ui.base.BaseViewModel;
  * Class to serve between the MarketActivity and the model
  */
 class MarketViewModel extends BaseViewModel {
-    private static final String TAG = MarketViewModel.class.getCanonicalName();
     private final Player player;
 
     /**

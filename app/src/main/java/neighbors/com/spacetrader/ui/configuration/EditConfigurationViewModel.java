@@ -12,7 +12,6 @@ import neighbors.com.spacetrader.model.Universe;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
 public class EditConfigurationViewModel extends BaseViewModel {
-    private static final String TAG = EditConfigurationViewModel.class.getCanonicalName();
     private static final int MAX_POINTS = 16;
 
     private int availablePoints;

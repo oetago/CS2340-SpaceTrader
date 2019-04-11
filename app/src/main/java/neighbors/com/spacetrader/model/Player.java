@@ -1,5 +1,7 @@
 package neighbors.com.spacetrader.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +22,13 @@ public class Player {
         skills = new HashMap<>();
         credits = 1000;
         spaceship = Spaceship.BEETLE;
+    }
+
+    public Player(String name, Difficulty difficulty, Map<SkillType, Integer> skills) {
+        this();
+        this.characterName = name;
+        this.difficulty = difficulty;
+        this.skills = skills;
     }
 
 
@@ -85,6 +94,7 @@ public class Player {
         this.spaceship = spaceship;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "Player{" +
@@ -137,7 +147,7 @@ public class Player {
     }
 
     public void removeGood(Good narcotics, int narcNum) {
-        getInventory().remove(narcotics, narcNum);
+        spaceship.remove(narcotics, narcNum);
     }
 
     public int getDifficultyOrdinal() {
@@ -149,6 +159,6 @@ public class Player {
     }
 
     public Map<Good, Integer> getInventoryMap() {
-        return getInventory().getInventory();
+        return spaceship.getInventoryMap();
     }
 }

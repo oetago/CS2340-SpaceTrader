@@ -1,5 +1,7 @@
 package neighbors.com.spacetrader.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,15 +31,6 @@ public class SolarSystem {
         this.resource = planet.getResource();
         planets = new ArrayList<>();
         planets.add(planet);
-    }
-
-    public SolarSystem(String name, TechLevel techLvl, Resources resource,
-                       List<Planet> planets, Coord location) {
-        this.name = name;
-        this.techLevel = techLvl;
-        this.resource = resource;
-        this.planets = planets;
-        this.location = location;
     }
 
     public String getName() {
@@ -70,6 +63,7 @@ public class SolarSystem {
         planets.add(newPlanet);
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "SolarSystem{" +
@@ -97,6 +91,7 @@ public class SolarSystem {
     }
 
     public Market getMarket() {
+        //Java doesn't have extension functions
         return planets.get(0).getMarket();
     }
 

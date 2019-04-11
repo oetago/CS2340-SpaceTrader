@@ -9,7 +9,7 @@ import neighbors.com.spacetrader.model.db.DataConvertHelper;
 import neighbors.com.spacetrader.model.db.PlayerSave;
 
 
-public class Repository {
+final public class Repository {
 
     private static volatile Repository repo;
 
@@ -42,23 +42,6 @@ public class Repository {
         return this.player;
     }
 
-    public Planet getPlanet() {
-        return getPlanet(player.getCurrentPlanetName());
-    }
-
-    private Planet getPlanet(String currentPlanetName) {
-        for (Planet planet : universe.getPlanets()) {
-            if (planet.getName().equals(currentPlanetName)) {
-                return planet;
-            }
-        }
-        return null;
-    }
-
-    public Spaceship getSpaceship() {
-        return player.getSpaceship();
-    }
-
     public Inventory getInventory() {
         return player.getInventory();
     }
@@ -84,6 +67,7 @@ public class Repository {
     }
 
     public Market getMarket(String name) {
+        //Method chain to not duplicate for loop in getSolarSystem
         return getSolarSystem(name).getMarket();
     }
 
@@ -135,12 +119,6 @@ public class Repository {
         return player;
     }
 
-    public void savePlanets(List<Planet> planets) {
-//        for (Planet planet : planets) {
-//            insert(planet);
-//        }
-    }
-
     public int getPlayerDifficultyMultiplier() {
         return player.getDifficultyMultiplier();
     }
@@ -171,5 +149,17 @@ public class Repository {
 
     public void useFuel() {
         player.useFuel();
+    }
+
+    public int getPlayerCredits() {
+        return player.getCredits();
+    }
+
+    public void removePlayerCredits(int removeCredits) {
+        player.removeCredits(removeCredits);
+    }
+
+    public void addPlayerCredits(int addCredits) {
+        player.addCredits(addCredits);
     }
 }

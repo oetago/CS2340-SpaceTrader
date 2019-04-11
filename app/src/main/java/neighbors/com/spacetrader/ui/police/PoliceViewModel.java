@@ -9,7 +9,6 @@ import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.SkillType;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-@SuppressWarnings("ALL")
 class PoliceViewModel extends BaseViewModel {
 
     public PoliceViewModel(Application app) {
@@ -44,7 +43,6 @@ class PoliceViewModel extends BaseViewModel {
     public boolean run() {
         int difficulty = repository.getPlayerDifficultyMultiplier();
         int flight = repository.getPlayerSkill(SkillType.PILOT);
-        //noinspection MagicNumber
         int chance = new Random().nextInt(20);
         if ((flight * chance) / difficulty > 1) {
             return true;

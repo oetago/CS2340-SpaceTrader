@@ -1,5 +1,7 @@
 package neighbors.com.spacetrader.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -80,13 +82,14 @@ public class Universe {
         return Collections.unmodifiableList(solarSystems);
     }
 
+    @NotNull
     @Override
     public String toString() {
-        String toReturn = "";
+        StringBuilder toReturn = new StringBuilder();
         for (SolarSystem system: solarSystems) {
-            toReturn += system.toString() + "\'";
+            toReturn.append(system.toString()).append("\'");
         }
-        return toReturn;
+        return toReturn.toString();
     }
 
     public List<Planet> getPlanets() {

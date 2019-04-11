@@ -36,7 +36,11 @@ public class ConfigurationActivity extends AppCompatActivity {
     private Button pTrader;
     private Button nFighter;
     private Button pFighter;
-    private TextView displayPoints, displayPilot, displayEngineer, displayFighter, displayTrader;
+    private TextView displayPoints;
+    private TextView displayPilot;
+    private TextView displayEngineer;
+    private TextView displayFighter;
+    private TextView displayTrader;
 
 
     @Override
@@ -143,10 +147,9 @@ public class ConfigurationActivity extends AppCompatActivity {
      * Talk with viewModel to save Player
      */
     private void savePlayer() {
-        Player player = new Player();
-        player.setCharacterName(nameField.getText().toString());
-        player.setDifficulty(Difficulty.values()[difficultySpinner.getSelectedItemPosition()]);
-        player.setSkillPoints(viewModel.getSkills());
+        Player player = new Player(nameField.getText().toString(),
+                Difficulty.values()[difficultySpinner.getSelectedItemPosition()],
+                viewModel.getSkills());
         viewModel.savePlayer(player);
     }
 

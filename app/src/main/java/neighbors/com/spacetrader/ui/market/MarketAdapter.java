@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.jetbrains.annotations.NotNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.Good;
@@ -45,15 +47,15 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
         this.update = update;
     }
 
+    @NotNull
     @Override
-    public MarketAdapter.MarketViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.market_item, parent, false);
-        return new MarketViewHolder(v);
+    public MarketAdapter.MarketViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+        return new MarketViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.market_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(MarketViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull MarketViewHolder holder, int position) {
         holder.bind(market.getGood(position));
     }
 
@@ -115,7 +117,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
          */
         private void tradeOnClick(final Good good) {
             if (amountEditText.getText().toString().isEmpty()) {
-                showDialog("Please input valid amountEditText of good");
+                showDialog();
                 return;
             }
             final TransactionProcessor transaction = new TransactionProcessor(market, player);
@@ -146,12 +148,11 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
         /**
          * Shows a dialog with message
          *
-         * @param message message to be displayed
          */
-        private void showDialog(String message) {
+        private void showDialog() {
             MaterialDialog retry = new MaterialDialog(context);
             retry.title(null, "Trade");
-            retry.message(null, message, false, 0F);
+            retry.message(null, "Please input valid amountEditText of good", false, 0F);
             retry.show();
         }
 

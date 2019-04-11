@@ -53,9 +53,9 @@ public class Market {
      * @return the calculated sell price of a good
      */
     private int calculateSellPrice(Good good, TechLevel techLevel, Random random) {
-        return good.getBasePrice()
-                + good.getIncreasePerLevel() * (techLevel.getLevel() - good.getMinTechLevelToUse())
-                + random.nextInt(good.getVar()) - (good.getVar() / 2);
+        return (good.getBasePrice()
+                + (good.getIncreasePerLevel() * (techLevel.getLevel() - good.getMinTechLevelToUse()))
+                + random.nextInt(good.getVar())) - (good.getVar() / 2);
     }
 
     /**
@@ -67,10 +67,10 @@ public class Market {
      * @return the calculated buy price of a good
      */
     private int calculateBuyPrice(Good good, TechLevel techLevel, Random random) {
-        return good.getBasePrice()
-                + good.getIncreasePerLevel() * (techLevel.getLevel() -
-                good.getMinTechLevelToProduce())
-                + random.nextInt(good.getVar()) - (good.getVar() / 2);
+        return (good.getBasePrice()
+                + (good.getIncreasePerLevel() * (techLevel.getLevel() -
+                good.getMinTechLevelToProduce()))
+                + random.nextInt(good.getVar())) - (good.getVar() / 2);
     }
 
     /**

@@ -35,8 +35,6 @@ public class Inventory {
         this(maxInventory, new HashMap<Good, Integer>());
     }
 
-    //TODO new constructor with inventory map that does rest
-
     public Map<Good, Integer> getInventory() { return Collections.unmodifiableMap(this.inventory); }
     /**
      * Checks if inventory has less than the quantity provided
@@ -87,6 +85,7 @@ public class Inventory {
      */
     public void remove(Good good, int quantity) {
         if (inventory.containsKey(good)) {
+            //Usually use get or default but android api is old
             int goodCount = inventory.get(good);
             inventory.put(good, goodCount - quantity);
             currentInventory -= quantity;

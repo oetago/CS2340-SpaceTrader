@@ -4,7 +4,6 @@ import android.app.Application;
 
 import java.util.Random;
 
-import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.SkillType;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
@@ -23,15 +22,13 @@ class PirateViewModel extends BaseViewModel {
     public boolean run() {
         int difficulty = repository.getPlayerDifficultyMultiplier();
         int flight = repository.getPlayerSkill(SkillType.PILOT);
-        //noinspection MagicNumber
         int chance = new Random().nextInt(20);
-        if ((flight * chance) / difficulty > 1) {
+        if (((flight * chance) / difficulty) > 1) {
             return true;
         }
-        Player player = repository.getPlayer();
-        int credits = player.getCredits();
+        int credits = repository.getPlayerCredits();
         int removeCredits = credits / 10;
-        player.removeCredits(removeCredits);
+        repository.removePlayerCredits(removeCredits);
         return false;
     }
 
@@ -44,15 +41,14 @@ class PirateViewModel extends BaseViewModel {
         int difficulty = repository.getPlayerDifficultyMultiplier();
         int fight = repository.getPlayerSkill(SkillType.FIGHTER);
         int chance = new Random().nextInt(20);
-        Player player = repository.getPlayer();
-        int credits = player.getCredits();
-        if ((fight * chance) / difficulty > 1) {
+        int credits = repository.getPlayerCredits();
+        if (((fight * chance) / difficulty) > 1) {
             int addCredits = credits / 10;
-            player.addCredits(addCredits);
+            repository.addPlayerCredits(addCredits);
             return true;
         }
         int removeCredits = credits / 10;
-        player.removeCredits(removeCredits);
+        repository.removePlayerCredits(removeCredits);
         return false;
     }
 

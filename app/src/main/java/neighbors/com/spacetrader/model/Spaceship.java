@@ -1,5 +1,7 @@
 package neighbors.com.spacetrader.model;
 
+import java.util.Map;
+
 /**
  * Player's Spaceship data
  */
@@ -61,5 +63,13 @@ public enum Spaceship {
 
     public void setFuel(int fuel) {
         this.fuel = fuel;
+    }
+
+    public Map<Good, Integer> getInventoryMap() {
+        return inventory.getInventory();
+    }
+
+    public void remove(Good good, int num) {
+        inventory.remove(good, num);
     }
 }

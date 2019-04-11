@@ -1,7 +1,7 @@
 package neighbors.com.spacetrader;
 
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 
 import neighbors.com.spacetrader.model.Good;
 import neighbors.com.spacetrader.model.Inventory;
@@ -54,7 +54,7 @@ public class SellGoodTests {
         int price = market.getGoodSellPrice(Good.WATER);
 
         processor.sellGood(Good.WATER, 5);
-        assertEquals(player.getCredits(), currentCredits + 5 * price);
+        assertEquals(player.getCredits(), currentCredits + (5 * price));
     }
 
     @Test
