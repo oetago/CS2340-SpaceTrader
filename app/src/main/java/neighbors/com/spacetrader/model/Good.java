@@ -139,7 +139,7 @@ public enum Good {
     }
 
     /**
-     * Gets the Resource condtion that would cause a Good
+     * Gets the Resource condition that would cause a Good
      * to be high price on a planet
      * @return the corresponding Resource condition
      */

@@ -45,7 +45,7 @@ public class Coord {
     }
 
     /**
-     * Overrides Object's hashCode() to allow for coords in a map
+     * Overrides Object's hashCode() to allow for coordinates in a map
      * @return hashcode of a Coord object
      */
     public int hashCode() {

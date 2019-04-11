@@ -112,8 +112,8 @@ public class UniverseActivity extends AppCompatActivity {
     /**
      * Sets the layout and display coordinates
      *
-     * @param system  system youre working with
-     * @param display circle view youre working with
+     * @param system  system you're working with
+     * @param display circle view you're working with
      */
     private void setLayout(SolarSystem system, CircleView display) {
         display.setBorderColor(system.getColor());
