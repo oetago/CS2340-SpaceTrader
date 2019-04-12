@@ -86,6 +86,11 @@ public class Player {
         this.difficulty = difficulty;
     }
 
+    /**
+     * Adds credits to player
+     *
+     * @param update the credits to add
+     */
     public void addCredits(int update) {
         this.credits += update;
     }
