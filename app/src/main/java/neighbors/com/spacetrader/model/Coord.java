@@ -1,11 +1,13 @@
 package neighbors.com.spacetrader.model;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Class used to represent the coordinates of a planet/solar system
  */
 public class Coord {
-    int x;
-    int y;
+    final int x;
+    final int y;
 
     /**
      * Asserts if two sets of coordinates are equals
@@ -13,8 +15,11 @@ public class Coord {
      * @return whether or not the coordinates are equivalent
      */
     public boolean equals(Object o) {
+        if (!(o instanceof Coord)) {
+            return false;
+        }
         Coord c = (Coord) o;
-        return c.x == x && c.y == y;
+        return (c.x == x) && (c.y == y);
     }
 
     /**
@@ -29,22 +34,6 @@ public class Coord {
     }
 
     /**
-     * Gets the X-value of the coordinate
-     * @return the x-value
-     */
-    public int getX() {
-        return x;
-    }
-
-    /**
-     * Gets the Y-value of the coordinate
-     * @return the y-value
-     */
-    public int getY() {
-        return y;
-    }
-
-    /**
      * Overrides Object's hashCode() to allow for coordinates in a map
      * @return hashcode of a Coord object
      */
@@ -52,6 +41,7 @@ public class Coord {
         return x + (y * 13);
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "(" + x + ", " + y + ")";

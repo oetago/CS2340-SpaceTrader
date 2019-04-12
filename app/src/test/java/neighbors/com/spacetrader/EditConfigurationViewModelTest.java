@@ -4,12 +4,12 @@ import org.junit.Before;
 
 import neighbors.com.spacetrader.ui.configuration.EditConfigurationViewModel;
 
-public class EditConfigurationViewModelTest {
+class EditConfigurationViewModelTest {
     private EditConfigurationViewModel viewModel;
 
     @Before
     public void setUp() {
-        //viewModel = new EditConfigurationViewModel(); //TODO EDVM does not have a default constructor; make this line work
+        //viewModel = new EditConfigurationViewModel();
     }
 
 //    @Test

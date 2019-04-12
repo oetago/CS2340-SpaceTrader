@@ -1,5 +1,6 @@
 package neighbors.com.spacetrader.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -34,9 +35,12 @@ public class Inventory {
         this(maxInventory, new HashMap<Good, Integer>());
     }
 
-    //TODO new constructor with inventory map that does rest
+    /**
+     * Gets the current inventory contents
+     * @return Map of goods (Good) to quantities (int)
+     */
+    public Map<Good, Integer> getInventory() { return Collections.unmodifiableMap(this.inventory); }
 
-    public Map<Good, Integer> getInventory() { return this.inventory; }
     /**
      * Checks if inventory has less than the quantity provided
      *
@@ -72,7 +76,7 @@ public class Inventory {
 
     /**
      * Gets the number of items currently in the inventory
-     * @return
+     * @return the number of items currently in the inventory
      */
     public int getCurrentInventory() {
         return currentInventory;
@@ -86,6 +90,7 @@ public class Inventory {
      */
     public void remove(Good good, int quantity) {
         if (inventory.containsKey(good)) {
+            //Usually use get or default but android api is old
             int goodCount = inventory.get(good);
             inventory.put(good, goodCount - quantity);
             currentInventory -= quantity;

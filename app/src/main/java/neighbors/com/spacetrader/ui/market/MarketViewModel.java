@@ -10,9 +10,8 @@ import neighbors.com.spacetrader.ui.base.BaseViewModel;
 /**
  * Class to serve between the MarketActivity and the model
  */
-public class MarketViewModel extends BaseViewModel {
-    private static final String TAG = MarketViewModel.class.getCanonicalName();
-    private Player player;
+class MarketViewModel extends BaseViewModel {
+    private final Player player;
 
     /**
      * Creates an instance of MarketViewModel
@@ -35,7 +34,7 @@ public class MarketViewModel extends BaseViewModel {
 
     /**
      * Gets the player from the database to use in the game
-     * @return
+     * @return the player
      */
     public Player getPlayer() {
         return player;

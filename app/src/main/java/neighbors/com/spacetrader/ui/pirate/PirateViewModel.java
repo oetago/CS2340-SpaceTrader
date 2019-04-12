@@ -4,12 +4,15 @@ import android.app.Application;
 
 import java.util.Random;
 
-import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.SkillType;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
-public class PirateViewModel extends BaseViewModel {
+class PirateViewModel extends BaseViewModel {
 
+    /**
+     * The view model to be instantiated
+     * @param application the application that is running the view model
+     */
     public PirateViewModel(Application application) {
         super(application);
     }
@@ -21,16 +24,15 @@ public class PirateViewModel extends BaseViewModel {
      * @return true if escape false if caught
      */
     public boolean run() {
-        int difficulty = repository.getPlayer().getDifficulty().getMultiplier();
-        int flight = repository.getPlayer().getSkills().get(SkillType.PILOT);
+        int difficulty = repository.getPlayerDifficultyMultiplier();
+        int flight = repository.getPlayerSkill(SkillType.PILOT);
         int chance = new Random().nextInt(20);
-        if ((flight * chance) / difficulty > 1) {
+        if (((flight * chance) / difficulty) > 1) {
             return true;
         }
-        Player player = repository.getPlayer();
-        int credits = player.getCredits();
+        int credits = repository.getPlayerCredits();
         int removeCredits = credits / 10;
-        player.removeCredits(removeCredits);
+        repository.removePlayerCredits(removeCredits);
         return false;
     }
 
@@ -40,18 +42,17 @@ public class PirateViewModel extends BaseViewModel {
      * @return true if successful false if fail
      */
     public boolean fight() {
-        int difficulty = repository.getPlayer().getDifficulty().getMultiplier();
-        int fight = repository.getPlayer().getSkills().get(SkillType.FIGHTER);
+        int difficulty = repository.getPlayerDifficultyMultiplier();
+        int fight = repository.getPlayerSkill(SkillType.FIGHTER);
         int chance = new Random().nextInt(20);
-        Player player = repository.getPlayer();
-        int credits = player.getCredits();
-        if ((fight * chance) / difficulty > 1) {
+        int credits = repository.getPlayerCredits();
+        if (((fight * chance) / difficulty) > 1) {
             int addCredits = credits / 10;
-            player.addCredits(addCredits);
+            repository.addPlayerCredits(addCredits);
             return true;
         }
         int removeCredits = credits / 10;
-        player.removeCredits(removeCredits);
+        repository.removePlayerCredits(removeCredits);
         return false;
     }
 

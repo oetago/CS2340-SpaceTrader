@@ -6,12 +6,20 @@ import neighbors.com.spacetrader.model.Market;
 import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.TransactionResponse;
 
+/**
+ * Handles transactions for market
+ */
 public class TransactionProcessor {
 
-    private Market market;
-    private Player player;
-    private Inventory inventory;
+    private final Market market;
+    private final Player player;
+    private final Inventory inventory;
 
+    /**
+     * Creates instance of transaction processor
+     * @param market market for which transactions will be processed
+     * @param player player for which transactions will be processed
+     */
     public TransactionProcessor(Market market, Player player) {
         this.market = market;
         this.player = player;
@@ -54,7 +62,7 @@ public class TransactionProcessor {
         Integer goodPrice = market.getGoodBuyPrice(good);
         if (goodPrice != null) {
             int totalCost = quantity * goodPrice;
-            if (!player.hasEnoughCredits(totalCost)) {
+            if (player.hasEnoughCredits(totalCost)) {
                 return TransactionResponse.NOT_ENOUGH_MONEY;
             }
             player.removeCredits(totalCost);

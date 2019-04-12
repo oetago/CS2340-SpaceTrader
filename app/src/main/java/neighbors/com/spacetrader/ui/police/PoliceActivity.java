@@ -14,27 +14,30 @@ import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 
+/**
+ * Encounter activity for police
+ */
 public class PoliceActivity extends AppCompatActivity {
 
-    public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
-    private final String tFail = "Your smooth talking fails and the cop confiscates your contraband";
+    private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
+    private final String tFail =
+            "Your smooth talking fails and the cop confiscates your contraband";
     private final String tSucc = "You talk your way out of a ticket";
     private final String rFail = "The cop catches you and gives you a ticket";
     private final String rSucc = "You manage to escape";
     private PoliceViewModel viewModel;
-    private TextView message;
     private String solarSystemName;
-    private Button runButton, talkButton;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_police);
         viewModel = ViewModelProviders.of(this).get(PoliceViewModel.class);
         solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME);
 
-        runButton = findViewById(R.id.run);
-        talkButton = findViewById(R.id.talk);
-        message = findViewById(R.id.message);
+        Button runButton = findViewById(R.id.run);
+        Button talkButton = findViewById(R.id.talk);
+        TextView message = findViewById(R.id.message);
         message.setText(RandomEvent.POLICE.getMessage());
 
         runButton.setOnClickListener(new View.OnClickListener() {
@@ -68,9 +71,12 @@ public class PoliceActivity extends AppCompatActivity {
                 .setPositiveButton("Travel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(PoliceActivity.this, UniverseActivity.class);
-                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, solarSystemName); //Code to add name extra for next activity
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent intent = new Intent(PoliceActivity.this,
+                                UniverseActivity.class);
+                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, solarSystemName);
+                        //Code to add name extra for next activity
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 })

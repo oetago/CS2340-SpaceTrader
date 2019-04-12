@@ -5,12 +5,15 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+/**
+ * Model class to save the player in the db
+ */
 @Entity
 public class PlayerSave {
 
     @PrimaryKey
     @NonNull
-    private String characterName;
+    private String characterName = "";
     private String skills;
     private int difficulty;
     private int credits;
@@ -20,7 +23,9 @@ public class PlayerSave {
     private String inventory;
     private String planets;
 
-    public PlayerSave(@NonNull String characterName, String skills, int difficulty, int credits, int spaceSpaceShip, int fuelCount, String currentPlanetName, String inventory, String planets) {
+    public PlayerSave(@NonNull String characterName, String skills, int difficulty,
+                      int credits, int spaceSpaceShip, int fuelCount,
+                      String currentPlanetName, String inventory, String planets) {
         this.characterName = characterName;
         this.skills = skills;
         this.difficulty = difficulty;

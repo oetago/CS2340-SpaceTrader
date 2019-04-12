@@ -38,7 +38,8 @@ public class MarketActivity extends AppCompatActivity implements MarketAdapter.M
         RecyclerView mainView = findViewById(R.id.items);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mainView.setLayoutManager(manager);
-        MarketAdapter adapter = new MarketAdapter(this, viewModel.getMarket(solarSystemName), viewModel.getPlayer(), this);
+        MarketAdapter adapter = new MarketAdapter(this,
+                viewModel.getMarket(solarSystemName), viewModel.getPlayer(), this);
         mainView.setAdapter(adapter);
     }
 
@@ -53,6 +54,7 @@ public class MarketActivity extends AppCompatActivity implements MarketAdapter.M
      */
     @Override
     public void updateCredits() {
-        creditDisplay.setText(getString(R.string.available_credits, viewModel.getPlayerCreditsString()));
+        creditDisplay.setText(getString(R.string.available_credits,
+                viewModel.getPlayerCreditsString()));
     }
 }

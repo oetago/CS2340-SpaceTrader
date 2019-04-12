@@ -1,6 +1,8 @@
 package neighbors.com.spacetrader.model;
 
-//Radical price increase events
+/**
+ * Radical price increase events
+ */
 public enum RPEvent {
     DROUGHT,
     COLD,

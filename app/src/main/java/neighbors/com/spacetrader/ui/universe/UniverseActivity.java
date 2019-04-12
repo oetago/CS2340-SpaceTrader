@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.github.florent37.shapeofview.shapes.CircleView;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -19,13 +21,17 @@ import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.model.SolarSystem;
 import neighbors.com.spacetrader.ui.market.MarketActivity;
 
+/**
+ * Activity to see all solar systems
+ */
 public class UniverseActivity extends AppCompatActivity {
 
-    public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
+    private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
 
     private UniverseViewModel viewModel;
     private SolarSystem solarSystem;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
@@ -39,7 +45,7 @@ public class UniverseActivity extends AppCompatActivity {
      * Sets up actionbar with name solarsystem name
      */
     private void setupActionBar() {
-        getSupportActionBar().setTitle(solarSystem.getName());
+        Objects.requireNonNull(getSupportActionBar()).setTitle(solarSystem.getName());
     }
 
     /**
@@ -57,7 +63,8 @@ public class UniverseActivity extends AppCompatActivity {
                     if (viewModel.getPlayerFuel() > 0) {
                         displaySolarSystemClickDialog(system);
                     } else {
-                        Toast.makeText(UniverseActivity.this, "Not enough fuel to travel!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UniverseActivity.this,
+                                "Not enough fuel to travel!", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -81,8 +88,10 @@ public class UniverseActivity extends AppCompatActivity {
                         viewModel.setPlayerPlanet(system.getName());
                         RandomEvent nextEvent = viewModel.getEvent();
                         Intent intent = new Intent(UniverseActivity.this, nextEvent.getActivity());
-                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName()); //Code to add name extra for next activity
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName());
+                        //Code to add name extra for next activity
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 })
@@ -103,7 +112,8 @@ public class UniverseActivity extends AppCompatActivity {
      * @return the String message to be displayed
      */
     private String getSolarSystemMessage(SolarSystem system) {
-        return "Fuel level: " + viewModel.getPlayerFuel() + "\nTechLvl: " + system.getTechLevelName() + "\n" +
+        return "Fuel level: " + viewModel.getPlayerFuel() + "\nTechLvl: " +
+                system.getTechLevelName() + "\n" +
                 "Resource: " + system.getResourceName();
     }
 
@@ -114,12 +124,12 @@ public class UniverseActivity extends AppCompatActivity {
      * @param display circle view you're working with
      */
     private void setLayout(SolarSystem system, CircleView display) {
-        display.setBorderColor(system.getSystemTechLevel().getColor());
+        display.setBorderColor(system.getColor());
         LinearLayout.LayoutParams layout = (LinearLayout.LayoutParams) display.getLayoutParams();
         layout.height = 50;
         layout.width = 50;
-        display.setX(system.getLocation().getX() * 5 + 200);
-        display.setY(system.getLocation().getY() * 6 + 300);
+        display.setX((system.getLocationX() * 5) + 200);
+        display.setY((system.getLocationY() * 6) + 300);
     }
 
     /**
@@ -130,17 +140,28 @@ public class UniverseActivity extends AppCompatActivity {
     private CircleView getCircleView() {
         CircleView display = new CircleView(this);
         display.setBorderWidth(20);
-        display.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+        display.setLayoutParams(new
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
         return display;
     }
 
+    /**
+     * Creates options menu
+     * @param menu menu to be populated with options
+     * @return whether the menu was successfully inflated
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.universe_menu, menu);
         return true;
     }
 
+    /**
+     * Handles options being selected
+     * @param item the option selected by user
+     * @return whether option selected was changed successfully
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.market_menu_button) {

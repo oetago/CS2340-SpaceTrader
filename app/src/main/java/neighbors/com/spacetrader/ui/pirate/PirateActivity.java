@@ -15,30 +15,34 @@ import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 
 
+/**
+ * Encounter activity for Pirates
+ */
 public class PirateActivity extends AppCompatActivity {
 
-    public static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
-    private final String fRunMessage = "You aren't fast enough and the pirate takes some of your credits";
+    private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
+    private final String fRunMessage =
+            "You aren't fast enough and the pirate takes some of your credits";
     private final String fFightMessage = "You sustain heavy damage and have to pay for repairs";
     private final String sRunMessage = "You manage to get away";
     private final String sFightMessage = "You defeat the pirate and take some of his booty";
     private PirateViewModel viewModel;
-    private Button fightButton, runButton;
-    private TextView message;
     private String solarSystemName;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pirate);
         solarSystemName = getIntent().getStringExtra(EXTRA_SOLAR_SYSTEM_NAME);
         viewModel = ViewModelProviders.of(this).get(PirateViewModel.class);
 
-        fightButton = findViewById(R.id.fightButton);
-        runButton = findViewById(R.id.runButton);
-        message = findViewById(R.id.pmessage);
+        Button fightButton = findViewById(R.id.fightButton);
+        Button runButton = findViewById(R.id.runButton);
+        TextView message = findViewById(R.id.pmessage);
         message.setText(RandomEvent.PIRATE.getMessage());
 
         fightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (viewModel.fight()) {
                     display("SUCCESS!", sFightMessage);
@@ -67,9 +71,12 @@ public class PirateActivity extends AppCompatActivity {
                 .setPositiveButton("Travel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(PirateActivity.this, UniverseActivity.class);
-                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, solarSystemName); //Code to add name extra for next activity
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent intent = new
+                                Intent(PirateActivity.this, UniverseActivity.class);
+                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, solarSystemName);
+                        //Code to add name extra for next activity
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 })

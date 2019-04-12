@@ -1,9 +1,7 @@
 package neighbors.com.spacetrader;
 
-import org.junit.Test;
 import org.junit.Before;
-
-import java.nio.file.Watchable;
+import org.junit.Test;
 
 import neighbors.com.spacetrader.model.Good;
 import neighbors.com.spacetrader.model.Inventory;
@@ -18,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class SellGoodTests {
     private Player player;
     private Market market;
-    TransactionProcessor processor;
+    private TransactionProcessor processor;
 
     @Before
     public void setup() {
@@ -56,7 +54,7 @@ public class SellGoodTests {
         int price = market.getGoodSellPrice(Good.WATER);
 
         processor.sellGood(Good.WATER, 5);
-        assertEquals(player.getCredits(), currentCredits + 5 * price);
+        assertEquals(player.getCredits(), currentCredits + (5 * price));
     }
 
     @Test

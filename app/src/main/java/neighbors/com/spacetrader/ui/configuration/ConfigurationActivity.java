@@ -28,8 +28,19 @@ public class ConfigurationActivity extends AppCompatActivity {
     private Spinner difficultySpinner;
     private EditText nameField;
 
-    private Button acceptButton, nPilot, pPilot, nEngineer, pEngineer, nTrader, pTrader, nFighter, pFighter;
-    private TextView displayPoints, displayPilot, displayEngineer, displayFighter, displayTrader;
+    private Button nPilot;
+    private Button pPilot;
+    private Button nEngineer;
+    private Button pEngineer;
+    private Button nTrader;
+    private Button pTrader;
+    private Button nFighter;
+    private Button pFighter;
+    private TextView displayPoints;
+    private TextView displayPilot;
+    private TextView displayEngineer;
+    private TextView displayFighter;
+    private TextView displayTrader;
 
 
     @Override
@@ -68,22 +79,26 @@ public class ConfigurationActivity extends AppCompatActivity {
         setNegativeOnClicks();
         setPositiveOnClicks();
 
-        acceptButton = findViewById(R.id.accept_button); //Instantiates accept button
+        Button acceptButton = findViewById(R.id.accept_button);
 
-        acceptButton.setOnClickListener(new View.OnClickListener() { //Sets listener for accept button and what to do on click
+        acceptButton.setOnClickListener(new View.OnClickListener() {
+            //Sets listener for accept button and what to do on click
             @Override
             public void onClick(View v) {
                 if (nameField.getText().toString().isEmpty()) {
-                    Toast.makeText(ConfigurationActivity.this, "Player name can't be empty!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConfigurationActivity.this,
+                            "Player name can't be empty!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (viewModel.getAvailablePoints() == 0) {
                     savePlayer();
-                    Intent intent = new Intent(ConfigurationActivity.this, UniverseActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(
+                            ConfigurationActivity.this, UniverseActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(ConfigurationActivity.this, "Must assign all 16 points!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConfigurationActivity.this,
+                            "Must assign all 16 points!", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -94,11 +109,16 @@ public class ConfigurationActivity extends AppCompatActivity {
      * Sets all the textViews for skills on onCreate
      */
     private void setDefaultPointTextViews() {
-        displayPoints.setText(getString(R.string.available_skill_points, viewModel.getAvailablePoints()));
-        displayPilot.setText(getString(R.string.skill_config_text, SkillType.PILOT.getName(), viewModel.getSkillPoints(SkillType.PILOT)));
-        displayEngineer.setText(getString(R.string.skill_config_text, SkillType.ENGINEER.getName(), viewModel.getSkillPoints(SkillType.ENGINEER)));
-        displayTrader.setText(getString(R.string.skill_config_text, SkillType.TRADER.getName(), viewModel.getSkillPoints(SkillType.TRADER)));
-        displayFighter.setText(getString(R.string.skill_config_text, SkillType.FIGHTER.getName(), viewModel.getSkillPoints(SkillType.FIGHTER)));
+        displayPoints.setText(getString(R.string.available_skill_points,
+                viewModel.getAvailablePoints()));
+        displayPilot.setText(getString(R.string.skill_config_text, SkillType.PILOT.getName(),
+                viewModel.getSkillPoints(SkillType.PILOT)));
+        displayEngineer.setText(getString(R.string.skill_config_text, SkillType.ENGINEER.getName(),
+                viewModel.getSkillPoints(SkillType.ENGINEER)));
+        displayTrader.setText(getString(R.string.skill_config_text, SkillType.TRADER.getName(),
+                viewModel.getSkillPoints(SkillType.TRADER)));
+        displayFighter.setText(getString(R.string.skill_config_text, SkillType.FIGHTER.getName(),
+                viewModel.getSkillPoints(SkillType.FIGHTER)));
     }
 
     /**
@@ -108,7 +128,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         nPilot.setOnClickListener(new NegativeOnClickListener(SkillType.PILOT, displayPilot));
         nTrader.setOnClickListener(new NegativeOnClickListener(SkillType.TRADER, displayTrader));
         nFighter.setOnClickListener(new NegativeOnClickListener(SkillType.FIGHTER, displayFighter));
-        nEngineer.setOnClickListener(new NegativeOnClickListener(SkillType.ENGINEER, displayEngineer));
+        nEngineer.setOnClickListener(
+                new NegativeOnClickListener(SkillType.ENGINEER, displayEngineer));
     }
 
     /**
@@ -118,17 +139,17 @@ public class ConfigurationActivity extends AppCompatActivity {
         pPilot.setOnClickListener(new PositiveOnClickListener(SkillType.PILOT, displayPilot));
         pTrader.setOnClickListener(new PositiveOnClickListener(SkillType.TRADER, displayTrader));
         pFighter.setOnClickListener(new PositiveOnClickListener(SkillType.FIGHTER, displayFighter));
-        pEngineer.setOnClickListener(new PositiveOnClickListener(SkillType.ENGINEER, displayEngineer));
+        pEngineer.setOnClickListener(
+                new PositiveOnClickListener(SkillType.ENGINEER, displayEngineer));
     }
 
     /**
      * Talk with viewModel to save Player
      */
     private void savePlayer() {
-        Player player = new Player();
-        player.setCharacterName(nameField.getText().toString());
-        player.setDifficulty(Difficulty.values()[difficultySpinner.getSelectedItemPosition()]);
-        player.setSkillPoints(viewModel.getSkills());
+        Player player = new Player(nameField.getText().toString(),
+                Difficulty.values()[difficultySpinner.getSelectedItemPosition()],
+                viewModel.getSkills());
         viewModel.savePlayer(player);
     }
 
@@ -136,8 +157,8 @@ public class ConfigurationActivity extends AppCompatActivity {
      * Base onClick to hold the skillType and TextView to display
      */
     private class BaseOnClickListener {
-        SkillType skillType;
-        TextView display;
+        final SkillType skillType;
+        final TextView display;
 
         BaseOnClickListener(SkillType skillType, TextView display) {
             this.skillType = skillType;
@@ -146,11 +167,13 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         void updateTextView(String message) {
             if (message != null) {
-                Toast.makeText(ConfigurationActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(ConfigurationActivity.this,
+                        message, Toast.LENGTH_LONG).show();
             }
             displayPoints.setText(getString(R.string.available_skill_points,
                     viewModel.getAvailablePoints()));
-            display.setText(getString(R.string.skill_config_text, skillType.getName(), viewModel.getSkillPoints(skillType)));
+            display.setText(getString(R.string.skill_config_text, skillType.getName(),
+                    viewModel.getSkillPoints(skillType)));
         }
 
     }
@@ -158,7 +181,8 @@ public class ConfigurationActivity extends AppCompatActivity {
     /**
      * Will decrement skill and update views
      */
-    private class NegativeOnClickListener extends BaseOnClickListener implements View.OnClickListener {
+    private class NegativeOnClickListener extends BaseOnClickListener
+            implements View.OnClickListener {
 
         NegativeOnClickListener(SkillType skillType, TextView display) {
             super(skillType, display);
@@ -175,7 +199,8 @@ public class ConfigurationActivity extends AppCompatActivity {
     /**
      * Will increment skill and update views
      */
-    private class PositiveOnClickListener extends BaseOnClickListener implements View.OnClickListener {
+    private class PositiveOnClickListener extends BaseOnClickListener
+            implements View.OnClickListener {
 
         PositiveOnClickListener(SkillType skillType, TextView display) {
             super(skillType, display);

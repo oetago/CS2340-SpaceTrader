@@ -9,12 +9,13 @@ import java.util.Random;
 import androidx.annotation.VisibleForTesting;
 
 /**
- * Info holder to handle market transactions in {@link neighbors.com.spacetrader.ui.market.MarketActivity}
+ * Info holder to handle market transactions in
+ * {@link neighbors.com.spacetrader.ui.market.MarketActivity}
  */
 public class Market {
-    private Map<Good, Integer> sellPrices;
+    private final Map<Good, Integer> sellPrices;
     private Map<Good, Integer> buyPrices;
-    private List<Good> goods;
+    private final List<Good> goods;
 
     /**
      * Creates an instance of Market for a certain TechLevel
@@ -52,9 +53,10 @@ public class Market {
      * @return the calculated sell price of a good
      */
     private int calculateSellPrice(Good good, TechLevel techLevel, Random random) {
-        return good.getBasePrice()
-                + good.getIncreasePerLevel() * (techLevel.getLevel() - good.getMinTechLevelToUse())
-                + random.nextInt(good.getVar()) - (good.getVar() / 2);
+        return (good.getBasePrice()
+                + (good.getIncreasePerLevel() *
+                (techLevel.getLevel() - good.getMinTechLevelToUse()))
+                + random.nextInt(good.getVar())) - (good.getVar() / 2);
     }
 
     /**
@@ -66,9 +68,10 @@ public class Market {
      * @return the calculated buy price of a good
      */
     private int calculateBuyPrice(Good good, TechLevel techLevel, Random random) {
-        return good.getBasePrice()
-                + good.getIncreasePerLevel() * (techLevel.getLevel() - good.getMinTechLevelToProduce())
-                + random.nextInt(good.getVar()) - (good.getVar() / 2);
+        return (good.getBasePrice()
+                + (good.getIncreasePerLevel() * (techLevel.getLevel() -
+                good.getMinTechLevelToProduce()))
+                + random.nextInt(good.getVar())) - (good.getVar() / 2);
     }
 
     /**
@@ -107,6 +110,10 @@ public class Market {
         return buyPrices.get(good);
     }
 
+    /**
+     * Sets market prices for testing purposes
+     * @param buyPrices a map of goods (Good) to their prices (int)
+     */
     @VisibleForTesting
     public void setGoodBuyPrices(Map<Good, Integer> buyPrices) {
         this.buyPrices = buyPrices;

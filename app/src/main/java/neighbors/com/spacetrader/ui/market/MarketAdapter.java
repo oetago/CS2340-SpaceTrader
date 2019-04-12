@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.jetbrains.annotations.NotNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.Good;
@@ -25,10 +27,10 @@ import neighbors.com.spacetrader.model.TransactionResponse;
  * Market Adapter to display trading info
  */
 public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketViewHolder> {
-    private Context context;
-    private Market market;
-    private Player player;
-    private MarketViewUpdate update;
+    private final Context context;
+    private final Market market;
+    private final Player player;
+    private final MarketViewUpdate update;
 
     /**
      * Creates an instance of MarketAdapter with a given context, market,
@@ -45,43 +47,62 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
         this.update = update;
     }
 
+    /**
+     * Creates object to hold views for market
+     * @param parent the view group in which this view group will be instantiated
+     * @param viewType the type of view to be instantiated
+     * @return a holder for views in the market
+     */
+    @NotNull
     @Override
-    public MarketAdapter.MarketViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.market_item, parent, false);
-        return new MarketViewHolder(v);
+    public MarketAdapter.MarketViewHolder onCreateViewHolder(@NotNull ViewGroup parent,
+                                                             int viewType) {
+        return new MarketViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.market_item, parent, false));
     }
 
+    /**
+     * Binds view holder object
+     * @param holder the view holder object to be bound
+     * @param position which level the view holder will be seen
+     */
     @Override
-    public void onBindViewHolder(MarketViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull MarketViewHolder holder, int position) {
         holder.bind(market.getGood(position));
     }
 
+    /**
+     * Gets the number of goods int he market
+     * @return number of goods in market
+     */
     @Override
     public int getItemCount() {
         return market.goodsCount();
     }
 
     /**
-     *
+     * Updates credits (interface)
      */
     interface MarketViewUpdate {
         void updateCredits();
     }
 
+    /**
+     * Custom view holder for market views
+     */
     public class MarketViewHolder extends RecyclerView.ViewHolder {
-        private TextView item;
-        private TextView bPrice;
-        private TextView sPrice;
-        private Button trade;
-        private EditText amountEditText;
+        private final TextView item;
+        private final TextView bPrice;
+        private final TextView sPrice;
+        private final Button trade;
+        private final EditText amountEditText;
 
         /**
          * Creates an instance of MarketViewHolder to use in the
          * RecyclerView
          * @param v the view to grab layout items from
          */
-        public MarketViewHolder(View v) {
+        MarketViewHolder(View v) {
             super(v);
             item = v.findViewById(R.id.item);
             trade = v.findViewById(R.id.tradeButton);
@@ -96,7 +117,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
          * Binds a good to the view to display to the user
          * @param good the Good to display
          */
-        public void bind(final Good good) {
+        void bind(final Good good) {
             item.setText(good.getName());
             sPrice.setText(String.valueOf(market.getGoodSellPrice(good)));
             bPrice.setText(String.valueOf(market.getGoodBuyPrice(good)));
@@ -115,7 +136,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
          */
         private void tradeOnClick(final Good good) {
             if (amountEditText.getText().toString().isEmpty()) {
-                showDialog("Please input valid amountEditText of good");
+                showDialog();
                 return;
             }
             final TransactionProcessor transaction = new TransactionProcessor(market, player);
@@ -124,14 +145,16 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
             AlertDialog alertDialog = new AlertDialog.Builder(context)
                     .setTitle(good.getName())
                     .setMessage(getDialogTradeMessage(good, amount))
-                    .setPositiveButton(context.getString(R.string.buy), new DialogInterface.OnClickListener() {
+                    .setPositiveButton(context.getString(R.string.buy),
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             TransactionResponse response = transaction.buyGood(good, amount);
                             handleResponse(response);
                         }
                     })
-                    .setNegativeButton(context.getString(R.string.sell), new DialogInterface.OnClickListener() {
+                    .setNegativeButton(context.getString(R.string.sell),
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             TransactionResponse response = transaction.sellGood(good, amount);
@@ -144,18 +167,18 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
         /**
          * Shows a dialog with message
          *
-         * @param message message to be displayed
          */
-        private void showDialog(String message) {
+        private void showDialog() {
             MaterialDialog retry = new MaterialDialog(context);
             retry.title(null, "Trade");
-            retry.message(null, message, false, 0F);
+            retry.message(null, "Please input valid amountEditText of good", false, 0F);
             retry.show();
         }
 
         @SuppressLint("DefaultLocale")
         private String getDialogTradeMessage(Good good, int amount) {
-            return String.format("Are you sure you want to exchange %s of %s\n" + "You have: %d", amount, good.getName(), player.getQuantity(good));
+            return String.format("Are you sure you want to exchange %s of %s\n" +
+                    "You have: %d", amount, good.getName(), player.getQuantity(good));
         }
 
         private void handleResponse(TransactionResponse response) {
