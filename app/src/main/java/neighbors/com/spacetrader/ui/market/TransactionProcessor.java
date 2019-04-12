@@ -62,7 +62,7 @@ public class TransactionProcessor {
         Integer goodPrice = market.getGoodBuyPrice(good);
         if (goodPrice != null) {
             int totalCost = quantity * goodPrice;
-            if (player.hasEnoughCredits(totalCost)) {
+            if (player.getCredits() < totalCost) {
                 return TransactionResponse.NOT_ENOUGH_MONEY;
             }
             player.removeCredits(totalCost);
