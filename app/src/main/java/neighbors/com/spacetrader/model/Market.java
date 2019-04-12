@@ -109,6 +109,10 @@ public class Market {
         return buyPrices.get(good);
     }
 
+    /**
+     * Sets market prices for testing purposes
+     * @param buyPrices a map of goods (Good) to their prices (int)
+     */
     @VisibleForTesting
     public void setGoodBuyPrices(Map<Good, Integer> buyPrices) {
         this.buyPrices = buyPrices;

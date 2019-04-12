@@ -136,12 +136,22 @@ public class UniverseActivity extends AppCompatActivity {
         return display;
     }
 
+    /**
+     * Creates options menu
+     * @param menu menu to be populated with options
+     * @return whether the menu was successfully inflated
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.universe_menu, menu);
         return true;
     }
 
+    /**
+     * Handles options being selected
+     * @param item the option selected by user
+     * @return whether option selected was changed successfully
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.market_menu_button) {

@@ -13,8 +13,17 @@ public abstract class PlayerDatabase extends RoomDatabase {
 
     private static PlayerDatabase instance;
 
+    /**
+     * Abstract method for creating a player data access object
+     * @return data access object for a given player
+     */
     public abstract PlayerDao playerDao();
 
+    /**
+     * Gets player data from database
+     * @param context the game the player is in
+     * @return the player data as an instance
+     */
     public static PlayerDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),

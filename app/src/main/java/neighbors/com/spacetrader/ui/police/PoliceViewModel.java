@@ -20,7 +20,6 @@ class PoliceViewModel extends BaseViewModel {
      *
      * @return true if positive result false if negative
      */
-
     public boolean talk() {
         int difficulty = repository.getPlayerDifficultyMultiplier();
         int narcNum = repository.getPlayerGoodQuantity(Good.NARCOTICS);

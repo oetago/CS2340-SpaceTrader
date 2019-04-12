@@ -16,7 +16,9 @@ public class Universe {
 
     private final List<SolarSystem> solarSystems;
 
-
+    /**
+     * Instantiates new universe
+     */
     public Universe() {
         this(new LinkedList<SolarSystem>());
         Set<Coord> solarSystemLocations = new HashSet<>();
@@ -69,19 +71,34 @@ public class Universe {
         }
     }
 
-
+    /**
+     * Instantiates universe with predefined solar systems
+     * @param solarSystems solar systems with which to populate the universe
+     */
     public Universe(List<SolarSystem> solarSystems) {
         this.solarSystems = solarSystems;
     }
 
+    /**
+     * Adds solar system to universe
+     * @param newSolarSystem solar system to be added
+     */
     public void addSolarSystem(SolarSystem newSolarSystem) {
         solarSystems.add(newSolarSystem);
     }
 
+    /**
+     * Gets solar systems in universe
+     * @return list of solar systems in universe
+     */
     public List<SolarSystem> getSolarSystems() {
         return Collections.unmodifiableList(solarSystems);
     }
 
+    /**
+     * Represents universe as string
+     * @return universe as a string
+     */
     @NotNull
     @Override
     public String toString() {
@@ -92,6 +109,10 @@ public class Universe {
         return toReturn.toString();
     }
 
+    /**
+     * Gets planets in universe
+     * @return list of planets in universe
+     */
     public List<Planet> getPlanets() {
         List<Planet> planets = new ArrayList<>();
         for (SolarSystem solarSystem : solarSystems) {

@@ -12,6 +12,10 @@ public enum SkillType {
         this.name = name;
     }
 
+    /**
+     * Gets name of skill
+     * @return name of skill
+     */
     public String getName() {
         return name;
     }

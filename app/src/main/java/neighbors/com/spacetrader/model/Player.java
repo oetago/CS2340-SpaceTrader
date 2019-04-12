@@ -120,44 +120,90 @@ public class Player {
         return credits < neededCredits;
     }
 
+    /**
+     * Removes player credits
+     * @param removeCredits amount of credits to be removed
+     */
     public void removeCredits(int removeCredits) {
         credits -= removeCredits;
     }
 
+    /**
+     * Gets the quantity of a particular good in the spaceship
+     * @param good good whose quantity is requested
+     * @return quantity of requested good
+     */
     public int getQuantity(Good good) {
         return spaceship.getQuantity(good);
     }
 
+    /**
+     * Gets fuel level of spaceship
+     * @return the quantity of fuel remaining
+     */
     public int getFuel() {
         return spaceship.getFuel();
     }
 
+    /**
+     * Calls the spaceship useFuel() method to use fuel
+     */
     public void useFuel() {
         spaceship.useFuel();
     }
 
+    /**
+     * Sets spaceship inventory
+     * @param inventory new spaceship inventory
+     */
     public void setInventory(Inventory inventory) { this.spaceship.setInventory(inventory);}
 
+    /**
+     * Gets difficulty multiplier
+     * @return difficulty multiplier from Difficulty
+     */
     public int getDifficultyMultiplier() {
         return difficulty.getMultiplier();
     }
 
+    /**
+     * Gets player skill level for some skill
+     * @param type the skill type requested
+     * @return the skill level of that skill
+     */
     public int getSkillsType(SkillType type) {
         return skills.get(type);
     }
 
+    /**
+     * Removes specified good and quantity from inventory
+     * @param narcotics good to be removed from inventory
+     * @param narcNum the quantity to be removed from inventory
+     */
     public void removeGood(Good narcotics, int narcNum) {
         spaceship.remove(narcotics, narcNum);
     }
 
+    /**
+     * Gets the difficulty as a number
+     * @return the player difficulty as a number
+     */
     public int getDifficultyOrdinal() {
         return getDifficulty().ordinal();
     }
 
+    /**
+     * Gets spaceship type as a number
+     * @return number representing spaceship type
+     */
     public int getSpaceshipOrdinal() {
         return spaceship.ordinal();
     }
 
+    /**
+     * Gets inventory as map of goods to integers
+     * @return map of goods to quantities in inventory
+     */
     public Map<Good, Integer> getInventoryMap() {
         return spaceship.getInventoryMap();
     }

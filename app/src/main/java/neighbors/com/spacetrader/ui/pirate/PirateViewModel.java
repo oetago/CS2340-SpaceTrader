@@ -9,6 +9,10 @@ import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
 class PirateViewModel extends BaseViewModel {
 
+    /**
+     * The view model to be instantiated
+     * @param application the application that is running the view model
+     */
     public PirateViewModel(Application application) {
         super(application);
     }

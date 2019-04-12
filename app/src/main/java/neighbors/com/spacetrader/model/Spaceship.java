@@ -29,46 +29,95 @@ public enum Spaceship {
         fuel = 5;
     }
 
+    /**
+     * Gets maximum spaceship cargo
+     * @return cargo capacity
+     */
     public int getMaxCargo() {
         return inventory.getMaxInventory();
     }
 
+    /**
+     * Gets current spaceship cargo level
+     * @return spaceship cargo level
+     */
     public int getCurrentCargo() {
         return inventory.getCurrentInventory();
     }
 
+    /**
+     * Gets name of spaceship
+     * @return name of spaceship
+     */
     public String getName() { return name; }
 
+    /**
+     * Gets spaceship inventory
+     * @return inventory of spaceship
+     */
     public Inventory getInventory() {
         return inventory;
     }
 
+    /**
+     * Sets spaceship inventory to something else
+     * @param newInventory new spaceship inventory
+     */
     public void setInventory(Inventory newInventory) {
         this.inventory = newInventory;
     }
 
+    /**
+     * Gets cost of spaceship
+     * @return how much a spaceship costs
+     */
     public int getCost() { return cost;}
 
+    /**
+     * Gets quantity of good in spaceship inventory
+     * @param good good whose quantity is requested
+     * @return the quantity of the specified good
+     */
     public int getQuantity(Good good) {
         return inventory.getQuantity(good);
     }
 
+    /**
+     * The spaceship fuel level
+     * @return the fuel left in the spaceship
+     */
     public int getFuel() {
         return fuel;
     }
 
+    /**
+     * Decrements fuel level in spaceship
+     */
     public void useFuel() {
         fuel--;
     }
 
+    /**
+     * Sets fuel level in spaceship
+     * @param fuel new fuel level in spaceship
+     */
     public void setFuel(int fuel) {
         this.fuel = fuel;
     }
 
+    /**
+     * Gets inventory as a map
+     * @return map of spaceship inventory as goods to quantities
+     */
     public Map<Good, Integer> getInventoryMap() {
         return inventory.getInventory();
     }
 
+    /**
+     * Removes quantity of a specified good
+     * @param good good to be removed from inventory
+     * @param num quantity of specified good to be removed from inventory
+     */
     public void remove(Good good, int num) {
         inventory.remove(good, num);
     }

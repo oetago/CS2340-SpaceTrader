@@ -10,6 +10,10 @@ import neighbors.com.spacetrader.R;
  */
 public class DamageActivity extends AppCompatActivity {
 
+    /**
+     * Begins damage activity
+     * @param savedInstanceState data to load into new activity
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

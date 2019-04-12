@@ -43,6 +43,10 @@ public class Coord {
 
     @NotNull
     @Override
+    /**
+     * Converts coordinate to String
+     * @return String representing the coordinate
+     */
     public String toString() {
         return "(" + x + ", " + y + ")";
     }

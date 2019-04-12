@@ -24,10 +24,18 @@ public enum Resources {
         name = pname;
     }
 
+    /**
+     * Gets name of resource
+     * @return name of resource
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets a random resource
+     * @return the resource that was randomly selected
+     */
     public static Resources getRandom() {
         Random rand = new Random();
         int resInt = rand.nextInt(100);

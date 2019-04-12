@@ -40,10 +40,18 @@ public enum RandomEvent {
         }
     }
 
+    /**
+     * Gets random event message
+     * @return message for random event
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     * Gets the type of random event
+     * @return class of random event
+     */
     public Class getActivity() {
         return activity;
     }

@@ -47,6 +47,12 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
         this.update = update;
     }
 
+    /**
+     * Creates object to hold views for market
+     * @param parent the view group in which this view group will be instantiated
+     * @param viewType the type of view to be instantiated
+     * @return a holder for views in the market
+     */
     @NotNull
     @Override
     public MarketAdapter.MarketViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
@@ -54,23 +60,35 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MarketView
                 .inflate(R.layout.market_item, parent, false));
     }
 
+    /**
+     * Binds view holder object
+     * @param holder the view holder object to be bound
+     * @param position which level the view holder will be seen
+     */
     @Override
     public void onBindViewHolder(@NotNull MarketViewHolder holder, int position) {
         holder.bind(market.getGood(position));
     }
 
+    /**
+     * Gets the number of goods int he market
+     * @return number of goods in market
+     */
     @Override
     public int getItemCount() {
         return market.goodsCount();
     }
 
     /**
-     *
+     * Updates credits (interface)
      */
     interface MarketViewUpdate {
         void updateCredits();
     }
 
+    /**
+     * Custom view holder for market views
+     */
     public class MarketViewHolder extends RecyclerView.ViewHolder {
         private final TextView item;
         private final TextView bPrice;

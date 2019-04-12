@@ -35,7 +35,12 @@ public class Inventory {
         this(maxInventory, new HashMap<Good, Integer>());
     }
 
+    /**
+     * Gets the current inventory contents
+     * @return Map of goods (Good) to quantities (int)
+     */
     public Map<Good, Integer> getInventory() { return Collections.unmodifiableMap(this.inventory); }
+
     /**
      * Checks if inventory has less than the quantity provided
      *

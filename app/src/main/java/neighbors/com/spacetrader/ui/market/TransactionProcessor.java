@@ -12,6 +12,11 @@ public class TransactionProcessor {
     private final Player player;
     private final Inventory inventory;
 
+    /**
+     * Creates instance of transaction processor
+     * @param market market for which transactions will be processed
+     * @param player player for which transactions will be processed
+     */
     public TransactionProcessor(Market market, Player player) {
         this.market = market;
         this.player = player;
