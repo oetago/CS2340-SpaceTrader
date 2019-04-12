@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-
+/**
+ * Universe model
+ */
 public class Universe {
 
     private final List<SolarSystem> solarSystems;

@@ -4,12 +4,16 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import neighbors.com.spacetrader.model.db.DataConvertHelper;
 import neighbors.com.spacetrader.model.db.PlayerSave;
 
 
-final public class Repository {
+/**
+ * Singleton class to hold all data
+ */
+public final class Repository {
 
     private static volatile Repository repo;
 
@@ -99,7 +103,7 @@ final public class Repository {
      */
     public Market getMarket(String name) {
         //Method chain to not duplicate for loop in getSolarSystem
-        return getSolarSystem(name).getMarket();
+        return Objects.requireNonNull(getSolarSystem(name)).getMarket();
     }
 
     /**

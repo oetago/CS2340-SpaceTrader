@@ -76,7 +76,7 @@ public class Inventory {
 
     /**
      * Gets the number of items currently in the inventory
-     * @return
+     * @return the number of items currently in the inventory
      */
     public int getCurrentInventory() {
         return currentInventory;

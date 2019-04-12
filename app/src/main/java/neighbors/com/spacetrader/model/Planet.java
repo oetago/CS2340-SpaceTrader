@@ -2,6 +2,9 @@ package neighbors.com.spacetrader.model;
 
 import androidx.annotation.NonNull;
 
+/**
+ * Planet model class
+ */
 public class Planet {
     private String planetName;
 

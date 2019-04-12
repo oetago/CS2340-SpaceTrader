@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.github.florent37.shapeofview.shapes.CircleView;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -19,6 +21,9 @@ import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.model.SolarSystem;
 import neighbors.com.spacetrader.ui.market.MarketActivity;
 
+/**
+ * Activity to see all solar systems
+ */
 public class UniverseActivity extends AppCompatActivity {
 
     private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";
@@ -40,7 +45,7 @@ public class UniverseActivity extends AppCompatActivity {
      * Sets up actionbar with name solarsystem name
      */
     private void setupActionBar() {
-        getSupportActionBar().setTitle(solarSystem.getName());
+        Objects.requireNonNull(getSupportActionBar()).setTitle(solarSystem.getName());
     }
 
     /**
@@ -123,8 +128,8 @@ public class UniverseActivity extends AppCompatActivity {
         LinearLayout.LayoutParams layout = (LinearLayout.LayoutParams) display.getLayoutParams();
         layout.height = 50;
         layout.width = 50;
-        display.setX(system.getLocationX() * 5 + 200);
-        display.setY(system.getLocationY() * 6 + 300);
+        display.setX((system.getLocationX() * 5) + 200);
+        display.setY((system.getLocationY() * 6) + 300);
     }
 
     /**

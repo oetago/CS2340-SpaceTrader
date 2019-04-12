@@ -25,7 +25,7 @@ class PoliceViewModel extends BaseViewModel {
         int narcNum = repository.getPlayerGoodQuantity(Good.NARCOTICS);
         int gunNum = repository.getPlayerGoodQuantity(Good.FIREARMS);
         int chance = new Random().nextInt(100);
-        if ((narcNum + gunNum) * difficulty / 7 > chance) {
+        if ((((narcNum + gunNum) * difficulty) / 7) > chance) {
             repository.getPlayerRemoveGood(Good.NARCOTICS, narcNum);
             repository.getPlayerRemoveGood(Good.FIREARMS, gunNum);
             return false;
@@ -43,7 +43,7 @@ class PoliceViewModel extends BaseViewModel {
         int difficulty = repository.getPlayerDifficultyMultiplier();
         int flight = repository.getPlayerSkill(SkillType.PILOT);
         int chance = new Random().nextInt(20);
-        if ((flight * chance) / difficulty > 1) {
+        if (((flight * chance) / difficulty) > 1) {
             return true;
         }
         Player player = repository.getPlayer();

@@ -1,5 +1,8 @@
 package neighbors.com.spacetrader.model;
 
+/**
+ * Player skills
+ */
 public enum SkillType {
     PILOT("Pilot"),
     FIGHTER("Fighter"),

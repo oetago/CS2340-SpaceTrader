@@ -6,8 +6,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-
-
+/**
+ * Planent Tech level
+ */
 public enum TechLevel {
 
     PREAGRICULTURE("Pre-Agriculture", Color.GRAY, 0),
@@ -58,7 +59,7 @@ public enum TechLevel {
 
     /**
      * Gets tech level name
-     * @return
+     * @return techname
      */
     public String getTechname() {
         return this.Techname;

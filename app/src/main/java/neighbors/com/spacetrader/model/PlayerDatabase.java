@@ -8,6 +8,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import neighbors.com.spacetrader.model.db.PlayerSave;
 
+/**
+ * Database to hold player data
+ */
 @Database(entities = {PlayerSave.class}, version = 2, exportSchema = false)
 public abstract class PlayerDatabase extends RoomDatabase {
 

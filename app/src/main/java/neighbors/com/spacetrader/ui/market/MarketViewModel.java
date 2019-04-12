@@ -34,7 +34,7 @@ class MarketViewModel extends BaseViewModel {
 
     /**
      * Gets the player from the database to use in the game
-     * @return
+     * @return the player
      */
     public Player getPlayer() {
         return player;

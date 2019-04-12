@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 
+/**
+ * Solar system model
+ */
 public class SolarSystem {
 
     private final String name;

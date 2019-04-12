@@ -6,6 +6,9 @@ import neighbors.com.spacetrader.model.Market;
 import neighbors.com.spacetrader.model.Player;
 import neighbors.com.spacetrader.model.TransactionResponse;
 
+/**
+ * Handles transactions for market
+ */
 public class TransactionProcessor {
 
     private final Market market;

@@ -5,12 +5,15 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+/**
+ * Model class to save the player in the db
+ */
 @Entity
 public class PlayerSave {
 
     @PrimaryKey
     @NonNull
-    private String characterName;
+    private String characterName = "";
     private String skills;
     private int difficulty;
     private int credits;

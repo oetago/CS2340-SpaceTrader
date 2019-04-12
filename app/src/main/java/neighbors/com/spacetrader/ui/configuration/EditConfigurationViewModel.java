@@ -11,6 +11,9 @@ import neighbors.com.spacetrader.model.SkillType;
 import neighbors.com.spacetrader.model.Universe;
 import neighbors.com.spacetrader.ui.base.BaseViewModel;
 
+/**
+ * View model for configuration activity
+ */
 public class EditConfigurationViewModel extends BaseViewModel {
     private static final int MAX_POINTS = 16;
 

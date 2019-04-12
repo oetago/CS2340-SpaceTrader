@@ -15,6 +15,9 @@ import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 
 
+/**
+ * Encounter activity for Pirates
+ */
 public class PirateActivity extends AppCompatActivity {
 
     private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";

@@ -14,6 +14,9 @@ import neighbors.com.spacetrader.R;
 import neighbors.com.spacetrader.model.RandomEvent;
 import neighbors.com.spacetrader.ui.universe.UniverseActivity;
 
+/**
+ * Encounter activity for police
+ */
 public class PoliceActivity extends AppCompatActivity {
 
     private static final String EXTRA_SOLAR_SYSTEM_NAME = "solar_system_name";

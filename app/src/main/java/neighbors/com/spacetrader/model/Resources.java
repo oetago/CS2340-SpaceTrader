@@ -1,6 +1,9 @@
 package neighbors.com.spacetrader.model;
 import java.util.Random;
 
+/**
+ * Planent resources
+ */
 public enum Resources {
 
     NOSPECIALRESOURCES("No Special Resources"),
