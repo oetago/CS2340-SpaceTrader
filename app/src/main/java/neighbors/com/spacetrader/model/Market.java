@@ -54,7 +54,8 @@ public class Market {
      */
     private int calculateSellPrice(Good good, TechLevel techLevel, Random random) {
         return (good.getBasePrice()
-                + (good.getIncreasePerLevel() * (techLevel.getLevel() - good.getMinTechLevelToUse()))
+                + (good.getIncreasePerLevel() *
+                (techLevel.getLevel() - good.getMinTechLevelToUse()))
                 + random.nextInt(good.getVar())) - (good.getVar() / 2);
     }
 

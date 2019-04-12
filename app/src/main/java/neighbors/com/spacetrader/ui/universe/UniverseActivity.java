@@ -58,7 +58,8 @@ public class UniverseActivity extends AppCompatActivity {
                     if (viewModel.getPlayerFuel() > 0) {
                         displaySolarSystemClickDialog(system);
                     } else {
-                        Toast.makeText(UniverseActivity.this, "Not enough fuel to travel!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UniverseActivity.this,
+                                "Not enough fuel to travel!", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -82,8 +83,10 @@ public class UniverseActivity extends AppCompatActivity {
                         viewModel.setPlayerPlanet(system.getName());
                         RandomEvent nextEvent = viewModel.getEvent();
                         Intent intent = new Intent(UniverseActivity.this, nextEvent.getActivity());
-                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName()); //Code to add name extra for next activity
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(EXTRA_SOLAR_SYSTEM_NAME, system.getName());
+                        //Code to add name extra for next activity
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 })
@@ -104,7 +107,8 @@ public class UniverseActivity extends AppCompatActivity {
      * @return the String message to be displayed
      */
     private String getSolarSystemMessage(SolarSystem system) {
-        return "Fuel level: " + viewModel.getPlayerFuel() + "\nTechLvl: " + system.getTechLevelName() + "\n" +
+        return "Fuel level: " + viewModel.getPlayerFuel() + "\nTechLvl: " +
+                system.getTechLevelName() + "\n" +
                 "Resource: " + system.getResourceName();
     }
 
@@ -131,7 +135,8 @@ public class UniverseActivity extends AppCompatActivity {
     private CircleView getCircleView() {
         CircleView display = new CircleView(this);
         display.setBorderWidth(20);
-        display.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+        display.setLayoutParams(new
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
         return display;
     }
