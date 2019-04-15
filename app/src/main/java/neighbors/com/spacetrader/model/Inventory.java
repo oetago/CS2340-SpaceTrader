@@ -88,13 +88,24 @@ public class Inventory {
      * @param good     the Good to remove
      * @param quantity the quantity to remove
      */
-    public void remove(Good good, int quantity) {
+    public boolean remove(Good good, int quantity) {
+        if (quantity < 0) {
+            // Return false if quantity removed is less than 0
+            return false;
+        }
         if (inventory.containsKey(good)) {
-            //Usually use get or default but android api is old
-            int goodCount = inventory.get(good);
+            // Usually use get or default but android api is old
+            Integer goodCount = inventory.get(good);
+            if ((goodCount == null) || (goodCount < quantity)) {
+                // Return false if the requested good is not in inventory
+                // Return false if quantity removed greater than inventory amount
+                return false;
+            }
             inventory.put(good, goodCount - quantity);
             currentInventory -= quantity;
+            return true;
         }
+        return false;
     }
 
     /**
